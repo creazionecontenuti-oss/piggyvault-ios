@@ -29,11 +29,13 @@ struct DashboardView: View {
                 
                 // Low gas alert banner
                 if appState.gasNeedsRefill && appState.isSafeDeployed && !appState.safeDeploymentFailed {
-                    GasAlertBanner()
-                        .transition(.asymmetric(
-                            insertion: .move(edge: .top).combined(with: .opacity),
-                            removal: .opacity
-                        ))
+                    GasAlertBanner(onBuyETH: {
+                        appState.openGasBuyETH()
+                    })
+                    .transition(.asymmetric(
+                        insertion: .move(edge: .top).combined(with: .opacity),
+                        removal: .opacity
+                    ))
                 }
                 
                 if isLoadingData && appState.totalBalance.isEmpty {
@@ -90,6 +92,19 @@ struct DashboardView: View {
             HapticManager.success()
         }
         .background(PiggyTheme.Colors.background.ignoresSafeArea())
+        .sheet(isPresented: $appState.showGasBuyETH) {
+            GasBuyETHSheet()
+                .environmentObject(appState)
+                .presentationDetents([.large])
+        }
+        .alert("gas.alert.title".localized, isPresented: $appState.showNoGasAlert) {
+            Button("gas.alert.buy_eth".localized) {
+                appState.openGasBuyETH()
+            }
+            Button("OK", role: .cancel) { }
+        } message: {
+            Text("gas.nogas.alert_message".localized)
+        }
         .sheet(isPresented: $showTransactionHistory) {
             TransactionHistoryView()
                 .environmentObject(appState)
@@ -165,9 +180,14 @@ struct DashboardView: View {
                     font: PiggyTheme.Typography.balanceLarge
                 )
                 
-                HStack(spacing: 4) {
+                HStack(spacing: 6) {
+                    Image("BaseLogo")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 14, height: 14)
+                    
                     Image(systemName: "shield.checkmark.fill")
-                        .font(.system(size: 12))
+                        .font(.system(size: 11))
                         .foregroundColor(PiggyTheme.Colors.accentGreen)
                     
                     Text("dashboard.secured".localized)
@@ -198,6 +218,7 @@ struct DashboardView: View {
                 title: "dashboard.action.new_piggy".localized,
                 color: PiggyTheme.Colors.primary
             ) {
+                guard appState.requiresGas() else { return }
                 // Navigate to create piggy bank
             }
             
@@ -206,6 +227,7 @@ struct DashboardView: View {
                 title: "dashboard.action.swap".localized,
                 color: PiggyTheme.Colors.accent
             ) {
+                guard appState.requiresGas() else { return }
                 // Navigate to swap
             }
         }

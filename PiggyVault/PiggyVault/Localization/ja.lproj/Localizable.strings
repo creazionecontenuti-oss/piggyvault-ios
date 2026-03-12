@@ -304,12 +304,17 @@
 "error.gas.quote_failed" = "スワップ見積もりを取得できませんでした";
 
 /* Gas Alert Banner */
-"gas.alert.title" = "ガス残高不足";
-"gas.alert.description" = "取引手数料にETHが必要です。ウォレットを引き続き使用するには、ステーブルコインをスワップしてください。";
-"gas.alert.swap_button" = "ガス用にスワップ";
-"gas.alert.swapping" = "スワップ中...";
-"gas.swap.not_enough_stablecoin" = "スワップに十分なステーブルコインがありません（最低$1.60必要）";
-"gas.swap.stipend_pending" = "ガス資金調達中です。しばらくしてから再試行してください";
+"gas.alert.title" = "ガスにETHが必要";
+"gas.alert.description" = "アドレスに$1.50以上のETH（Baseネットワーク）を送信するか、直接ETHを購入してください。";
+"gas.alert.copy_address" = "アドレスをコピー";
+"gas.alert.copied" = "コピー完了！";
+"gas.alert.buy_eth" = "ETHを購入";
+"gas.nogas.alert_message" = "取引手数料にはBase上のETHが必要です。アドレスにETHを送信するか、ETH購入オプションから購入してください。";
+
+/* Gas Buy ETH Sheet */
+"gas.buy.title" = "ガス用ETHを取得";
+"gas.buy.description" = "取引手数料のためにBase上で少量のETHを購入してください。$5で数か月使えます。";
+"gas.buy.nav_title" = "ETHを購入";
 
 /* Error Messages - Auth */
 "error.auth.google_not_configured" = "Google OAuthクライアントIDが設定されていません";

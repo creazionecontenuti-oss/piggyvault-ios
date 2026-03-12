@@ -144,8 +144,9 @@ struct SettingsView: View {
                 SettingsRow(
                     icon: "network",
                     iconColor: PiggyTheme.Colors.accent,
+                    customIcon: "BaseLogo",
                     title: "settings.network".localized,
-                    subtitle: "Base (Chain ID: 8453)"
+                    subtitle: "Chain ID: 8453"
                 ) { }
                 
                 Divider().background(Color.white.opacity(0.06)).padding(.leading, 52)
@@ -431,6 +432,7 @@ struct SettingsSection<Content: View>: View {
 struct SettingsRow: View {
     let icon: String
     var iconColor: Color = .white.opacity(0.5)
+    var customIcon: String? = nil
     let title: String
     var subtitle: String? = nil
     var showChevron: Bool = false
@@ -452,10 +454,18 @@ struct SettingsRow: View {
             }
         } label: {
             HStack(spacing: 14) {
-                Image(systemName: icon)
-                    .font(.system(size: 18))
-                    .foregroundColor(iconColor)
-                    .frame(width: 28)
+                if let customIcon = customIcon {
+                    Image(customIcon)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 22, height: 22)
+                        .frame(width: 28)
+                } else {
+                    Image(systemName: icon)
+                        .font(.system(size: 18))
+                        .foregroundColor(iconColor)
+                        .frame(width: 28)
+                }
                 
                 VStack(alignment: .leading, spacing: 2) {
                     Text(title)

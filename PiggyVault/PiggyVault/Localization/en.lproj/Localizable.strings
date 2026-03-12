@@ -304,12 +304,17 @@
 "error.gas.quote_failed" = "Could not get swap quote";
 
 /* Gas Alert Banner */
-"gas.alert.title" = "Low Gas Balance";
-"gas.alert.description" = "Your account needs ETH for transaction fees. Swap some stablecoin to continue using your wallet.";
-"gas.alert.swap_button" = "Swap for Gas";
-"gas.alert.swapping" = "Swapping...";
-"gas.swap.not_enough_stablecoin" = "Not enough stablecoin to swap (need at least $1.60)";
-"gas.swap.stipend_pending" = "Gas funding in progress, please try again in a moment";
+"gas.alert.title" = "ETH Needed for Gas";
+"gas.alert.description" = "Send at least $1.50 of ETH (Base network) to your address, or buy ETH directly.";
+"gas.alert.copy_address" = "Copy Address";
+"gas.alert.copied" = "Copied!";
+"gas.alert.buy_eth" = "Buy ETH";
+"gas.nogas.alert_message" = "You need ETH on Base to pay for transaction fees. Send ETH to your address or buy some via the Buy ETH option.";
+
+/* Gas Buy ETH Sheet */
+"gas.buy.title" = "Get ETH for Gas";
+"gas.buy.description" = "Buy a small amount of ETH on Base to cover transaction fees. $5 is enough for months of use.";
+"gas.buy.nav_title" = "Buy ETH";
 
 /* Error Messages - Auth */
 "error.auth.google_not_configured" = "Google OAuth Client ID not configured";

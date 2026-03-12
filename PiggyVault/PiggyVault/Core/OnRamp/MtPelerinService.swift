@@ -204,6 +204,42 @@ actor MtPelerinService {
         return components.url!
     }
     
+    /// Build a buy URL specifically for ETH on Base (for gas bootstrap).
+    /// Destination is the OWNER address (not Safe), since the owner needs ETH for gas.
+    func getBuyETHURL(
+        ownerAddress: String,
+        sourceCurrency: String? = nil,
+        amount: Double? = nil,
+        language: String = "en"
+    ) -> URL {
+        var components = URLComponents(string: widgetBaseURL)!
+        var items: [URLQueryItem] = [
+            URLQueryItem(name: "_ctkn", value: activationKey),
+            URLQueryItem(name: "type", value: "webview"),
+            URLQueryItem(name: "lang", value: language),
+            URLQueryItem(name: "tab", value: "buy"),
+            URLQueryItem(name: "tabs", value: "buy"),
+            URLQueryItem(name: "net", value: allowedNetwork),
+            URLQueryItem(name: "nets", value: allowedNetwork),
+            // Lock to ETH only for gas purchase
+            URLQueryItem(name: "crys", value: "ETH"),
+            URLQueryItem(name: "addr", value: ownerAddress),
+            URLQueryItem(name: "bdc", value: "ETH"),
+            URLQueryItem(name: "rfr", value: referralCode),
+            URLQueryItem(name: "mode", value: "dark")
+        ]
+        
+        if let amount = amount, amount > 0 {
+            items.append(URLQueryItem(name: "bsa", value: String(Int(amount))))
+        }
+        if let fiat = sourceCurrency {
+            items.append(URLQueryItem(name: "bsc", value: fiat))
+        }
+        
+        components.queryItems = items
+        return components.url!
+    }
+    
     func getSellURL(
         sourceAddress: String,
         inputCurrency: String = "USDC",

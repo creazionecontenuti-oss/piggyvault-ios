@@ -304,12 +304,17 @@
 "error.gas.quote_failed" = "Не удалось получить котировку обмена";
 
 /* Gas Alert Banner */
-"gas.alert.title" = "Низкий баланс газа";
-"gas.alert.description" = "Вашему аккаунту нужен ETH для комиссий. Обменяйте стейблкоин, чтобы продолжить использовать кошелёк.";
-"gas.alert.swap_button" = "Обменять на газ";
-"gas.alert.swapping" = "Обмен...";
-"gas.swap.not_enough_stablecoin" = "Недостаточно стейблкоинов для обмена (минимум $1,60)";
-"gas.swap.stipend_pending" = "Финансирование газа в процессе, повторите попытку через момент";
+"gas.alert.title" = "Нужен ETH для газа";
+"gas.alert.description" = "Отправьте минимум $1,50 ETH (сеть Base) на свой адрес или купите ETH напрямую.";
+"gas.alert.copy_address" = "Копировать адрес";
+"gas.alert.copied" = "Скопировано!";
+"gas.alert.buy_eth" = "Купить ETH";
+"gas.nogas.alert_message" = "Для оплаты комиссий нужен ETH на Base. Отправьте ETH на свой адрес или купите через опцию «Купить ETH».";
+
+/* Gas Buy ETH Sheet */
+"gas.buy.title" = "Получить ETH для газа";
+"gas.buy.description" = "Купите небольшое количество ETH на Base для покрытия комиссий. $5 хватит на месяцы использования.";
+"gas.buy.nav_title" = "Купить ETH";
 
 /* Error Messages - Auth */
 "error.auth.google_not_configured" = "Google OAuth Client ID не настроен";

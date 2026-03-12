@@ -327,6 +327,55 @@ actor GasManager {
         )
     }
     
+    /// Swap excess ETH → USDC when owner's ETH exceeds $1.50.
+    /// Keeps ~$1.00 of ETH (midpoint of healthy range) and sends USDC to the Safe.
+    /// Owner sends native ETH to Uniswap router which wraps → swaps → sends USDC to Safe.
+    func autoSwapExcessETH(ownerAddress: String, safeAddress: String) async throws -> String? {
+        let ownerETH = try await checkGasBalance(address: ownerAddress)
+        let ethPrice = try await getETHPrice()
+        let ethValueUSD = ownerETH * ethPrice
+        
+        guard ethValueUSD > autoSwapTargetUSD else {
+            NSLog("%@", "[SwapExcess] ETH=$\(String(format: "%.2f", ethValueUSD)) <= $\(autoSwapTargetUSD), no excess swap needed")
+            return nil
+        }
+        
+        // Keep $1.00 worth of ETH (midpoint of $0.50–$1.50 range)
+        let keepUSD = 1.00
+        let keepETH = keepUSD / ethPrice
+        let excessETH = ownerETH - keepETH
+        let excessWei = UInt64(excessETH * 1e18)
+        
+        // Min USDC out (5% slippage for small amounts)
+        let expectedUSDC = excessETH * ethPrice * 0.95
+        let minUSDCOut = UInt64(expectedUSDC * 1e6) // USDC has 6 decimals
+        
+        NSLog("%@", "[SwapExcess] Swapping \(String(format: "%.6f", excessETH)) ETH (~$\(String(format: "%.2f", excessETH * ethPrice))) → USDC for Safe")
+        
+        // Build Uniswap V3 exactInputSingle: WETH → USDC, recipient = Safe
+        let swapCalldata = encodeExactInputSingle(
+            tokenIn: wethAddress,
+            tokenOut: AssetType.usdc.contractAddress,
+            fee: poolFee,
+            recipient: safeAddress,
+            amountIn: excessWei,
+            amountOutMinimum: minUSDCOut,
+            sqrtPriceLimitX96: 0
+        )
+        
+        // Send tx from owner with value = excessETH, to = Uniswap router
+        // The router accepts native ETH and wraps it internally for WETH swaps
+        guard let sender = transactionSender else {
+            throw GasError.swapFailed("TransactionSender not configured")
+        }
+        return try await sender.sendTransaction(
+            from: ownerAddress,
+            to: uniswapRouter,
+            data: swapCalldata,
+            value: excessWei
+        )
+    }
+    
     // MARK: - Gas Estimation
     
     func estimateGasCost(for transactionType: TransactionType) async throws -> Double {

@@ -118,7 +118,8 @@ struct AccountProfileView: View {
                 StatusBadge(
                     icon: "network",
                     text: "Base L2",
-                    color: PiggyTheme.Colors.accent
+                    color: PiggyTheme.Colors.accent,
+                    customIcon: "BaseLogo"
                 )
             }
         }
@@ -369,11 +370,19 @@ struct StatusBadge: View {
     let icon: String
     let text: String
     let color: Color
+    var customIcon: String? = nil
     
     var body: some View {
         HStack(spacing: 6) {
-            Image(systemName: icon)
-                .font(.system(size: 11))
+            if let customIcon = customIcon {
+                Image(customIcon)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 14, height: 14)
+            } else {
+                Image(systemName: icon)
+                    .font(.system(size: 11))
+            }
             Text(text)
                 .font(PiggyTheme.Typography.captionBold)
         }

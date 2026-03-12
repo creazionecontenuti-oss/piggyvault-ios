@@ -304,12 +304,17 @@
 "error.gas.quote_failed" = "No se pudo obtener cotización de intercambio";
 
 /* Gas Alert Banner */
-"gas.alert.title" = "Saldo de Gas Bajo";
-"gas.alert.description" = "Tu cuenta necesita ETH para comisiones. Intercambia stablecoin para seguir usando tu wallet.";
-"gas.alert.swap_button" = "Intercambiar por Gas";
-"gas.alert.swapping" = "Intercambiando...";
-"gas.swap.not_enough_stablecoin" = "No hay suficiente stablecoin para intercambiar (se necesitan al menos $1.60)";
-"gas.swap.stipend_pending" = "Financiación de gas en progreso, inténtalo de nuevo en un momento";
+"gas.alert.title" = "ETH Necesario para Gas";
+"gas.alert.description" = "Envía al menos $1,50 de ETH (red Base) a tu dirección, o compra ETH directamente.";
+"gas.alert.copy_address" = "Copiar Dirección";
+"gas.alert.copied" = "¡Copiado!";
+"gas.alert.buy_eth" = "Comprar ETH";
+"gas.nogas.alert_message" = "Necesitas ETH en Base para pagar las comisiones. Envía ETH a tu dirección o compra algo a través de la opción Comprar ETH.";
+
+/* Gas Buy ETH Sheet */
+"gas.buy.title" = "Obtener ETH para Gas";
+"gas.buy.description" = "Compra una pequeña cantidad de ETH en Base para cubrir las comisiones. $5 son suficientes para meses de uso.";
+"gas.buy.nav_title" = "Comprar ETH";
 
 /* Error Messages - Auth */
 "error.auth.google_not_configured" = "ID de cliente OAuth de Google no configurado";

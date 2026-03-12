@@ -304,12 +304,17 @@
 "error.gas.quote_failed" = "스왑 견적을 가져올 수 없습니다";
 
 /* Gas Alert Banner */
-"gas.alert.title" = "가스 잔액 부족";
-"gas.alert.description" = "거래 수수료를 위해 ETH가 필요합니다. 지갑을 계속 사용하려면 스테이블코인을 스왑하세요.";
-"gas.alert.swap_button" = "가스용 스왑";
-"gas.alert.swapping" = "스왑 중...";
-"gas.swap.not_enough_stablecoin" = "스왑할 스테이블코인이 부족합니다 (최소 $1.60 필요)";
-"gas.swap.stipend_pending" = "가스 자금 조달 진행 중, 잠시 후 다시 시도하세요";
+"gas.alert.title" = "가스에 ETH 필요";
+"gas.alert.description" = "주소로 최소 $1.50의 ETH(Base 네트워크)를 보내거나 직접 ETH를 구매하세요.";
+"gas.alert.copy_address" = "주소 복사";
+"gas.alert.copied" = "복사됨!";
+"gas.alert.buy_eth" = "ETH 구매";
+"gas.nogas.alert_message" = "거래 수수료를 위해 Base의 ETH가 필요합니다. 주소로 ETH를 보내거나 ETH 구매 옵션에서 구매하세요.";
+
+/* Gas Buy ETH Sheet */
+"gas.buy.title" = "가스용 ETH 얻기";
+"gas.buy.description" = "거래 수수료를 위해 Base에서 소량의 ETH를 구매하세요. $5면 몇 달간 충분합니다.";
+"gas.buy.nav_title" = "ETH 구매";
 
 /* Error Messages - Auth */
 "error.auth.google_not_configured" = "Google OAuth 클라이언트 ID가 설정되지 않았습니다";

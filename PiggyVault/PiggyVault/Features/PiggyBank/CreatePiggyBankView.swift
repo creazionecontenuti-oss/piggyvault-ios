@@ -453,7 +453,21 @@ struct CreatePiggyBankView: View {
                             )
                         }
                         
-                        SummaryRow(label: "piggy.create.summary.network".localized, value: "Base (L2)")
+                        HStack {
+                            Text("piggy.create.summary.network".localized)
+                                .font(PiggyTheme.Typography.caption)
+                                .foregroundColor(.white.opacity(0.5))
+                            Spacer()
+                            HStack(spacing: 5) {
+                                Image("BaseLogo")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 14, height: 14)
+                                Text("Base (L2)")
+                                    .font(PiggyTheme.Typography.captionBold)
+                                    .foregroundColor(.white)
+                            }
+                        }
                     }
                 }
             }
@@ -500,6 +514,7 @@ struct CreatePiggyBankView: View {
                     title: "piggy.create.confirm".localized,
                     icon: "lock.shield.fill"
                 ) {
+                    guard appState.requiresGas() else { return }
                     HapticManager.heavyTap()
                     viewModel.createPiggyBank(appState: appState) {
                         showConfetti = true

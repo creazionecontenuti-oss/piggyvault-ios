@@ -4,6 +4,7 @@ struct DepositView: View {
     @EnvironmentObject var appState: AppState
     @StateObject private var viewModel = DepositViewModel()
     @State private var showContent = false
+    @State private var showGasBuyETH = false
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
@@ -48,7 +49,11 @@ struct DepositView: View {
                             )
                         ) {
                             HapticManager.mediumTap()
-                            viewModel.openMtPelerinBuy(walletAddress: appState.userWallet?.safeAddress ?? "")
+                            if appState.gasNeedsRefill {
+                                showGasBuyETH = true
+                            } else {
+                                viewModel.openMtPelerinBuy(walletAddress: appState.userWallet?.safeAddress ?? "")
+                            }
                         }
                         .opacity(showContent ? 1 : 0)
                         .offset(y: showContent ? 0 : 30)
@@ -67,7 +72,11 @@ struct DepositView: View {
                             )
                         ) {
                             HapticManager.mediumTap()
-                            viewModel.openMtPelerinBuy(walletAddress: appState.userWallet?.safeAddress ?? "")
+                            if appState.gasNeedsRefill {
+                                showGasBuyETH = true
+                            } else {
+                                viewModel.openMtPelerinBuy(walletAddress: appState.userWallet?.safeAddress ?? "")
+                            }
                         }
                         .opacity(showContent ? 1 : 0)
                         .offset(y: showContent ? 0 : 30)
@@ -146,6 +155,11 @@ struct DepositView: View {
             if let url = viewModel.webViewURL {
                 WebViewContainer(url: url, title: "Mt Pelerin")
             }
+        }
+        .sheet(isPresented: $showGasBuyETH) {
+            GasBuyETHSheet()
+                .environmentObject(appState)
+                .presentationDetents([.large])
         }
         .onAppear {
             withAnimation(.spring(response: 0.6, dampingFraction: 0.8).delay(0.1)) {

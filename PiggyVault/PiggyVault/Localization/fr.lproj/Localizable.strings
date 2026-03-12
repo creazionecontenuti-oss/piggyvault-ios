@@ -304,12 +304,17 @@
 "error.gas.quote_failed" = "Impossible d'obtenir le devis d'échange";
 
 /* Gas Alert Banner */
-"gas.alert.title" = "Solde Gas Faible";
-"gas.alert.description" = "Votre compte a besoin d'ETH pour les frais de transaction. Échangez des stablecoins pour continuer à utiliser votre portefeuille.";
-"gas.alert.swap_button" = "Échanger pour le Gas";
-"gas.alert.swapping" = "Échange en cours...";
-"gas.swap.not_enough_stablecoin" = "Pas assez de stablecoin pour l'échange (minimum $1,60 requis)";
-"gas.swap.stipend_pending" = "Financement du gas en cours, réessayez dans un instant";
+"gas.alert.title" = "ETH Nécessaire pour le Gas";
+"gas.alert.description" = "Envoyez au moins 1,50 $ d'ETH (réseau Base) à votre adresse, ou achetez de l'ETH directement.";
+"gas.alert.copy_address" = "Copier l'Adresse";
+"gas.alert.copied" = "Copié !";
+"gas.alert.buy_eth" = "Acheter ETH";
+"gas.nogas.alert_message" = "Vous avez besoin d'ETH sur Base pour payer les frais de transaction. Envoyez de l'ETH à votre adresse ou achetez-en via l'option Acheter ETH.";
+
+/* Gas Buy ETH Sheet */
+"gas.buy.title" = "Obtenir de l'ETH pour le Gas";
+"gas.buy.description" = "Achetez une petite quantité d'ETH sur Base pour couvrir les frais. 5 $ suffisent pour des mois d'utilisation.";
+"gas.buy.nav_title" = "Acheter ETH";
 
 /* Error Messages - Auth */
 "error.auth.google_not_configured" = "ID client OAuth Google non configuré";

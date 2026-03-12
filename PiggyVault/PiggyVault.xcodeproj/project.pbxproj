@@ -36,6 +36,7 @@
 		BF1A2B3C4D5E6F70A1B2C3D6 /* SellFlowSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1A2B3C4D5E6F70A1B2C3D7 /* SellFlowSheet.swift */; };
 		901C7F406F67C8B2EF0AFE18 /* BlockchainErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3FF59983709F49555A3C16 /* BlockchainErrorView.swift */; };
 		GA5A1B3C4D5E6F70A1B2C3D0 /* GasAlertBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = GA5A1B3C4D5E6F70A1B2C3D1 /* GasAlertBanner.swift */; };
+		GB6B2C4D5E6F70A1B2C3D0E1 /* GasBuyETHSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = GB6B2C4D5E6F70A1B2C3D0E2 /* GasBuyETHSheet.swift */; };
 		A31E4A7E169779CDBD8EA803 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7660EEAD9310CBAC22772B /* WebView.swift */; };
 		A96D40A49E5626C12A469A4D /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5E8261B086A07E0591C949 /* HapticManager.swift */; };
 		ADE2F91CA6D4687A9CC42889 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACC5822B30894FF18EE4B11 /* NetworkMonitor.swift */; };
@@ -115,6 +116,7 @@
 		9170883FCC3109BA29511767 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9C3FF59983709F49555A3C16 /* BlockchainErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockchainErrorView.swift; sourceTree = "<group>"; };
 		GA5A1B3C4D5E6F70A1B2C3D1 /* GasAlertBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasAlertBanner.swift; sourceTree = "<group>"; };
+		GB6B2C4D5E6F70A1B2C3D0E2 /* GasBuyETHSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasBuyETHSheet.swift; sourceTree = "<group>"; };
 		9C4B7F80AF4558870A1773A4 /* CreatePiggyBankViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePiggyBankViewModel.swift; sourceTree = "<group>"; };
 		9CF6EF37637E1F8D15AF28A1 /* FloatingIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingIcon.swift; sourceTree = "<group>"; };
 		A041C9CA16ABB8987AB3C60B /* MtPelerinService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MtPelerinService.swift; sourceTree = "<group>"; };
@@ -318,6 +320,7 @@
 				A7F0B3F994EB38C72FA00D57 /* BiometricLockView.swift */,
 				9C3FF59983709F49555A3C16 /* BlockchainErrorView.swift */,
 				GA5A1B3C4D5E6F70A1B2C3D1 /* GasAlertBanner.swift */,
+				GB6B2C4D5E6F70A1B2C3D0E2 /* GasBuyETHSheet.swift */,
 				A0EFEB92D85ECE30DF04C73C /* ConfettiView.swift */,
 				9CF6EF37637E1F8D15AF28A1 /* FloatingIcon.swift */,
 				3827C7807D40A78A423EE5DC /* GlassCard.swift */,
@@ -542,6 +545,7 @@
 				EFB1DA15B1AE5B0EC6B84E53 /* BiometricService.swift in Sources */,
 				901C7F406F67C8B2EF0AFE18 /* BlockchainErrorView.swift in Sources */,
 				GA5A1B3C4D5E6F70A1B2C3D0 /* GasAlertBanner.swift in Sources */,
+				GB6B2C4D5E6F70A1B2C3D0E1 /* GasBuyETHSheet.swift in Sources */,
 				66AE946C50EE6368A297A9E8 /* BlockchainService.swift in Sources */,
 				E75D78D8B6151ABEADF26E09 /* ConfettiView.swift in Sources */,
 				86AFCF9FF8A698F73623A22E /* CreatePiggyBankView.swift in Sources */,

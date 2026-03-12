@@ -226,7 +226,8 @@ struct PiggyBankDetailView: View {
                 DetailRow(
                     icon: "network",
                     label: "piggy.detail.network".localized,
-                    value: "Base (L2)"
+                    value: "Base (L2)",
+                    customIcon: "BaseLogo"
                 )
             }
         }
@@ -524,13 +525,22 @@ struct DetailRow: View {
     let icon: String
     let label: String
     let value: String
+    var customIcon: String? = nil
     
     var body: some View {
         HStack(spacing: 12) {
-            Image(systemName: icon)
-                .font(.system(size: 14))
-                .foregroundColor(.white.opacity(0.4))
-                .frame(width: 20)
+            if let customIcon = customIcon {
+                Image(customIcon)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 18, height: 18)
+                    .frame(width: 20)
+            } else {
+                Image(systemName: icon)
+                    .font(.system(size: 14))
+                    .foregroundColor(.white.opacity(0.4))
+                    .frame(width: 20)
+            }
             
             Text(label)
                 .font(PiggyTheme.Typography.caption)

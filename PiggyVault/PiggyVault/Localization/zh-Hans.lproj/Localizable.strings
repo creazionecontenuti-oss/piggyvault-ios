@@ -304,12 +304,17 @@
 "error.gas.quote_failed" = "无法获取兑换报价";
 
 /* Gas Alert Banner */
-"gas.alert.title" = "Gas余额不足";
-"gas.alert.description" = "您的账户需要ETH支付交易手续费。兑换稳定币以继续使用钱包。";
-"gas.alert.swap_button" = "兑换Gas";
-"gas.alert.swapping" = "兑换中...";
-"gas.swap.not_enough_stablecoin" = "稳定币不足，无法兑换（至少需要$1.60）";
-"gas.swap.stipend_pending" = "Gas资金正在到账中，请稍后重试";
+"gas.alert.title" = "需要ETH作为Gas费";
+"gas.alert.description" = "向您的地址发送至少$1.50的ETH（Base网络），或直接购买ETH。";
+"gas.alert.copy_address" = "复制地址";
+"gas.alert.copied" = "已复制！";
+"gas.alert.buy_eth" = "购买ETH";
+"gas.nogas.alert_message" = "您需要Base上的ETH来支付交易费用。向您的地址发送ETH或通过购买ETH选项购买。";
+
+/* Gas Buy ETH Sheet */
+"gas.buy.title" = "获取Gas用ETH";
+"gas.buy.description" = "在Base上购买少量ETH来支付交易费用。$5足够使用数月。";
+"gas.buy.nav_title" = "购买ETH";
 
 /* Error Messages - Auth */
 "error.auth.google_not_configured" = "Google OAuth客户端ID未配置";

@@ -842,3 +842,56 @@ Il relay Lit (`/fetch-pkps-by-auth-method`) ritorna `{"pkps": [{...}, ...]}` (og
 - ✅ Installato su device `00008120-001C45400143601E`
 - ✅ Push su GitHub: commit `a15d969`
 - ⏳ Test logout+re-login in attesa (device bloccato)
+
+## Sessione 19 - Gas Alert Banner Redesign
+**Timestamp**: 2026-03-12
+
+### Obiettivo
+Eliminare il relayer-based gas stipend e auto-swap dal flusso quotidiano. L'utente deve auto-finanziarsi l'ETH per gas, e il sistema deve gestire il reverse auto-swap per eccesso ETH.
+
+### Modifiche File
+
+**`GasAlertBanner.swift`** — Redesign completo:
+- Rimosso bottone "Swap for Gas" e logica swap progress
+- Aggiunto bottone "Copy Address" (copia owner address per invio ETH manuale)
+- Aggiunto bottone "Buy ETH" (apre Mt Pelerin widget per acquisto ETH su Base)
+- Animazione fuel pump e feedback aptico
+
+**`AppState.swift`**:
+- Rimossi `gasSwapInProgress`, `gasSwapError`
+- Aggiunti `showGasBuyETH`, `showNoGasAlert`
+- `checkAndAutoSwapForGas()`: rimosso relayer stipend, aggiunto reverse auto-swap (ETH > $1.50 → swap excess to USDC)
+- Rimosso `manualSwapForGas()`, aggiunto `requiresGas()` guard e `openGasBuyETH()` helper
+
+**`GasManager.swift`**:
+- Aggiunto `autoSwapExcessETH(ownerAddress:safeAddress:)` — swap ETH → WETH → USDC via Uniswap V3
+
+**`MtPelerinService.swift`**:
+- Aggiunto `getBuyETHURL()` — genera URL widget Mt Pelerin lockato a ETH su Base
+
+**`GasBuyETHSheet.swift`** (NUOVO):
+- Sheet SwiftUI con WebView Mt Pelerin per acquisto ETH per gas
+- Aggiunto al progetto Xcode (project.pbxproj)
+
+**`DashboardView.swift`**:
+- GasAlertBanner aggiornato con callback `onBuyETH`
+- Aggiunto sheet per GasBuyETHSheet
+- Aggiunto alert no-gas con bottoni Buy ETH / Cancel
+
+**`DepositView.swift`**:
+- Quando gas è basso, redirect buy flow a GasBuyETHSheet invece di BuyFlowSheet
+
+**`CreatePiggyBankView.swift`**:
+- Aggiunto `appState.requiresGas()` guard prima della creazione piggy bank
+
+**Localizzazione (11 lingue)**:
+- Aggiornate stringhe gas alert in EN, IT, DE, ES, FR, PT, HI, JA, KO, RU, ZH-Hans
+- Nuove chiavi: `gas.alert.copy_address`, `gas.alert.copied`, `gas.alert.buy_eth`, `gas.nogas.alert_message`, `gas.buy.title`, `gas.buy.description`, `gas.buy.nav_title`
+
+### Decisioni
+- Relayer stipend mantenuto SOLO per Safe deployment (primo setup)
+- ETH target range: $0.50 (low) — $1.50 (high)
+- Reverse auto-swap: se ETH > $1.50, converte eccesso in USDC via Uniswap V3
+- Mt Pelerin: quando gas basso, widget lockato a ETH; altrimenti stablecoin
+
+### Build: ✅ BUILD SUCCEEDED

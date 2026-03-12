@@ -7,18 +7,27 @@ struct NetworkStatusView: View {
     
     var body: some View {
         HStack(spacing: 8) {
-            // Animated status dot
-            Circle()
-                .fill(statusColor)
-                .frame(width: 8, height: 8)
-                .shadow(color: statusColor.opacity(0.6), radius: isPulsing ? 6 : 2)
-                .scaleEffect(isPulsing ? 1.3 : 1.0)
-                .animation(
-                    networkMonitor.status.isOnline
-                    ? .easeInOut(duration: 1.5).repeatForever(autoreverses: true)
-                    : .easeInOut(duration: 0.5).repeatForever(autoreverses: true),
-                    value: isPulsing
-                )
+            // Base logo + animated status dot
+            ZStack(alignment: .bottomTrailing) {
+                Image("BaseLogo")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 18, height: 18)
+                
+                Circle()
+                    .fill(statusColor)
+                    .frame(width: 7, height: 7)
+                    .overlay(Circle().stroke(Color.black.opacity(0.4), lineWidth: 1))
+                    .shadow(color: statusColor.opacity(0.6), radius: isPulsing ? 4 : 1)
+                    .scaleEffect(isPulsing ? 1.2 : 1.0)
+                    .offset(x: 2, y: 2)
+            }
+            .animation(
+                networkMonitor.status.isOnline
+                ? .easeInOut(duration: 1.5).repeatForever(autoreverses: true)
+                : .easeInOut(duration: 0.5).repeatForever(autoreverses: true),
+                value: isPulsing
+            )
             
             if isExpanded {
                 VStack(alignment: .leading, spacing: 2) {

@@ -4,6 +4,13 @@ struct GasAlertBanner: View {
     @EnvironmentObject var appState: AppState
     @State private var appear = false
     @State private var pulseGlow = false
+    @State private var copiedFeedback = false
+    
+    var onBuyETH: (() -> Void)?
+    
+    private var ownerAddress: String {
+        appState.userWallet?.address ?? ""
+    }
     
     var body: some View {
         VStack(spacing: 12) {
@@ -29,64 +36,74 @@ struct GasAlertBanner: View {
                     Text("gas.alert.description".localized)
                         .font(PiggyTheme.Typography.caption)
                         .foregroundColor(.white.opacity(0.6))
-                        .lineLimit(2)
+                        .lineLimit(3)
                 }
                 
                 Spacer()
             }
             
-            // Error message if swap failed
-            if let error = appState.gasSwapError {
-                HStack(spacing: 6) {
-                    Image(systemName: "exclamationmark.triangle.fill")
-                        .font(.system(size: 11))
-                        .foregroundColor(PiggyTheme.Colors.error)
-                    Text(error)
-                        .font(PiggyTheme.Typography.caption)
-                        .foregroundColor(PiggyTheme.Colors.error.opacity(0.9))
-                        .lineLimit(2)
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-            }
-            
-            // Swap button
-            Button {
-                HapticManager.mediumTap()
-                appState.manualSwapForGas()
-            } label: {
-                HStack(spacing: 8) {
-                    if appState.gasSwapInProgress {
-                        ProgressView()
-                            .progressViewStyle(CircularProgressViewStyle(tint: .white))
-                            .scaleEffect(0.8)
-                        Text("gas.alert.swapping".localized)
-                            .font(PiggyTheme.Typography.captionBold)
-                            .foregroundColor(.white)
-                    } else {
-                        Image(systemName: "arrow.triangle.2.circlepath")
-                            .font(.system(size: 13, weight: .semibold))
-                            .foregroundColor(.white)
-                        Text("gas.alert.swap_button".localized)
-                            .font(PiggyTheme.Typography.captionBold)
-                            .foregroundColor(.white)
+            // Two action buttons: Copy Address + Buy ETH
+            HStack(spacing: 10) {
+                // Copy owner address button
+                Button {
+                    HapticManager.mediumTap()
+                    UIPasteboard.general.string = ownerAddress
+                    withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                        copiedFeedback = true
                     }
-                }
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 10)
-                .background(
-                    RoundedRectangle(cornerRadius: 12)
-                        .fill(
-                            LinearGradient(
-                                colors: [Color.orange, Color.orange.opacity(0.8)],
-                                startPoint: .leading,
-                                endPoint: .trailing
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                        withAnimation { copiedFeedback = false }
+                    }
+                } label: {
+                    HStack(spacing: 6) {
+                        Image(systemName: copiedFeedback ? "checkmark" : "doc.on.doc")
+                            .font(.system(size: 12, weight: .semibold))
+                            .foregroundColor(.white)
+                        Text(copiedFeedback ? "gas.alert.copied".localized : "gas.alert.copy_address".localized)
+                            .font(PiggyTheme.Typography.captionBold)
+                            .foregroundColor(.white)
+                            .lineLimit(1)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 10)
+                    .background(
+                        RoundedRectangle(cornerRadius: 12)
+                            .fill(Color.white.opacity(0.12))
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 12)
+                                    .stroke(Color.white.opacity(0.15), lineWidth: 1)
                             )
-                        )
-                )
+                    )
+                }
+                
+                // Buy ETH on Mt Pelerin button
+                Button {
+                    HapticManager.mediumTap()
+                    onBuyETH?()
+                } label: {
+                    HStack(spacing: 6) {
+                        Image(systemName: "creditcard.fill")
+                            .font(.system(size: 12, weight: .semibold))
+                            .foregroundColor(.white)
+                        Text("gas.alert.buy_eth".localized)
+                            .font(PiggyTheme.Typography.captionBold)
+                            .foregroundColor(.white)
+                            .lineLimit(1)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 10)
+                    .background(
+                        RoundedRectangle(cornerRadius: 12)
+                            .fill(
+                                LinearGradient(
+                                    colors: [Color.orange, Color.orange.opacity(0.8)],
+                                    startPoint: .leading,
+                                    endPoint: .trailing
+                                )
+                            )
+                    )
+                }
             }
-            .disabled(appState.gasSwapInProgress)
-            .opacity(appState.gasSwapInProgress ? 0.7 : 1.0)
-            .animation(.easeInOut(duration: 0.2), value: appState.gasSwapInProgress)
         }
         .padding(16)
         .background(
