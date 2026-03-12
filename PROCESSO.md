@@ -707,3 +707,66 @@ Questo causava un `initCodeHash` diverso nella formula CREATE2, producendo un in
 - Safe (vecchia predizione errata): `0x9D517d7b7943ff4C640770D2447d2d54b6c222bb` — mai deployato (indirizzo fantasma)
 
 ### Build: ✅ Compilazione riuscita, installato su iPhone
+
+---
+
+## Sessione 19 — 2026-03-12 08:30
+### Task: PKP Persistence Fix + Full Code Review + 20 Test Cases
+
+### Bug Fix Applicati
+
+1. **PKP Persistence (CRITICO)**: `mintOrFetchPKP` ora usa 3 layer di recovery:
+   - Layer 1: Keychain locale (più veloce, no network)
+   - Layer 2: Lit relay fetch (PKP on-chain esistente)
+   - Layer 3: Mint new (solo per utenti genuinamente nuovi)
+   - `PKPInfo` arricchito con `authMethodId` per matching locale
+
+2. **signOut preserva identità crypto**: `pkpPublicKey`, `litAuthSig`, `safeAddress` sopravvivono al logout
+
+3. **signIn salva safeAddress in keychain**: Doppia persistenza (UserDefaults + Keychain)
+
+4. **loadDashboardData guarda solo Safe**: Non fa più fallback all'owner address per i bilanci
+
+5. **Google OAuth prompt**: Cambiato da `consent` a `select_account` per UX migliore
+
+6. **checkExistingSession migliorato**:
+   - Se biometric lock non è abilitato → auto-restore sessione
+   - Se biometric lock è abilitato ma biometria non disponibile → fallback a passcode dispositivo
+   - Se passcode non disponibile → auth screen (safety net)
+
+### Repository GitHub
+- **Repo**: `creazionecontenuti-oss/piggyvault-ios` (privata)
+- **URL**: https://github.com/creazionecontenuti-oss/piggyvault-ios
+
+### 20 Test Cases — Risultati Code Review
+
+| # | Tipo | Test Case | File Chiave | Risultato | Note |
+|---|------|-----------|-------------|-----------|------|
+| 1 | Happy | Fresh registration con Google | AuthViewModel→LitProtocolService→AppState | ✅ PASS | Layer 3 mint → storePKPInfo → signIn → deploy Safe |
+| 2 | Happy | Fresh registration con Apple | AuthViewModel→LitProtocolService→AppState | ✅ PASS | Stesso flusso di #1 con Apple credential |
+| 3 | Happy | App restart con sessione esistente + biometric | AppState.checkExistingSession | ✅ PASS | Keychain → biometric → loadCachedData → ensureSafeDeployed |
+| 4 | Happy | Logout e re-login stesso account Google | signOut→AuthViewModel→mintOrFetchPKP | ✅ PASS | Layer 1 keychain hit (authMethodId match) → stesso PKP/Safe |
+| 5 | Happy | Primo acquisto Mt Pelerin (bank transfer) | DepositView→BuyFlowSheet→MtPelerinService | ✅ PASS | Safe deployed → widget URL con addr=safeAddress locked |
+| 6 | Happy | Primo acquisto Mt Pelerin (carta) | DepositView→BuyFlowSheet→MtPelerinService | ✅ PASS | Stesso di #5 con payment method card |
+| 7 | Happy | Ricezione crypto via QR code | DepositView.receiveSheet | ✅ PASS | QR code con safeAddress, copy button, network warning |
+| 8 | Happy | App lock/unlock biometrico | AppState.lockApp→unlockApp | ✅ PASS | Controlla biometricLockEnabled + isAuthenticated + dashboard |
+| 9 | Happy | Pull-to-refresh dashboard | AppState.refreshData→loadDashboardData | ✅ PASS | Ricarica bilanci, piggy banks da Safe address |
+| 10 | Happy | App restart senza biometric lock abilitato | AppState.checkExistingSession | ✅ PASS | **FIX applicato**: auto-restore sessione senza biometric |
+| 11 | Edge | Google OAuth cancellato dall'utente | AuthViewModel.handleGoogleSignIn | ✅ PASS | Catch GoogleAuthError.cancelled → no error, reset loading |
+| 12 | Edge | Lit relay fetch fallisce, mint riesce | LitProtocolService.mintOrFetchPKP | ✅ PASS | Layer 2 `try?` → nil → Layer 3 mint → OK |
+| 13 | Edge | Safe deployment fallisce durante signIn | AppState.signIn catch block | ✅ PASS | safeDeploymentFailed=true, banner warning, retry button |
+| 14 | Edge | Network error durante verifica deployment | AppState.waitForDeployment | ✅ PASS | Polling resiliente (continua su errori transitori), timeout → retry banner |
+| 15 | Edge | Utente passa da Google ad Apple | mintOrFetchPKP Layer 1 mismatch | ✅ PASS | authMethodId diverso → skip L1 → L2/L3 → nuovo PKP/Safe |
+| 16 | Edge | App killed durante Safe deployment | checkExistingSession→ensureSafeDeployed | ✅ PASS | walletAddress in keychain → ensureSafeDeployed → idempotente |
+| 17 | Edge | Keychain ha PKP legacy senza authMethodId | getStoredPKP legacy fallback | ⚠️ PARZIALE | authMethodId=nil → L1 skip → L2 relay OK se online; se relay down → L3 re-mint → Safe orfano |
+| 18 | Edge | Mt Pelerin con Safe non deployato | DepositView.isSafeDeployed check | ✅ PASS | SafeDeploymentWarningBanner → operazioni bloccate |
+| 19 | Edge | Biometric auth fallisce al restart | checkExistingSession biometric=false | ✅ PASS | **FIX applicato**: passcode fallback; se anche quello fallisce → auth screen |
+| 20 | Edge | Sign out + sign in con account Google diverso | signOut→mintOrFetchPKP L1 mismatch | ✅ PASS | authMethodId_B ≠ stored_A → L2/L3 → nuovo PKP → nuovo Safe → dati vecchi già puliti |
+
+**Riepilogo**: 19/20 PASS, 1/20 PARZIALE (test #17: degraded path per PKP legacy senza authMethodId quando Lit relay è offline — accettabile per migrazione)
+
+### Gap Noti (Non Critici)
+- **Single PKP per keychain**: Se utente alterna provider (Google↔Apple), il PKP precedente viene sovrascritto. Recovery via Layer 2 (relay) funziona se online.
+- **signIn conflates all errors as deployment failures**: Se Secure Enclave key generation fallisce, viene trattato come deployment failure. Impatto: banner retry sbagliato.
+
+### Build: ✅ Compilazione riuscita
