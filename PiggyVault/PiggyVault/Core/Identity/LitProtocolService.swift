@@ -255,23 +255,42 @@ actor LitProtocolService {
         request.addValue(litRelayApiKey, forHTTPHeaderField: "api-key")
         request.httpBody = try JSONSerialization.data(withJSONObject: body)
         
+        NSLog("%@", "[Lit] 🌐 Relay fetch — POST /fetch-pkps-by-auth-method authMethodType=\(authMethodType.rawValue) authId=\(authId.prefix(20))...")
+        
         let (data, response) = try await session.data(for: request)
         
         guard let httpResponse = response as? HTTPURLResponse,
               (200...299).contains(httpResponse.statusCode) else {
             let statusCode = (response as? HTTPURLResponse)?.statusCode ?? 0
             let errorBody = String(data: data, encoding: .utf8) ?? ""
-            print("[Lit] ⚠️ Fetch PKPs failed (\(statusCode)): \(errorBody)")
+            NSLog("%@", "[Lit] ⚠️ Fetch PKPs failed (\(statusCode)): \(errorBody)")
             return nil
         }
         
         let responseString = String(data: data, encoding: .utf8) ?? ""
-        print("[Lit] 📥 Fetch PKPs response: \(responseString.prefix(500))")
+        NSLog("%@", "[Lit] 📥 Fetch PKPs response: \(String(responseString.prefix(500)))")
         
-        // Response is an array of PKPs
-        guard let pkps = try JSONSerialization.jsonObject(with: data) as? [[String: Any]],
-              let firstPKP = pkps.first else {
-            print("[Lit] ℹ️ No PKPs found for this auth method")
+        // Lit relay returns {"pkps": [{...}, ...]} — parse the wrapper object
+        // Also handle raw array [...] as fallback
+        let parsed = try JSONSerialization.jsonObject(with: data)
+        var pkpArray: [[String: Any]] = []
+        
+        if let wrapper = parsed as? [String: Any],
+           let pkps = wrapper["pkps"] as? [[String: Any]] {
+            // Standard Lit relay response: {"pkps": [...]}
+            pkpArray = pkps
+            NSLog("%@", "[Lit] 📦 Parsed relay response as {\"pkps\": [...]}, found \(pkps.count) PKPs")
+        } else if let rawArray = parsed as? [[String: Any]] {
+            // Fallback: raw array [...]
+            pkpArray = rawArray
+            NSLog("%@", "[Lit] 📦 Parsed relay response as raw array, found \(rawArray.count) PKPs")
+        } else {
+            NSLog("%@", "[Lit] ⚠️ Unexpected relay response format: \(String(responseString.prefix(200)))")
+            return nil
+        }
+        
+        guard let firstPKP = pkpArray.first else {
+            NSLog("%@", "[Lit] ℹ️ No PKPs found for this auth method")
             return nil
         }
         
@@ -281,11 +300,12 @@ actor LitProtocolService {
         let ethAddress = firstPKP["ethAddress"] as? String ?? firstPKP["pkpEthAddress"] as? String ?? ""
         
         guard !publicKey.isEmpty else {
-            print("[Lit] ⚠️ PKP found but missing publicKey")
+            NSLog("%@", "[Lit] ⚠️ PKP found but missing publicKey: \(firstPKP)")
             return nil
         }
         
         let address = ethAddress.isEmpty ? EthAddress.fromPublicKey(publicKey) : ethAddress
+        NSLog("%@", "[Lit] ✅ Relay returned PKP: tokenId=\(tokenId.prefix(20))... addr=\(address)")
         return PKPInfo(tokenId: tokenId, publicKey: publicKey, ethAddress: address, authMethodId: nil)
     }
     
