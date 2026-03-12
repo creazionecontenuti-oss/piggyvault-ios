@@ -1,0 +1,375 @@
+/* PiggyVault - Deutsch */
+
+/* General */
+"cancel" = "Abbrechen";
+"ok" = "OK";
+"error.title" = "Fehler";
+"done" = "Fertig";
+"save" = "Speichern";
+"delete" = "Löschen";
+"confirm" = "Bestätigen";
+"loading" = "Laden...";
+
+/* Loading States */
+"loading.creating_wallet" = "Dein Vault wird erstellt...";
+"loading.deploying_safe" = "Dein Safe Smart Account wird bereitgestellt...";
+"loading.configuring_modules" = "Sicherheitsmodule werden konfiguriert...";
+"loading.finalizing" = "Abschluss...";
+"loading.securing_keys" = "Schlüssel werden gesichert...";
+"loading.confirming_deploy" = "Bereitstellung wird bestätigt...";
+"loading.please_wait" = "Dies kann einen Moment dauern";
+"loading.tagline" = "Unzerstörbare digitale Ersparnisse";
+
+/* Auth */
+"auth.subtitle" = "Unzerstörbare digitale Spardosen\nauf der Blockchain";
+"auth.google_sign_in" = "Mit Google anmelden";
+"auth.terms" = "Durch Fortfahren stimmst du unseren Nutzungsbedingungen und der Datenschutzrichtlinie zu";
+"auth.non_custodial" = "100% Non-Custodial · Deine Schlüssel, deine Coins";
+"auth.biometric.reason" = "Authentifiziere dich, um auf deinen Vault zuzugreifen";
+"auth.biometric.transaction" = "Transaktion von %@ %@ bestätigen";
+"auth.loading.authenticating" = "Authentifizierung...";
+"auth.loading.google" = "Verbindung zu Google...";
+"auth.loading.lit_protocol" = "Sichere Wallet wird eingerichtet...";
+"auth.loading.finalizing" = "Abschließen...";
+"auth.error.invalid_credential" = "Ungültige Anmeldedaten. Bitte versuche es erneut.";
+"auth.error.google_not_configured" = "Google-Anmeldung ist noch nicht konfiguriert. Bitte verwende Apple-Anmeldung.";
+
+/* Biometric Lock */
+"biometric.locked" = "Dein Vault ist gesperrt";
+"biometric.unlock" = "Mit Face ID entsperren";
+
+/* Onboarding */
+"onboarding.skip" = "Überspringen";
+"onboarding.next" = "Weiter";
+"onboarding.get_started" = "Los geht's";
+"onboarding.page1.title" = "Unzerstörbare Spardosen";
+"onboarding.page1.description" = "Deine Ersparnisse sind durch Smart Contracts auf der Blockchain gesichert. Nicht einmal wir können dein Geld anfassen.";
+"onboarding.page2.title" = "Spare in Stablecoins & Gold";
+"onboarding.page2.description" = "Schütze deine Ersparnisse vor Inflation mit USDC, EURC oder tokenisiertem Gold (PAXG).";
+"onboarding.page3.title" = "Sperrregeln nach deiner Wahl";
+"onboarding.page3.description" = "Setze eine Zeitsperre oder ein Sparziel. Einmal aktiviert, sind die Regeln unveränderlich und mathematisch durchgesetzt.";
+"onboarding.page4.title" = "Zugriff überall";
+"onboarding.page4.description" = "Nutze Face ID oder Biometrie. Greife von jedem Gerät mit deinem Apple- oder Google-Konto auf deinen Vault zu.";
+
+/* Tabs */
+"tab.dashboard" = "Startseite";
+"tab.piggy_banks" = "Vaults";
+"tab.deposit" = "Einzahlen";
+"tab.settings" = "Einstellungen";
+
+/* Dashboard */
+"dashboard.greeting" = "Willkommen zurück";
+"dashboard.total_balance" = "Gesamtguthaben";
+"dashboard.secured" = "Gesichert auf Base";
+"dashboard.action.deposit" = "Einzahlen";
+"dashboard.action.new_piggy" = "Neuer Vault";
+"dashboard.action.swap" = "Tauschen";
+"dashboard.assets" = "Deine Assets";
+"dashboard.no_assets" = "Noch keine Assets";
+"dashboard.no_assets_desc" = "Zahle Guthaben ein, um loszulegen";
+"dashboard.piggy_banks" = "Deine Vaults";
+"dashboard.see_all" = "Alle anzeigen";
+"dashboard.no_piggy_banks" = "Noch keine Vaults";
+"dashboard.no_piggy_banks_desc" = "Erstelle deine erste unzerstörbare Spardose und beginne diszipliniert zu sparen.";
+"dashboard.create_first_piggy" = "Ersten Vault erstellen";
+
+/* Piggy Banks */
+"piggy.title" = "Deine Vaults";
+"piggy.subtitle" = "Unzerstörbare Ersparnisse";
+"piggy.lock_type.time" = "Zeitsperre";
+"piggy.lock_type.target" = "Zielsperre";
+"piggy.lock_type.time_desc" = "Guthaben ist bis zu einem bestimmten Datum gesperrt. Niemand kann vorher abheben.";
+"piggy.lock_type.target_desc" = "Guthaben ist gesperrt, bis du dein Sparziel erreichst. Bleib diszipliniert!";
+"piggy.target" = "Ziel";
+"piggy.remaining" = "Verbleibend";
+"piggy.ready_to_unlock" = "Bereit zum Entsperren!";
+"piggy.time.ready" = "Bereit!";
+"piggy.stats.total" = "Gesamt";
+"piggy.stats.locked" = "Gesperrt";
+"piggy.stats.ready" = "Bereit";
+"piggy.empty.title" = "Erstelle deinen ersten Vault";
+"piggy.empty.description" = "Sperre deine Ersparnisse mit mathematisch durchgesetzten Regeln. Einmal gesetzt, kann niemand sie brechen.";
+"piggy.empty.create" = "Vault erstellen";
+
+/* Piggy Bank Types */
+"piggy.type.time_vault" = "Zeittresor";
+"piggy.type.target_vault" = "Zieltresor";
+
+/* Create Piggy Bank */
+"piggy.create.title" = "Neuer Vault";
+"piggy.create.step1.title" = "Benenne deinen Vault";
+"piggy.create.step1.subtitle" = "Gib ihm einen einprägsamen Namen";
+"piggy.create.name" = "VAULT-NAME";
+"piggy.create.name_placeholder" = "z.B. Traumurlaub";
+"piggy.create.color" = "FARBE";
+"piggy.create.step2.title" = "Asset wählen";
+"piggy.create.step2.subtitle" = "Wähle die Sparwährung";
+"piggy.create.step3.title" = "Sperrtyp";
+"piggy.create.step3.subtitle" = "Wähle, wie deine Ersparnisse gesperrt werden";
+"piggy.create.unlock_date" = "ENTSPERRDATUM";
+"piggy.create.target_amount" = "ZIELBETRAG";
+"piggy.create.step4.title" = "Bestätigen";
+"piggy.create.step4.subtitle" = "Überprüfe deine Vault-Einstellungen";
+"piggy.create.summary.lock_type" = "Sperrtyp";
+"piggy.create.summary.unlock_date" = "Entsperrdatum";
+"piggy.create.summary.target" = "Ziel";
+"piggy.create.summary.network" = "Netzwerk";
+"piggy.create.warning" = "Einmal erstellt, sind die Sperrregeln UNVERÄNDERLICH. Sie können von niemandem geändert oder umgangen werden, auch nicht von dir.";
+"piggy.create.next" = "Weiter";
+"piggy.create.back" = "Zurück";
+"piggy.create.confirm" = "Vault erstellen";
+"piggy.create.biometric_reason" = "Authentifiziere dich, um einen neuen Vault zu erstellen";
+"piggy.create.progress.deploying" = "Smart Contract wird bereitgestellt...";
+"piggy.create.progress.time_lock" = "Zeitsperrmodul wird installiert...";
+"piggy.create.progress.target_lock" = "Zielsperrmodul wird installiert...";
+"piggy.create.progress.finalizing" = "Vault wird abgeschlossen...";
+"piggy.create.progress.done" = "Vault erfolgreich erstellt!";
+"piggy.create.error.biometric_failed" = "Biometrische Authentifizierung fehlgeschlagen. Bitte versuchen Sie es erneut.";
+
+/* Piggy Bank Detail */
+"piggy.detail.progress" = "Fortschritt";
+"piggy.detail.time_remaining" = "Verbleibende Zeit";
+"piggy.detail.target" = "Zielbetrag";
+"piggy.detail.info" = "Details";
+"piggy.detail.created" = "Erstellt";
+"piggy.detail.lock_type" = "Sperrtyp";
+"piggy.detail.contract" = "Vertrag";
+"piggy.detail.network" = "Netzwerk";
+"piggy.detail.deposit" = "Einzahlen";
+"piggy.detail.unlock" = "Vault entsperren";
+"piggy.detail.deposit_amount" = "Einzahlungsbetrag";
+"piggy.detail.confirm_deposit" = "Einzahlung bestätigen";
+"piggy.detail.depositing" = "Einzahlung wird verarbeitet...";
+"piggy.detail.deposit_success" = "Erfolgreich %@ %@ eingezahlt";
+"piggy.detail.invalid_amount" = "Bitte gib einen gültigen Betrag ein";
+"piggy.detail.unlock_confirm.title" = "Vault entsperren?";
+"piggy.detail.unlock_confirm.message" = "Dies wird alle Gelder aus dem Vault zurück in dein Safe-Wallet übertragen.";
+"piggy.detail.unlock_pending" = "Entsperrungsanfrage gesendet. Wird verarbeitet...";
+"piggy.detail.unlock_success" = "Vault entsperrt! Guthaben ist jetzt verfügbar.";
+
+/* Deposit */
+"deposit.title" = "Einzahlen";
+"deposit.subtitle" = "Guthaben hinzufügen";
+"deposit.bank_transfer" = "Banküberweisung";
+"deposit.bank_transfer_desc" = "SEPA, Überweisung über Mt Pelerin";
+"deposit.card" = "Kartenzahlung";
+"deposit.card_desc" = "Visa, Mastercard über Mt Pelerin";
+"deposit.crypto" = "Krypto-Überweisung";
+"deposit.crypto_desc" = "Sende Krypto direkt an deinen Safe";
+"deposit.no_kyc" = "Kein KYC";
+"deposit.instant" = "Sofort";
+"deposit.personal_iban" = "Persönliche IBAN";
+"deposit.iban_desc" = "Erhalte eine eigene IBAN, die direkt in deinen Vault als Stablecoins einzahlt.";
+"deposit.iban_coming_soon" = "Demnächst...";
+"deposit.powered_by_mt_pelerin" = "Powered by Mt Pelerin";
+"deposit.info.title" = "So funktioniert's";
+"deposit.info.bullet1" = "Guthaben wird direkt in deinen Safe Smart Account im Base-Netzwerk eingezahlt.";
+"deposit.info.bullet2" = "Kein KYC erforderlich für Überweisungen bis 1.000 CHF/Tag über Mt Pelerin.";
+"deposit.info.bullet3" = "Gasgebühren sind minimal auf Base L2 (~$0,01 pro Transaktion).";
+"deposit.receive.title" = "Krypto empfangen";
+"deposit.receive.scan" = "Scannen, um Krypto zu senden";
+"deposit.receive.address" = "DEINE SAFE-ADRESSE";
+"deposit.receive.copy" = "Adresse kopieren";
+"deposit.receive.copied" = "Kopiert!";
+"deposit.receive.network_warning" = "Sende nur Assets im Base-Netzwerk. Das Senden in anderen Netzwerken kann zum dauerhaften Verlust führen.";
+"deposit.withdraw" = "Auf Konto auszahlen";
+"deposit.withdraw_desc" = "Stablecoins über SEPA in Fiat umwandeln";
+
+/* Buy Flow */
+"deposit.buy.title" = "Stablecoins kaufen";
+"deposit.buy.enter_amount" = "Wie viel möchtest du hinzufügen?";
+"deposit.buy.pay_with" = "Bezahlen mit";
+"deposit.buy.receive" = "Erhalten";
+"deposit.buy.loading_quote" = "Bester Kurs wird ermittelt...";
+"deposit.buy.quote_ready" = "Angebot bereit";
+"deposit.buy.you_pay" = "Du zahlst";
+"deposit.buy.you_receive" = "Du erhältst";
+"deposit.buy.fees" = "Gebühren";
+"deposit.buy.rate" = "Kurs";
+"deposit.buy.confirm" = "Weiter zur Zahlung";
+"deposit.buy.info_title" = "Sicher & Geschützt";
+"deposit.buy.info_1" = "Gelder gehen direkt in deinen Vault im Base-Netzwerk";
+"deposit.buy.info_2" = "Kein KYC nötig bis 1.000 CHF/Tag";
+"deposit.buy.info_3" = "Betrieben von Mt Pelerin, einem Schweizer regulierten Unternehmen";
+
+/* Sell Flow */
+"deposit.sell.title" = "Auf Konto auszahlen";
+"deposit.sell.enter_amount" = "Wie viel möchtest du abheben?";
+"deposit.sell.from" = "Von";
+"deposit.sell.to_bank" = "Auf Bankkonto";
+"deposit.sell.you_send" = "Du sendest";
+"deposit.sell.you_receive_bank" = "Du erhältst";
+"deposit.sell.confirm" = "Weiter zur Auszahlung";
+"deposit.sell.info_title" = "Bankauszahlung";
+"deposit.sell.info_1" = "Überweisung per SEPA auf dein Konto (1-2 Werktage)";
+"deposit.sell.info_2" = "Mindestauszahlung: ~50 CHF Gegenwert";
+
+/* Settings */
+"settings.title" = "Einstellungen";
+"settings.subtitle" = "Verwalte deinen Vault";
+"settings.account" = "Konto";
+"settings.wallet" = "Wallet";
+"settings.safe_address" = "Safe-Adresse";
+"settings.not_deployed" = "Noch nicht bereitgestellt";
+"settings.network" = "Netzwerk";
+"settings.explorer" = "Block-Explorer";
+"settings.app" = "App";
+"settings.language" = "Sprache";
+"settings.notifications" = "Benachrichtigungen";
+"settings.notifications_desc" = "Entsperr-Erinnerungen & Einzahlungsbenachrichtigungen";
+"settings.security" = "Sicherheit";
+"settings.biometric" = "Face ID / Biometrie";
+"settings.biometric_desc" = "Für alle Transaktionen erforderlich";
+"settings.recovery" = "Kontowiederherstellung";
+"settings.recovery_desc" = "Über Apple ID oder Google-Konto";
+"settings.about" = "Über";
+"settings.terms" = "Nutzungsbedingungen";
+"settings.privacy" = "Datenschutzrichtlinie";
+"settings.help" = "Hilfe & Support";
+"settings.sign_out" = "Abmelden";
+"settings.sign_out_confirm.title" = "Abmelden?";
+"settings.sign_out_confirm.message" = "Du kannst dich jederzeit mit deinem Apple- oder Google-Konto wieder anmelden. Deine Gelder bleiben sicher auf der Blockchain.";
+
+/* Transactions */
+"transactions.title" = "Transaktionsverlauf";
+"transactions.empty.title" = "Noch keine Transaktionen";
+"transactions.empty.subtitle" = "Dein Transaktionsverlauf erscheint hier, sobald du deine erste Einzahlung oder Überweisung tätigst.";
+
+/* Account Profile */
+"account.title" = "Konto";
+"account.signed_in_via" = "Authentifizierungsmethode";
+"account.non_custodial" = "Non-Custodial";
+"account.eoa_address" = "Eigentümer-Adresse";
+"account.safe_address" = "Safe-Adresse";
+"account.safe_not_deployed" = "Safe noch nicht bereitgestellt";
+"account.network_info" = "NETZWERK-INFO";
+"account.network" = "Netzwerk";
+"account.chain_id" = "Chain ID";
+"account.rpc" = "RPC-Endpunkt";
+"account.status" = "Status";
+"account.latency" = "Latenz";
+"account.gas_balance" = "GAS-GUTHABEN";
+"account.gas_low" = "Niedrig";
+"account.gas_desc" = "ETH wird benötigt, um Transaktionsgebühren im Base-Netzwerk zu bezahlen.";
+"account.recovery" = "KONTOWIEDERHERSTELLUNG";
+"account.recovery_desc" = "Dein Konto kann über Lit Protocol mit deinem verknüpften Identitätsanbieter wiederhergestellt werden. Keine Seed-Phrase nötig.";
+"account.active" = "Aktiv";
+"account.inactive" = "Nicht verknüpft";
+"account.danger_zone" = "ERWEITERT";
+"account.view_explorer" = "Im Block Explorer anzeigen";
+
+/* Network */
+"network.connected" = "Verbunden";
+"network.disconnected" = "Getrennt";
+"network.checking" = "Prüfe...";
+"network.error" = "Netzwerkfehler";
+"network.offline_banner" = "Keine Verbindung zur Blockchain";
+"network.retry" = "Erneut versuchen";
+
+/* Error Messages - Transaction */
+"error.tx.not_initialized" = "Transaktionssignierer nicht initialisiert";
+"error.tx.auth_failed" = "Transaktionsautorisierung fehlgeschlagen";
+"error.tx.signing_failed" = "Transaktionssignierung fehlgeschlagen: %@";
+"error.tx.broadcast_failed" = "Transaktionsübertragung fehlgeschlagen: %@";
+"error.tx.no_pkp" = "Kein PKP gefunden. Bitte erneut anmelden.";
+"error.tx.invalid_signature" = "Transaktionssignatur konnte nicht verarbeitet werden";
+"error.tx.failed" = "Transaktion fehlgeschlagen";
+"error.tx.insufficient_balance" = "Unzureichendes Guthaben";
+"error.tx.network_unavailable" = "Netzwerk nicht verfügbar";
+
+/* Error Messages - Blockchain */
+"error.blockchain.invalid_address" = "Ungültige Wallet-Adresse";
+"error.blockchain.rpc" = "RPC-Fehler: %@";
+"error.blockchain.contract" = "Vertragsfehler: %@";
+
+/* Error Messages - Safe */
+"error.safe.deployment_failed" = "Safe-Bereitstellung fehlgeschlagen: %@";
+"error.safe.module_install_failed" = "Modulinstallation fehlgeschlagen";
+"error.safe.invalid_owner" = "Ungültige Eigentümeradresse";
+"error.safe.not_deployed" = "Safe noch nicht bereitgestellt";
+
+/* Safe Deployment Warning Banner */
+"safe.deploy.failed.title" = "Wallet-Einrichtung fehlgeschlagen";
+"safe.deploy.failed.desc" = "Dein sicheres Wallet konnte nicht erstellt werden. Einzahlungen und Überweisungen sind blockiert, bis das Problem behoben ist.";
+"safe.deploy.failed.blocked" = "Alle Transaktionen sind blockiert";
+"safe.deploy.retry" = "Erneut versuchen";
+"safe.deploy.retrying" = "Einrichtung läuft...";
+"error.safe.module_restriction" = "Moduleinschränkung: %@";
+
+/* Error Messages - Gas */
+"error.gas.insufficient" = "Unzureichend ETH für Gas";
+"error.gas.swap_failed" = "Gas-Swap fehlgeschlagen: %@";
+"error.gas.relayer_unavailable" = "Relayer-Dienst nicht verfügbar";
+"error.gas.relayer_rejected" = "Relayer abgelehnt: %@";
+"error.gas.quote_failed" = "Swap-Angebot konnte nicht abgerufen werden";
+
+/* Error Messages - Auth */
+"error.auth.google_not_configured" = "Google OAuth Client-ID nicht konfiguriert";
+"error.auth.google_failed" = "Google-Authentifizierung fehlgeschlagen";
+"error.auth.token_exchange_failed" = "Autorisierungscode-Austausch fehlgeschlagen";
+"error.auth.cancelled" = "Authentifizierung abgebrochen";
+"error.auth.invalid_response" = "Ungültige Antwort von Google";
+"error.auth.no_id_token" = "Kein ID-Token erhalten";
+
+/* Error Messages - Lit Protocol */
+"error.lit.auth_failed" = "Lit Protocol Authentifizierung fehlgeschlagen";
+"error.lit.pkp_generation_failed" = "PKP-Schlüsselgenerierung fehlgeschlagen";
+"error.lit.pkp_mint_pending" = "PKP-Mint läuft, bitte warten";
+"error.lit.session_expired" = "Sitzung abgelaufen, bitte erneut anmelden";
+"error.lit.network_error" = "Netzwerkfehler: %@";
+"error.lit.signing_failed" = "Signierung fehlgeschlagen: %@";
+"error.lit.no_auth_method" = "Keine Authentifizierungsmethode gespeichert";
+
+/* Error Messages - On-Ramp */
+"error.onramp.invalid_response" = "Ungültige Antwort von Mt Pelerin";
+"error.onramp.api_error" = "Mt Pelerin Fehler: %@";
+"error.onramp.limit_exceeded" = "Tageslimit überschritten (1.000 CHF/Tag ohne KYC)";
+
+/* Error Messages - Secure Enclave */
+"error.secure.key_not_found" = "Secure Enclave Schlüssel nicht gefunden";
+"error.secure.key_generation_failed" = "Schlüsselgenerierung fehlgeschlagen: %@";
+"error.secure.signing_failed" = "Signierung fehlgeschlagen: %@";
+"error.secure.biometric_failed" = "Biometrische Authentifizierung fehlgeschlagen";
+"error.secure.no_secure_enclave" = "Gerät unterstützt Secure Enclave nicht";
+"error.secure.invalid_public_key" = "Ungültiger öffentlicher Schlüssel";
+
+/* Error Messages - Lit Signing Bridge */
+"error.lit.bridge_not_ready" = "Lit-Signierbrücke nicht initialisiert";
+"error.lit.timeout" = "Lit-Signierung Zeitüberschreitung";
+"error.lit.invalid_response" = "Ungültige Antwort vom Lit-Netzwerk";
+
+/* Signing Steps */
+"signing.authorizing" = "Autorisierung...";
+"signing.signing" = "Transaktion wird signiert...";
+"signing.broadcasting" = "Wird übertragen...";
+"signing.confirmed" = "Bestätigt";
+"signing.failed" = "Fehlgeschlagen";
+
+/* Notifications */
+"notification.tx.deposit.title" = "Einzahlung Bestätigt";
+"notification.tx.deposit.body" = "%@ %@ erfolgreich eingezahlt";
+"notification.tx.deposit.body_no_amount" = "%@ Einzahlung bestätigt";
+"notification.tx.withdraw.title" = "Auszahlung Bestätigt";
+"notification.tx.withdraw.body" = "%@ %@ erfolgreich ausgezahlt";
+"notification.tx.withdraw.body_no_amount" = "%@ Auszahlung bestätigt";
+"notification.tx.lock.title" = "Guthaben Gesperrt";
+"notification.tx.lock.body" = "Dein %@ Guthaben ist jetzt gesperrt";
+"notification.tx.unlock.title" = "Guthaben Entsperrt";
+"notification.tx.unlock.body" = "Dein %@ Guthaben ist jetzt verfügbar";
+"notification.tx.failed.title" = "Transaktion Fehlgeschlagen";
+"notification.tx.failed.body" = "%@ %@ Transaktion fehlgeschlagen. Bitte erneut versuchen.";
+"notification.safe.deployed.title" = "Wallet Bereit";
+"notification.safe.deployed.body" = "Dein Safe Smart-Wallet wurde auf Base bereitgestellt";
+"notification.piggy.created.title" = "Sparschwein Erstellt";
+"notification.piggy.created.body" = "Dein Spartresor \"%@\" ist jetzt aktiv";
+"notification.piggy.created.body_generic" = "Ein neuer Spartresor wurde erstellt";
+"notification.piggy.unlocked.title" = "Sparschwein Entsperrt";
+"notification.piggy.unlocked.body" = "Dein Spartresor \"%@\" wurde entsperrt";
+"notification.piggy.unlock_soon.title" = "Entsperrung Bald";
+"notification.piggy.unlock_soon.body" = "Dein Spartresor \"%@\" kann in 1 Stunde entsperrt werden";
+"notification.action.deposit" = "Einzahlung";
+"notification.action.withdraw" = "Auszahlung";
+"notification.action.lock" = "Sperre";
+"notification.action.unlock" = "Entsperrung";
+"notification.action.deploy" = "Bereitstellung";
+"notification.action.create" = "Erstellung";

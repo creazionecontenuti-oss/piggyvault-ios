@@ -1,0 +1,375 @@
+/* PiggyVault - 日本語 */
+
+/* General */
+"cancel" = "キャンセル";
+"ok" = "OK";
+"error.title" = "エラー";
+"done" = "完了";
+"save" = "保存";
+"delete" = "削除";
+"confirm" = "確認";
+"loading" = "読み込み中...";
+
+/* Loading States */
+"loading.creating_wallet" = "ボールトを作成中...";
+"loading.deploying_safe" = "Safeスマートアカウントをデプロイ中...";
+"loading.configuring_modules" = "セキュリティモジュールを設定中...";
+"loading.finalizing" = "最終処理中...";
+"loading.securing_keys" = "鍵を保護しています...";
+"loading.confirming_deploy" = "デプロイを確認中...";
+"loading.please_wait" = "しばらくお待ちください";
+"loading.tagline" = "破壊不可能なデジタル貯蓄";
+
+/* Auth */
+"auth.subtitle" = "ブロックチェーン上の\n破壊不可能なデジタル貯金箱";
+"auth.google_sign_in" = "Googleでサインイン";
+"auth.terms" = "続行すると、利用規約とプライバシーポリシーに同意したことになります";
+"auth.non_custodial" = "100%ノンカストディアル · あなたの鍵、あなたのコイン";
+"auth.biometric.reason" = "ボールトにアクセスするために認証してください";
+"auth.biometric.transaction" = "%@ %@の取引を確認";
+"auth.loading.authenticating" = "認証中...";
+"auth.loading.google" = "Googleに接続中...";
+"auth.loading.lit_protocol" = "安全なウォレットを設定中...";
+"auth.loading.finalizing" = "完了処理中...";
+"auth.error.invalid_credential" = "無効な資格情報です。もう一度お試しください。";
+"auth.error.google_not_configured" = "Googleサインインはまだ設定されていません。Appleサインインをご利用ください。";
+
+/* Biometric Lock */
+"biometric.locked" = "ボールトがロックされています";
+"biometric.unlock" = "Face IDでロック解除";
+
+/* Onboarding */
+"onboarding.skip" = "スキップ";
+"onboarding.next" = "次へ";
+"onboarding.get_started" = "始める";
+"onboarding.page1.title" = "破壊不可能な貯金箱";
+"onboarding.page1.description" = "あなたの貯蓄はブロックチェーン上のスマートコントラクトで保護されています。私たちでさえあなたのお金に触れることはできません。";
+"onboarding.page2.title" = "ステーブルコインとゴールドで貯蓄";
+"onboarding.page2.description" = "USDC、EURC、またはトークン化されたゴールド（PAXG）でインフレから貯蓄を守りましょう。";
+"onboarding.page3.title" = "選べるロックルール";
+"onboarding.page3.description" = "タイムロックまたは貯蓄目標を設定。一度有効化されると、ルールは不変で数学的に保証されます。";
+"onboarding.page4.title" = "どこからでもアクセス";
+"onboarding.page4.description" = "Face IDまたは生体認証を使用。AppleまたはGoogleアカウントで任意のデバイスからボールトにアクセス。";
+
+/* Tabs */
+"tab.dashboard" = "ホーム";
+"tab.piggy_banks" = "ボールト";
+"tab.deposit" = "入金";
+"tab.settings" = "設定";
+
+/* Dashboard */
+"dashboard.greeting" = "おかえりなさい";
+"dashboard.total_balance" = "合計残高";
+"dashboard.secured" = "Baseネットワークで保護";
+"dashboard.action.deposit" = "入金";
+"dashboard.action.new_piggy" = "新規ボールト";
+"dashboard.action.swap" = "交換";
+"dashboard.assets" = "あなたの資産";
+"dashboard.no_assets" = "資産がありません";
+"dashboard.no_assets_desc" = "資金を入金して始めましょう";
+"dashboard.piggy_banks" = "あなたのボールト";
+"dashboard.see_all" = "すべて見る";
+"dashboard.no_piggy_banks" = "ボールトがありません";
+"dashboard.no_piggy_banks_desc" = "最初の破壊不可能な貯金箱を作成し、規律を持って貯蓄を始めましょう。";
+"dashboard.create_first_piggy" = "最初のボールトを作成";
+
+/* Piggy Banks */
+"piggy.title" = "あなたのボールト";
+"piggy.subtitle" = "破壊不可能な貯蓄";
+"piggy.lock_type.time" = "タイムロック";
+"piggy.lock_type.target" = "ターゲットロック";
+"piggy.lock_type.time_desc" = "特定の日付まで資金がロックされます。期限前に誰も引き出すことはできません。";
+"piggy.lock_type.target_desc" = "貯蓄目標に達するまで資金がロックされます。規律を保ちましょう！";
+"piggy.target" = "目標";
+"piggy.remaining" = "残り";
+"piggy.ready_to_unlock" = "ロック解除可能！";
+"piggy.time.ready" = "準備完了！";
+"piggy.stats.total" = "合計";
+"piggy.stats.locked" = "ロック中";
+"piggy.stats.ready" = "準備完了";
+"piggy.empty.title" = "最初のボールトを作成";
+"piggy.empty.description" = "数学的に保証されたルールで貯蓄をロック。一度設定すると、誰も破ることはできません。";
+"piggy.empty.create" = "ボールトを作成";
+
+/* Piggy Bank Types */
+"piggy.type.time_vault" = "タイムボールト";
+"piggy.type.target_vault" = "ターゲットボールト";
+
+/* Create Piggy Bank */
+"piggy.create.title" = "新規ボールト";
+"piggy.create.step1.title" = "ボールトに名前を付ける";
+"piggy.create.step1.subtitle" = "覚えやすい名前を付けましょう";
+"piggy.create.name" = "ボールト名";
+"piggy.create.name_placeholder" = "例：夢の旅行";
+"piggy.create.color" = "カラー";
+"piggy.create.step2.title" = "資産を選択";
+"piggy.create.step2.subtitle" = "貯蓄する通貨を選択";
+"piggy.create.step3.title" = "ロックタイプ";
+"piggy.create.step3.subtitle" = "貯蓄のロック方法を選択";
+"piggy.create.unlock_date" = "ロック解除日";
+"piggy.create.target_amount" = "目標金額";
+"piggy.create.step4.title" = "確認";
+"piggy.create.step4.subtitle" = "ボールト設定を確認";
+"piggy.create.summary.lock_type" = "ロックタイプ";
+"piggy.create.summary.unlock_date" = "ロック解除日";
+"piggy.create.summary.target" = "目標";
+"piggy.create.summary.network" = "ネットワーク";
+"piggy.create.warning" = "作成後、ロックルールは不変です。あなた自身を含め、誰もルールを変更またはバイパスすることはできません。";
+"piggy.create.next" = "続ける";
+"piggy.create.back" = "戻る";
+"piggy.create.confirm" = "ボールトを作成";
+"piggy.create.biometric_reason" = "新しいボールトを作成するために認証してください";
+"piggy.create.progress.deploying" = "スマートコントラクトをデプロイ中...";
+"piggy.create.progress.time_lock" = "タイムロックモジュールをインストール中...";
+"piggy.create.progress.target_lock" = "ターゲットロックモジュールをインストール中...";
+"piggy.create.progress.finalizing" = "ボールトを最終処理中...";
+"piggy.create.progress.done" = "ボールトが正常に作成されました！";
+"piggy.create.error.biometric_failed" = "生体認証に失敗しました。もう一度お試しください。";
+
+/* Piggy Bank Detail */
+"piggy.detail.progress" = "進捗";
+"piggy.detail.time_remaining" = "残り時間";
+"piggy.detail.target" = "目標金額";
+"piggy.detail.info" = "詳細";
+"piggy.detail.created" = "作成日";
+"piggy.detail.lock_type" = "ロックタイプ";
+"piggy.detail.contract" = "コントラクト";
+"piggy.detail.network" = "ネットワーク";
+"piggy.detail.deposit" = "入金";
+"piggy.detail.unlock" = "ボールトをロック解除";
+"piggy.detail.deposit_amount" = "入金額";
+"piggy.detail.confirm_deposit" = "入金を確認";
+"piggy.detail.depositing" = "入金処理中...";
+"piggy.detail.deposit_success" = "%@ %@ の入金に成功しました";
+"piggy.detail.invalid_amount" = "有効な金額を入力してください";
+"piggy.detail.unlock_confirm.title" = "ボールトをロック解除しますか？";
+"piggy.detail.unlock_confirm.message" = "このボールトの全資金がSafeウォレットに引き出されます。";
+"piggy.detail.unlock_pending" = "ロック解除リクエストが送信されました。処理中...";
+"piggy.detail.unlock_success" = "ボールトがロック解除されました！資金が利用可能です。";
+
+/* Deposit */
+"deposit.title" = "入金";
+"deposit.subtitle" = "ボールトに資金を追加";
+"deposit.bank_transfer" = "銀行振込";
+"deposit.bank_transfer_desc" = "SEPA、Mt Pelerin経由の送金";
+"deposit.card" = "カード決済";
+"deposit.card_desc" = "Mt Pelerin経由のVisa、Mastercard";
+"deposit.crypto" = "暗号資産送金";
+"deposit.crypto_desc" = "Safeに直接暗号資産を送金";
+"deposit.no_kyc" = "KYC不要";
+"deposit.instant" = "即時";
+"deposit.personal_iban" = "個人IBAN";
+"deposit.iban_desc" = "専用IBANを取得し、ステーブルコインとしてボールトに直接入金。";
+"deposit.iban_coming_soon" = "近日公開...";
+"deposit.powered_by_mt_pelerin" = "Mt Pelerin提供";
+"deposit.info.title" = "仕組み";
+"deposit.info.bullet1" = "資金はBaseネットワーク上のSafeスマートアカウントに直接入金されます。";
+"deposit.info.bullet2" = "Mt Pelerin経由で1日1,000スイスフランまでの送金はKYC不要。";
+"deposit.info.bullet3" = "Base L2のガス代は最小限（1取引あたり約$0.01）。";
+"deposit.receive.title" = "暗号資産を受け取る";
+"deposit.receive.scan" = "スキャンして暗号資産を送信";
+"deposit.receive.address" = "あなたのSAFEアドレス";
+"deposit.receive.copy" = "アドレスをコピー";
+"deposit.receive.copied" = "コピーしました！";
+"deposit.receive.network_warning" = "Baseネットワーク上の資産のみ送信してください。他のネットワークでの送信は永久的な損失につながる可能性があります。";
+"deposit.withdraw" = "銀行へ出金";
+"deposit.withdraw_desc" = "SEPAでステーブルコインを法定通貨に変換";
+
+/* Buy Flow */
+"deposit.buy.title" = "ステーブルコインを購入";
+"deposit.buy.enter_amount" = "いくら追加しますか？";
+"deposit.buy.pay_with" = "支払い方法";
+"deposit.buy.receive" = "受け取り";
+"deposit.buy.loading_quote" = "最適なレートを取得中...";
+"deposit.buy.quote_ready" = "見積もり完了";
+"deposit.buy.you_pay" = "お支払い";
+"deposit.buy.you_receive" = "受け取り額";
+"deposit.buy.fees" = "手数料";
+"deposit.buy.rate" = "レート";
+"deposit.buy.confirm" = "支払いに進む";
+"deposit.buy.info_title" = "安全・安心";
+"deposit.buy.info_1" = "資金はBaseネットワーク上のボールトに直接送金されます";
+"deposit.buy.info_2" = "1日1,000CHFまでKYC不要";
+"deposit.buy.info_3" = "スイスの規制企業Mt Pelenが運営";
+
+/* Sell Flow */
+"deposit.sell.title" = "銀行へ出金";
+"deposit.sell.enter_amount" = "いくら出金しますか？";
+"deposit.sell.from" = "送信元";
+"deposit.sell.to_bank" = "銀行口座へ";
+"deposit.sell.you_send" = "送金額";
+"deposit.sell.you_receive_bank" = "受け取り額";
+"deposit.sell.confirm" = "出金に進む";
+"deposit.sell.info_title" = "銀行出金";
+"deposit.sell.info_1" = "SEPAで銀行口座に送金（1〜2営業日）";
+"deposit.sell.info_2" = "最低出金額：約50CHF相当";
+
+/* Settings */
+"settings.title" = "設定";
+"settings.subtitle" = "ボールトを管理";
+"settings.account" = "アカウント";
+"settings.wallet" = "ウォレット";
+"settings.safe_address" = "Safeアドレス";
+"settings.not_deployed" = "未デプロイ";
+"settings.network" = "ネットワーク";
+"settings.explorer" = "ブロックエクスプローラー";
+"settings.app" = "アプリ";
+"settings.language" = "言語";
+"settings.notifications" = "通知";
+"settings.notifications_desc" = "ロック解除リマインダーと入金アラート";
+"settings.security" = "セキュリティ";
+"settings.biometric" = "Face ID / 生体認証";
+"settings.biometric_desc" = "すべての取引に必要";
+"settings.recovery" = "アカウント復旧";
+"settings.recovery_desc" = "Apple IDまたはGoogleアカウント経由";
+"settings.about" = "アプリについて";
+"settings.terms" = "利用規約";
+"settings.privacy" = "プライバシーポリシー";
+"settings.help" = "ヘルプとサポート";
+"settings.sign_out" = "サインアウト";
+"settings.sign_out_confirm.title" = "サインアウトしますか？";
+"settings.sign_out_confirm.message" = "AppleまたはGoogleアカウントでいつでも再度サインインできます。資金はブロックチェーン上で安全に保管されています。";
+
+/* Transactions */
+"transactions.title" = "取引履歴";
+"transactions.empty.title" = "取引はまだありません";
+"transactions.empty.subtitle" = "最初の入金または送金を行うと、取引履歴がここに表示されます。";
+
+/* Account Profile */
+"account.title" = "アカウント";
+"account.signed_in_via" = "認証方法";
+"account.non_custodial" = "ノンカストディアル";
+"account.eoa_address" = "オーナーアドレス";
+"account.safe_address" = "Safeアドレス";
+"account.safe_not_deployed" = "Safeはまだデプロイされていません";
+"account.network_info" = "ネットワーク情報";
+"account.network" = "ネットワーク";
+"account.chain_id" = "チェーンID";
+"account.rpc" = "RPCエンドポイント";
+"account.status" = "ステータス";
+"account.latency" = "レイテンシ";
+"account.gas_balance" = "ガス残高";
+"account.gas_low" = "低";
+"account.gas_desc" = "Baseネットワークのトランザクション手数料の支払いにETHが必要です。";
+"account.recovery" = "アカウント復旧";
+"account.recovery_desc" = "アカウントはLit Protocolを通じて、リンクされたIDプロバイダーを使用して復旧できます。シードフレーズは不要です。";
+"account.active" = "アクティブ";
+"account.inactive" = "未リンク";
+"account.danger_zone" = "詳細設定";
+"account.view_explorer" = "ブロックエクスプローラーで表示";
+
+/* Network */
+"network.connected" = "接続済み";
+"network.disconnected" = "切断";
+"network.checking" = "確認中...";
+"network.error" = "ネットワークエラー";
+"network.offline_banner" = "ブロックチェーンに接続できません";
+"network.retry" = "再試行";
+
+/* Error Messages - Transaction */
+"error.tx.not_initialized" = "トランザクション署名者が初期化されていません";
+"error.tx.auth_failed" = "トランザクション認証に失敗しました";
+"error.tx.signing_failed" = "トランザクション署名に失敗しました: %@";
+"error.tx.broadcast_failed" = "トランザクション送信に失敗しました: %@";
+"error.tx.no_pkp" = "PKPが見つかりません。再度ログインしてください。";
+"error.tx.invalid_signature" = "トランザクション署名を処理できませんでした";
+"error.tx.failed" = "トランザクションに失敗しました";
+"error.tx.insufficient_balance" = "残高不足";
+"error.tx.network_unavailable" = "ネットワーク利用不可";
+
+/* Error Messages - Blockchain */
+"error.blockchain.invalid_address" = "無効なウォレットアドレス";
+"error.blockchain.rpc" = "RPCエラー：%@";
+"error.blockchain.contract" = "コントラクトエラー：%@";
+
+/* Error Messages - Safe */
+"error.safe.deployment_failed" = "Safeのデプロイに失敗しました：%@";
+"error.safe.module_install_failed" = "モジュールのインストールに失敗しました";
+"error.safe.invalid_owner" = "無効なオーナーアドレス";
+"error.safe.not_deployed" = "Safeはまだデプロイされていません";
+
+/* Safe Deployment Warning Banner */
+"safe.deploy.failed.title" = "ウォレット設定に失敗";
+"safe.deploy.failed.desc" = "セキュアウォレットを作成できませんでした。問題が解決されるまで入金と送金はブロックされます。";
+"safe.deploy.failed.blocked" = "すべての取引がブロックされています";
+"safe.deploy.retry" = "再試行";
+"safe.deploy.retrying" = "設定中...";
+"error.safe.module_restriction" = "モジュール制限：%@";
+
+/* Error Messages - Gas */
+"error.gas.insufficient" = "ガス用のETHが不足しています";
+"error.gas.swap_failed" = "ガススワップに失敗しました: %@";
+"error.gas.relayer_unavailable" = "リレーサービスが利用できません";
+"error.gas.relayer_rejected" = "リレーが拒否しました: %@";
+"error.gas.quote_failed" = "スワップ見積もりを取得できませんでした";
+
+/* Error Messages - Auth */
+"error.auth.google_not_configured" = "Google OAuthクライアントIDが設定されていません";
+"error.auth.google_failed" = "Google認証に失敗しました";
+"error.auth.token_exchange_failed" = "認証コードの交換に失敗しました";
+"error.auth.cancelled" = "認証がキャンセルされました";
+"error.auth.invalid_response" = "Googleからの無効な応答";
+"error.auth.no_id_token" = "IDトークンが受信されませんでした";
+
+/* Error Messages - Lit Protocol */
+"error.lit.auth_failed" = "Lit Protocol認証に失敗しました";
+"error.lit.pkp_generation_failed" = "PKP鍵生成に失敗しました";
+"error.lit.pkp_mint_pending" = "PKPミント中です。お待ちください";
+"error.lit.session_expired" = "セッション期限切れ。再度ログインしてください";
+"error.lit.network_error" = "ネットワークエラー: %@";
+"error.lit.signing_failed" = "署名に失敗しました: %@";
+"error.lit.no_auth_method" = "認証方法が保存されていません";
+
+/* Error Messages - On-Ramp */
+"error.onramp.invalid_response" = "Mt Pelerinからの無効な応答";
+"error.onramp.api_error" = "Mt Pelerinエラー：%@";
+"error.onramp.limit_exceeded" = "一日の上限を超えました（KYCなしで1,000 CHF/日）";
+
+/* Error Messages - Secure Enclave */
+"error.secure.key_not_found" = "Secure Enclaveキーが見つかりません";
+"error.secure.key_generation_failed" = "キー生成に失敗しました：%@";
+"error.secure.signing_failed" = "署名に失敗しました：%@";
+"error.secure.biometric_failed" = "生体認証に失敗しました";
+"error.secure.no_secure_enclave" = "デバイスはSecure Enclaveをサポートしていません";
+"error.secure.invalid_public_key" = "無効な公開鍵";
+
+/* Error Messages - Lit Signing Bridge */
+"error.lit.bridge_not_ready" = "Lit署名ブリッジが初期化されていません";
+"error.lit.timeout" = "Lit署名がタイムアウトしました";
+"error.lit.invalid_response" = "Litネットワークからの無効な応答";
+
+/* Signing Steps */
+"signing.authorizing" = "認証中...";
+"signing.signing" = "トランザクションに署名中...";
+"signing.broadcasting" = "ブロードキャスト中...";
+"signing.confirmed" = "確認済み";
+"signing.failed" = "失敗";
+
+/* Notifications */
+"notification.tx.deposit.title" = "入金確認済み";
+"notification.tx.deposit.body" = "%@ %@ の入金が完了しました";
+"notification.tx.deposit.body_no_amount" = "%@ の入金が確認されました";
+"notification.tx.withdraw.title" = "出金確認済み";
+"notification.tx.withdraw.body" = "%@ %@ の出金が完了しました";
+"notification.tx.withdraw.body_no_amount" = "%@ の出金が確認されました";
+"notification.tx.lock.title" = "資金がロックされました";
+"notification.tx.lock.body" = "%@ の資金がロックされました";
+"notification.tx.unlock.title" = "資金がアンロックされました";
+"notification.tx.unlock.body" = "%@ の資金が利用可能になりました";
+"notification.tx.failed.title" = "トランザクション失敗";
+"notification.tx.failed.body" = "%@ %@ のトランザクションが失敗しました。再試行してください。";
+"notification.safe.deployed.title" = "ウォレット準備完了";
+"notification.safe.deployed.body" = "SafeスマートウォレットがBaseにデプロイされました";
+"notification.piggy.created.title" = "貯金箱作成完了";
+"notification.piggy.created.body" = "貯金箱「%@」がアクティブになりました";
+"notification.piggy.created.body_generic" = "新しい貯金箱が作成されました";
+"notification.piggy.unlocked.title" = "貯金箱アンロック完了";
+"notification.piggy.unlocked.body" = "貯金箱「%@」がアンロックされました";
+"notification.piggy.unlock_soon.title" = "まもなくアンロック";
+"notification.piggy.unlock_soon.body" = "貯金箱「%@」は1時間後にアンロック可能になります";
+"notification.action.deposit" = "入金";
+"notification.action.withdraw" = "出金";
+"notification.action.lock" = "ロック";
+"notification.action.unlock" = "アンロック";
+"notification.action.deploy" = "デプロイ";
+"notification.action.create" = "作成";

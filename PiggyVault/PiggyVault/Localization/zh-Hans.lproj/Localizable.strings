@@ -1,0 +1,375 @@
+/* PiggyVault - 简体中文 */
+
+/* General */
+"cancel" = "取消";
+"ok" = "确定";
+"error.title" = "错误";
+"done" = "完成";
+"save" = "保存";
+"delete" = "删除";
+"confirm" = "确认";
+"loading" = "加载中...";
+
+/* Loading States */
+"loading.creating_wallet" = "正在创建您的保险库...";
+"loading.deploying_safe" = "正在部署您的Safe智能账户...";
+"loading.configuring_modules" = "正在配置安全模块...";
+"loading.finalizing" = "正在完成...";
+"loading.securing_keys" = "正在保护您的密钥...";
+"loading.confirming_deploy" = "正在确认部署...";
+"loading.please_wait" = "这可能需要一点时间";
+"loading.tagline" = "坚不可摧的数字储蓄";
+
+/* Auth */
+"auth.subtitle" = "区块链上不可摧毁的\n数字存钱罐";
+"auth.google_sign_in" = "使用Google登录";
+"auth.terms" = "继续即表示您同意我们的服务条款和隐私政策";
+"auth.non_custodial" = "100%非托管 · 您的密钥，您的资产";
+"auth.biometric.reason" = "验证身份以访问您的保险库";
+"auth.biometric.transaction" = "确认%@ %@的交易";
+"auth.loading.authenticating" = "正在验证...";
+"auth.loading.google" = "正在连接Google...";
+"auth.loading.lit_protocol" = "正在设置安全钱包...";
+"auth.loading.finalizing" = "正在完成...";
+"auth.error.invalid_credential" = "凭据无效，请重试。";
+"auth.error.google_not_configured" = "Google登录尚未配置，请使用Apple登录。";
+
+/* Biometric Lock */
+"biometric.locked" = "您的保险库已锁定";
+"biometric.unlock" = "使用面容ID解锁";
+
+/* Onboarding */
+"onboarding.skip" = "跳过";
+"onboarding.next" = "下一步";
+"onboarding.get_started" = "开始使用";
+"onboarding.page1.title" = "不可摧毁的存钱罐";
+"onboarding.page1.description" = "您的储蓄由区块链上的智能合约保护。即使是我们也无法触碰您的资金。";
+"onboarding.page2.title" = "以稳定币和黄金储蓄";
+"onboarding.page2.description" = "使用USDC、EURC或代币化黄金(PAXG)保护您的储蓄免受通货膨胀。";
+"onboarding.page3.title" = "自选锁定规则";
+"onboarding.page3.description" = "设置时间锁或储蓄目标。一旦激活，规则不可更改，由数学保证执行。";
+"onboarding.page4.title" = "随处访问";
+"onboarding.page4.description" = "使用Face ID或生物识别。通过Apple或Google账户从任何设备访问您的保险库。";
+
+/* Tabs */
+"tab.dashboard" = "首页";
+"tab.piggy_banks" = "保险库";
+"tab.deposit" = "存款";
+"tab.settings" = "设置";
+
+/* Dashboard */
+"dashboard.greeting" = "欢迎回来";
+"dashboard.total_balance" = "总余额";
+"dashboard.secured" = "在Base网络上安全保管";
+"dashboard.action.deposit" = "存款";
+"dashboard.action.new_piggy" = "新建保险库";
+"dashboard.action.swap" = "兑换";
+"dashboard.assets" = "您的资产";
+"dashboard.no_assets" = "暂无资产";
+"dashboard.no_assets_desc" = "存入资金以开始";
+"dashboard.piggy_banks" = "您的保险库";
+"dashboard.see_all" = "查看全部";
+"dashboard.no_piggy_banks" = "暂无保险库";
+"dashboard.no_piggy_banks_desc" = "创建您的第一个不可摧毁的存钱罐，开始有纪律地储蓄。";
+"dashboard.create_first_piggy" = "创建第一个保险库";
+
+/* Piggy Banks */
+"piggy.title" = "您的保险库";
+"piggy.subtitle" = "不可摧毁的储蓄";
+"piggy.lock_type.time" = "时间锁";
+"piggy.lock_type.target" = "目标锁";
+"piggy.lock_type.time_desc" = "资金锁定至特定日期。任何人都不能在截止日期前提取。";
+"piggy.lock_type.target_desc" = "资金锁定至达到储蓄目标。保持纪律！";
+"piggy.target" = "目标";
+"piggy.remaining" = "剩余";
+"piggy.ready_to_unlock" = "可以解锁了！";
+"piggy.time.ready" = "就绪！";
+"piggy.stats.total" = "总计";
+"piggy.stats.locked" = "已锁定";
+"piggy.stats.ready" = "就绪";
+"piggy.empty.title" = "创建您的第一个保险库";
+"piggy.empty.description" = "用数学保证的规则锁定您的储蓄。一旦设定，任何人都无法打破。";
+"piggy.empty.create" = "创建保险库";
+
+/* Piggy Bank Types */
+"piggy.type.time_vault" = "定时保险库";
+"piggy.type.target_vault" = "目标保险库";
+
+/* Create Piggy Bank */
+"piggy.create.title" = "新建保险库";
+"piggy.create.step1.title" = "命名您的保险库";
+"piggy.create.step1.subtitle" = "给它一个好记的名字";
+"piggy.create.name" = "保险库名称";
+"piggy.create.name_placeholder" = "例如：梦想假期";
+"piggy.create.color" = "颜色";
+"piggy.create.step2.title" = "选择资产";
+"piggy.create.step2.subtitle" = "选择储蓄币种";
+"piggy.create.step3.title" = "锁定类型";
+"piggy.create.step3.subtitle" = "选择储蓄的锁定方式";
+"piggy.create.unlock_date" = "解锁日期";
+"piggy.create.target_amount" = "目标金额";
+"piggy.create.step4.title" = "确认";
+"piggy.create.step4.subtitle" = "检查保险库设置";
+"piggy.create.summary.lock_type" = "锁定类型";
+"piggy.create.summary.unlock_date" = "解锁日期";
+"piggy.create.summary.target" = "目标";
+"piggy.create.summary.network" = "网络";
+"piggy.create.warning" = "一旦创建，锁定规则不可更改。任何人都无法修改或绕过它们，包括您自己。";
+"piggy.create.next" = "继续";
+"piggy.create.back" = "返回";
+"piggy.create.confirm" = "创建保险库";
+"piggy.create.biometric_reason" = "验证身份以创建新保险库";
+"piggy.create.progress.deploying" = "正在部署智能合约...";
+"piggy.create.progress.time_lock" = "正在安装时间锁模块...";
+"piggy.create.progress.target_lock" = "正在安装目标锁模块...";
+"piggy.create.progress.finalizing" = "正在完成保险库...";
+"piggy.create.progress.done" = "保险库创建成功！";
+"piggy.create.error.biometric_failed" = "生物识别认证失败，请重试。";
+
+/* Piggy Bank Detail */
+"piggy.detail.progress" = "进度";
+"piggy.detail.time_remaining" = "剩余时间";
+"piggy.detail.target" = "目标金额";
+"piggy.detail.info" = "详情";
+"piggy.detail.created" = "创建时间";
+"piggy.detail.lock_type" = "锁定类型";
+"piggy.detail.contract" = "合约";
+"piggy.detail.network" = "网络";
+"piggy.detail.deposit" = "存款";
+"piggy.detail.unlock" = "解锁保险库";
+"piggy.detail.deposit_amount" = "存款金额";
+"piggy.detail.confirm_deposit" = "确认存款";
+"piggy.detail.depositing" = "正在处理存款...";
+"piggy.detail.deposit_success" = "成功存入 %@ %@";
+"piggy.detail.invalid_amount" = "请输入有效金额";
+"piggy.detail.unlock_confirm.title" = "解锁保险库？";
+"piggy.detail.unlock_confirm.message" = "这将把保险库中的所有资金提取到您的Safe钱包中。";
+"piggy.detail.unlock_pending" = "解锁请求已提交，正在处理...";
+"piggy.detail.unlock_success" = "保险库已解锁！资金现已可用。";
+
+/* Deposit */
+"deposit.title" = "存款";
+"deposit.subtitle" = "向保险库添加资金";
+"deposit.bank_transfer" = "银行转账";
+"deposit.bank_transfer_desc" = "SEPA，通过Mt Pelerin电汇";
+"deposit.card" = "银行卡支付";
+"deposit.card_desc" = "通过Mt Pelerin使用Visa、Mastercard";
+"deposit.crypto" = "加密货币转账";
+"deposit.crypto_desc" = "直接发送加密货币到您的Safe";
+"deposit.no_kyc" = "无需KYC";
+"deposit.instant" = "即时";
+"deposit.personal_iban" = "个人IBAN";
+"deposit.iban_desc" = "获取专用IBAN，直接以稳定币存入您的保险库。";
+"deposit.iban_coming_soon" = "即将推出...";
+"deposit.powered_by_mt_pelerin" = "由Mt Pelerin提供支持";
+"deposit.info.title" = "工作原理";
+"deposit.info.bullet1" = "资金直接存入您在Base网络上的Safe智能账户。";
+"deposit.info.bullet2" = "通过Mt Pelerin每日转账不超过1,000瑞士法郎无需KYC。";
+"deposit.info.bullet3" = "Base L2上的Gas费用极低（每笔交易约$0.01）。";
+"deposit.receive.title" = "接收加密货币";
+"deposit.receive.scan" = "扫描发送加密货币";
+"deposit.receive.address" = "您的SAFE地址";
+"deposit.receive.copy" = "复制地址";
+"deposit.receive.copied" = "已复制！";
+"deposit.receive.network_warning" = "仅在Base网络上发送资产。在其他网络上发送可能导致永久丢失。";
+"deposit.withdraw" = "提现到银行";
+"deposit.withdraw_desc" = "通过SEPA将稳定币兑换为法币";
+
+/* Buy Flow */
+"deposit.buy.title" = "购买稳定币";
+"deposit.buy.enter_amount" = "您想添加多少？";
+"deposit.buy.pay_with" = "支付方式";
+"deposit.buy.receive" = "接收";
+"deposit.buy.loading_quote" = "正在获取最佳汇率...";
+"deposit.buy.quote_ready" = "报价就绪";
+"deposit.buy.you_pay" = "您支付";
+"deposit.buy.you_receive" = "您接收";
+"deposit.buy.fees" = "手续费";
+"deposit.buy.rate" = "汇率";
+"deposit.buy.confirm" = "继续支付";
+"deposit.buy.info_title" = "安全可靠";
+"deposit.buy.info_1" = "资金直接存入Base网络上的保险库";
+"deposit.buy.info_2" = "每天1,000瑞郎以内无需KYC";
+"deposit.buy.info_3" = "由瑞士受监管公司Mt Pelerin运营";
+
+/* Sell Flow */
+"deposit.sell.title" = "提现到银行";
+"deposit.sell.enter_amount" = "您想提现多少？";
+"deposit.sell.from" = "从";
+"deposit.sell.to_bank" = "到银行账户";
+"deposit.sell.you_send" = "您发送";
+"deposit.sell.you_receive_bank" = "您接收";
+"deposit.sell.confirm" = "继续提现";
+"deposit.sell.info_title" = "银行提现";
+"deposit.sell.info_1" = "通过SEPA转账到您的银行账户（1-2个工作日）";
+"deposit.sell.info_2" = "最低提现金额：约50瑞郎等值";
+
+/* Settings */
+"settings.title" = "设置";
+"settings.subtitle" = "管理您的保险库";
+"settings.account" = "账户";
+"settings.wallet" = "钱包";
+"settings.safe_address" = "Safe地址";
+"settings.not_deployed" = "尚未部署";
+"settings.network" = "网络";
+"settings.explorer" = "区块浏览器";
+"settings.app" = "应用";
+"settings.language" = "语言";
+"settings.notifications" = "通知";
+"settings.notifications_desc" = "解锁提醒和存款通知";
+"settings.security" = "安全";
+"settings.biometric" = "Face ID / 生物识别";
+"settings.biometric_desc" = "所有交易都需要";
+"settings.recovery" = "账户恢复";
+"settings.recovery_desc" = "通过Apple ID或Google账户";
+"settings.about" = "关于";
+"settings.terms" = "服务条款";
+"settings.privacy" = "隐私政策";
+"settings.help" = "帮助与支持";
+"settings.sign_out" = "退出登录";
+"settings.sign_out_confirm.title" = "退出登录？";
+"settings.sign_out_confirm.message" = "您可以随时使用Apple或Google账户重新登录。您的资金在区块链上始终安全。";
+
+/* Transactions */
+"transactions.title" = "交易记录";
+"transactions.empty.title" = "暂无交易";
+"transactions.empty.subtitle" = "您的交易记录将在首次存款或转账后显示在这里。";
+
+/* Account Profile */
+"account.title" = "账户";
+"account.signed_in_via" = "认证方式";
+"account.non_custodial" = "非托管";
+"account.eoa_address" = "所有者地址";
+"account.safe_address" = "Safe 地址";
+"account.safe_not_deployed" = "Safe 尚未部署";
+"account.network_info" = "网络信息";
+"account.network" = "网络";
+"account.chain_id" = "链 ID";
+"account.rpc" = "RPC 端点";
+"account.status" = "状态";
+"account.latency" = "延迟";
+"account.gas_balance" = "GAS 余额";
+"account.gas_low" = "低";
+"account.gas_desc" = "需要 ETH 来支付 Base 网络上的交易费用。";
+"account.recovery" = "账户恢复";
+"account.recovery_desc" = "您的账户可以通过 Lit Protocol 使用您关联的身份提供商进行恢复。无需助记词。";
+"account.active" = "已激活";
+"account.inactive" = "未关联";
+"account.danger_zone" = "高级选项";
+"account.view_explorer" = "在区块浏览器中查看";
+
+/* Network */
+"network.connected" = "已连接";
+"network.disconnected" = "已断开";
+"network.checking" = "检查中...";
+"network.error" = "网络错误";
+"network.offline_banner" = "无法连接到区块链";
+"network.retry" = "重试";
+
+/* Error Messages - Transaction */
+"error.tx.not_initialized" = "交易签名者未初始化";
+"error.tx.auth_failed" = "交易授权失败";
+"error.tx.signing_failed" = "交易签名失败：%@";
+"error.tx.broadcast_failed" = "交易广播失败：%@";
+"error.tx.no_pkp" = "未找到PKP。请重新登录。";
+"error.tx.invalid_signature" = "无法处理交易签名";
+"error.tx.failed" = "交易失败";
+"error.tx.insufficient_balance" = "余额不足";
+"error.tx.network_unavailable" = "网络不可用";
+
+/* Error Messages - Blockchain */
+"error.blockchain.invalid_address" = "无效的钱包地址";
+"error.blockchain.rpc" = "RPC错误：%@";
+"error.blockchain.contract" = "合约错误：%@";
+
+/* Error Messages - Safe */
+"error.safe.deployment_failed" = "Safe部署失败：%@";
+"error.safe.module_install_failed" = "模块安装失败";
+"error.safe.invalid_owner" = "无效的所有者地址";
+"error.safe.not_deployed" = "Safe尚未部署";
+
+/* Safe Deployment Warning Banner */
+"safe.deploy.failed.title" = "钱包设置失败";
+"safe.deploy.failed.desc" = "无法创建您的安全钱包。存款和转账已被阻止，直到问题解决。";
+"safe.deploy.failed.blocked" = "所有交易已被阻止";
+"safe.deploy.retry" = "重试";
+"safe.deploy.retrying" = "设置中...";
+"error.safe.module_restriction" = "模块限制：%@";
+
+/* Error Messages - Gas */
+"error.gas.insufficient" = "Gas所需ETH不足";
+"error.gas.swap_failed" = "Gas兑换失败：%@";
+"error.gas.relayer_unavailable" = "中继服务不可用";
+"error.gas.relayer_rejected" = "中继拒绝：%@";
+"error.gas.quote_failed" = "无法获取兑换报价";
+
+/* Error Messages - Auth */
+"error.auth.google_not_configured" = "Google OAuth客户端ID未配置";
+"error.auth.google_failed" = "Google身份验证失败";
+"error.auth.token_exchange_failed" = "授权码交换失败";
+"error.auth.cancelled" = "身份验证已取消";
+"error.auth.invalid_response" = "来自Google的无效响应";
+"error.auth.no_id_token" = "未收到ID令牌";
+
+/* Error Messages - Lit Protocol */
+"error.lit.auth_failed" = "Lit Protocol身份验证失败";
+"error.lit.pkp_generation_failed" = "PKP密钥生成失败";
+"error.lit.pkp_mint_pending" = "PKP铸造进行中，请稍候";
+"error.lit.session_expired" = "会话已过期，请重新登录";
+"error.lit.network_error" = "网络错误：%@";
+"error.lit.signing_failed" = "签名失败：%@";
+"error.lit.no_auth_method" = "未存储身份验证方法";
+
+/* Error Messages - On-Ramp */
+"error.onramp.invalid_response" = "Mt Pelerin返回无效响应";
+"error.onramp.api_error" = "Mt Pelerin错误：%@";
+"error.onramp.limit_exceeded" = "超出每日限额（无KYC每天1,000瑞士法郎）";
+
+/* Error Messages - Secure Enclave */
+"error.secure.key_not_found" = "未找到Secure Enclave密钥";
+"error.secure.key_generation_failed" = "密钥生成失败：%@";
+"error.secure.signing_failed" = "签名失败：%@";
+"error.secure.biometric_failed" = "生物识别认证失败";
+"error.secure.no_secure_enclave" = "设备不支持Secure Enclave";
+"error.secure.invalid_public_key" = "无效的公钥";
+
+/* Error Messages - Lit Signing Bridge */
+"error.lit.bridge_not_ready" = "Lit签名桥未初始化";
+"error.lit.timeout" = "Lit签名超时";
+"error.lit.invalid_response" = "Lit网络返回无效响应";
+
+/* Signing Steps */
+"signing.authorizing" = "授权中...";
+"signing.signing" = "正在签名交易...";
+"signing.broadcasting" = "广播中...";
+"signing.confirmed" = "已确认";
+"signing.failed" = "失败";
+
+/* Notifications */
+"notification.tx.deposit.title" = "存款已确认";
+"notification.tx.deposit.body" = "%@ %@ 存入成功";
+"notification.tx.deposit.body_no_amount" = "%@ 存款已确认";
+"notification.tx.withdraw.title" = "取款已确认";
+"notification.tx.withdraw.body" = "%@ %@ 取出成功";
+"notification.tx.withdraw.body_no_amount" = "%@ 取款已确认";
+"notification.tx.lock.title" = "资金已锁定";
+"notification.tx.lock.body" = "您的 %@ 资金现已锁定";
+"notification.tx.unlock.title" = "资金已解锁";
+"notification.tx.unlock.body" = "您的 %@ 资金现已可用";
+"notification.tx.failed.title" = "交易失败";
+"notification.tx.failed.body" = "%@ %@ 交易失败，请重试。";
+"notification.safe.deployed.title" = "钱包就绪";
+"notification.safe.deployed.body" = "您的Safe智能钱包已部署在Base上";
+"notification.piggy.created.title" = "储蓄罐已创建";
+"notification.piggy.created.body" = "您的储蓄罐「%@」现已激活";
+"notification.piggy.created.body_generic" = "新储蓄罐已创建";
+"notification.piggy.unlocked.title" = "储蓄罐已解锁";
+"notification.piggy.unlocked.body" = "您的储蓄罐「%@」已解锁";
+"notification.piggy.unlock_soon.title" = "即将解锁";
+"notification.piggy.unlock_soon.body" = "您的储蓄罐「%@」将在1小时后可解锁";
+"notification.action.deposit" = "存款";
+"notification.action.withdraw" = "取款";
+"notification.action.lock" = "锁定";
+"notification.action.unlock" = "解锁";
+"notification.action.deploy" = "部署";
+"notification.action.create" = "创建";

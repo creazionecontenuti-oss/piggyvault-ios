@@ -1,0 +1,375 @@
+/* PiggyVault - 한국어 */
+
+/* General */
+"cancel" = "취소";
+"ok" = "확인";
+"error.title" = "오류";
+"done" = "완료";
+"save" = "저장";
+"delete" = "삭제";
+"confirm" = "확인";
+"loading" = "로딩 중...";
+
+/* Loading States */
+"loading.creating_wallet" = "볼트를 생성하는 중...";
+"loading.deploying_safe" = "Safe 스마트 계정을 배포하는 중...";
+"loading.configuring_modules" = "보안 모듈을 구성하는 중...";
+"loading.finalizing" = "마무리 중...";
+"loading.securing_keys" = "키를 보호하는 중...";
+"loading.confirming_deploy" = "배포 확인 중...";
+"loading.please_wait" = "잠시만 기다려 주세요";
+"loading.tagline" = "파괴할 수 없는 디지털 저축";
+
+/* Auth */
+"auth.subtitle" = "블록체인 위의\n파괴할 수 없는 디지털 저금통";
+"auth.google_sign_in" = "Google로 로그인";
+"auth.terms" = "계속하면 서비스 약관 및 개인정보 보호정책에 동의하게 됩니다";
+"auth.non_custodial" = "100% 비수탁 · 내 키, 내 코인";
+"auth.biometric.reason" = "볼트에 액세스하려면 인증하세요";
+"auth.biometric.transaction" = "%@ %@ 거래 확인";
+"auth.loading.authenticating" = "인증 중...";
+"auth.loading.google" = "Google에 연결 중...";
+"auth.loading.lit_protocol" = "보안 지갑 설정 중...";
+"auth.loading.finalizing" = "마무리 중...";
+"auth.error.invalid_credential" = "자격 증명이 유효하지 않습니다. 다시 시도해 주세요.";
+"auth.error.google_not_configured" = "Google 로그인이 아직 구성되지 않았습니다. Apple 로그인을 사용해 주세요.";
+
+/* Biometric Lock */
+"biometric.locked" = "볼트가 잠겨 있습니다";
+"biometric.unlock" = "Face ID로 잠금 해제";
+
+/* Onboarding */
+"onboarding.skip" = "건너뛰기";
+"onboarding.next" = "다음";
+"onboarding.get_started" = "시작하기";
+"onboarding.page1.title" = "파괴할 수 없는 저금통";
+"onboarding.page1.description" = "저축은 블록체인의 스마트 컨트랙트로 보호됩니다. 우리조차 당신의 돈을 건드릴 수 없습니다.";
+"onboarding.page2.title" = "스테이블코인과 금으로 저축";
+"onboarding.page2.description" = "USDC, EURC 또는 토큰화된 금(PAXG)으로 인플레이션으로부터 저축을 보호하세요.";
+"onboarding.page3.title" = "선택 가능한 잠금 규칙";
+"onboarding.page3.description" = "시간 잠금 또는 저축 목표를 설정하세요. 한 번 활성화되면 규칙은 변경 불가하며 수학적으로 보장됩니다.";
+"onboarding.page4.title" = "어디서나 접속";
+"onboarding.page4.description" = "Face ID 또는 생체 인식을 사용하세요. Apple 또는 Google 계정으로 모든 기기에서 볼트에 접속하세요.";
+
+/* Tabs */
+"tab.dashboard" = "홈";
+"tab.piggy_banks" = "볼트";
+"tab.deposit" = "입금";
+"tab.settings" = "설정";
+
+/* Dashboard */
+"dashboard.greeting" = "다시 오신 것을 환영합니다";
+"dashboard.total_balance" = "총 잔액";
+"dashboard.secured" = "Base 네트워크에서 보호";
+"dashboard.action.deposit" = "입금";
+"dashboard.action.new_piggy" = "새 볼트";
+"dashboard.action.swap" = "교환";
+"dashboard.assets" = "내 자산";
+"dashboard.no_assets" = "아직 자산이 없습니다";
+"dashboard.no_assets_desc" = "시작하려면 자금을 입금하세요";
+"dashboard.piggy_banks" = "내 볼트";
+"dashboard.see_all" = "모두 보기";
+"dashboard.no_piggy_banks" = "아직 볼트가 없습니다";
+"dashboard.no_piggy_banks_desc" = "첫 번째 파괴할 수 없는 저금통을 만들고 규율 있게 저축을 시작하세요.";
+"dashboard.create_first_piggy" = "첫 볼트 만들기";
+
+/* Piggy Banks */
+"piggy.title" = "내 볼트";
+"piggy.subtitle" = "파괴할 수 없는 저축";
+"piggy.lock_type.time" = "시간 잠금";
+"piggy.lock_type.target" = "목표 잠금";
+"piggy.lock_type.time_desc" = "특정 날짜까지 자금이 잠깁니다. 기한 전에 누구도 인출할 수 없습니다.";
+"piggy.lock_type.target_desc" = "저축 목표에 도달할 때까지 자금이 잠깁니다. 규율을 유지하세요!";
+"piggy.target" = "목표";
+"piggy.remaining" = "남은";
+"piggy.ready_to_unlock" = "잠금 해제 가능!";
+"piggy.time.ready" = "준비 완료!";
+"piggy.stats.total" = "전체";
+"piggy.stats.locked" = "잠김";
+"piggy.stats.ready" = "준비";
+"piggy.empty.title" = "첫 번째 볼트 만들기";
+"piggy.empty.description" = "수학적으로 보장된 규칙으로 저축을 잠그세요. 한 번 설정하면 누구도 깨뜨릴 수 없습니다.";
+"piggy.empty.create" = "볼트 만들기";
+
+/* Piggy Bank Types */
+"piggy.type.time_vault" = "타임 볼트";
+"piggy.type.target_vault" = "목표 볼트";
+
+/* Create Piggy Bank */
+"piggy.create.title" = "새 볼트";
+"piggy.create.step1.title" = "볼트 이름 짓기";
+"piggy.create.step1.subtitle" = "기억하기 쉬운 이름을 지어주세요";
+"piggy.create.name" = "볼트 이름";
+"piggy.create.name_placeholder" = "예: 꿈의 여행";
+"piggy.create.color" = "색상";
+"piggy.create.step2.title" = "자산 선택";
+"piggy.create.step2.subtitle" = "저축할 통화를 선택하세요";
+"piggy.create.step3.title" = "잠금 유형";
+"piggy.create.step3.subtitle" = "저축 잠금 방식을 선택하세요";
+"piggy.create.unlock_date" = "잠금 해제 날짜";
+"piggy.create.target_amount" = "목표 금액";
+"piggy.create.step4.title" = "확인";
+"piggy.create.step4.subtitle" = "볼트 설정을 검토하세요";
+"piggy.create.summary.lock_type" = "잠금 유형";
+"piggy.create.summary.unlock_date" = "잠금 해제 날짜";
+"piggy.create.summary.target" = "목표";
+"piggy.create.summary.network" = "네트워크";
+"piggy.create.warning" = "생성 후 잠금 규칙은 변경할 수 없습니다. 당신 자신을 포함하여 누구도 규칙을 변경하거나 우회할 수 없습니다.";
+"piggy.create.next" = "계속";
+"piggy.create.back" = "뒤로";
+"piggy.create.confirm" = "볼트 만들기";
+"piggy.create.biometric_reason" = "새 볼트를 만들려면 인증하세요";
+"piggy.create.progress.deploying" = "스마트 컨트랙트 배포 중...";
+"piggy.create.progress.time_lock" = "시간 잠금 모듈 설치 중...";
+"piggy.create.progress.target_lock" = "목표 잠금 모듈 설치 중...";
+"piggy.create.progress.finalizing" = "볼트 마무리 중...";
+"piggy.create.progress.done" = "볼트가 성공적으로 생성되었습니다!";
+"piggy.create.error.biometric_failed" = "생체 인증에 실패했습니다. 다시 시도해 주세요.";
+
+/* Piggy Bank Detail */
+"piggy.detail.progress" = "진행률";
+"piggy.detail.time_remaining" = "남은 시간";
+"piggy.detail.target" = "목표 금액";
+"piggy.detail.info" = "상세 정보";
+"piggy.detail.created" = "생성일";
+"piggy.detail.lock_type" = "잠금 유형";
+"piggy.detail.contract" = "컨트랙트";
+"piggy.detail.network" = "네트워크";
+"piggy.detail.deposit" = "입금";
+"piggy.detail.unlock" = "볼트 잠금 해제";
+"piggy.detail.deposit_amount" = "입금 금액";
+"piggy.detail.confirm_deposit" = "입금 확인";
+"piggy.detail.depositing" = "입금 처리 중...";
+"piggy.detail.deposit_success" = "%@ %@ 입금 완료";
+"piggy.detail.invalid_amount" = "유효한 금액을 입력해 주세요";
+"piggy.detail.unlock_confirm.title" = "볼트 잠금 해제?";
+"piggy.detail.unlock_confirm.message" = "이 볼트의 모든 자금이 Safe 지갑으로 인출됩니다.";
+"piggy.detail.unlock_pending" = "잠금 해제 요청이 제출되었습니다. 처리 중...";
+"piggy.detail.unlock_success" = "볼트가 잠금 해제되었습니다! 자금을 사용할 수 있습니다.";
+
+/* Deposit */
+"deposit.title" = "입금";
+"deposit.subtitle" = "볼트에 자금 추가";
+"deposit.bank_transfer" = "은행 송금";
+"deposit.bank_transfer_desc" = "SEPA, Mt Pelerin을 통한 송금";
+"deposit.card" = "카드 결제";
+"deposit.card_desc" = "Mt Pelerin을 통한 Visa, Mastercard";
+"deposit.crypto" = "암호화폐 전송";
+"deposit.crypto_desc" = "Safe로 직접 암호화폐 전송";
+"deposit.no_kyc" = "KYC 불필요";
+"deposit.instant" = "즉시";
+"deposit.personal_iban" = "개인 IBAN";
+"deposit.iban_desc" = "전용 IBAN을 받아 스테이블코인으로 볼트에 직접 입금하세요.";
+"deposit.iban_coming_soon" = "곧 출시...";
+"deposit.powered_by_mt_pelerin" = "Mt Pelerin 제공";
+"deposit.info.title" = "작동 방식";
+"deposit.info.bullet1" = "자금은 Base 네트워크의 Safe 스마트 계정에 직접 입금됩니다.";
+"deposit.info.bullet2" = "Mt Pelerin을 통해 하루 1,000 CHF까지의 송금은 KYC가 필요하지 않습니다.";
+"deposit.info.bullet3" = "Base L2의 가스비는 최소화됩니다(거래당 약 $0.01).";
+"deposit.receive.title" = "암호화폐 수신";
+"deposit.receive.scan" = "스캔하여 암호화폐 전송";
+"deposit.receive.address" = "내 SAFE 주소";
+"deposit.receive.copy" = "주소 복사";
+"deposit.receive.copied" = "복사됨!";
+"deposit.receive.network_warning" = "Base 네트워크에서만 자산을 전송하세요. 다른 네트워크에서의 전송은 영구적 손실을 초래할 수 있습니다.";
+"deposit.withdraw" = "은행으로 출금";
+"deposit.withdraw_desc" = "SEPA를 통해 스테이블코인을 법정화폐로 전환";
+
+/* Buy Flow */
+"deposit.buy.title" = "스테이블코인 구매";
+"deposit.buy.enter_amount" = "얼마를 추가하시겠습니까?";
+"deposit.buy.pay_with" = "결제 수단";
+"deposit.buy.receive" = "수령";
+"deposit.buy.loading_quote" = "최적 환율 조회 중...";
+"deposit.buy.quote_ready" = "견적 준비 완료";
+"deposit.buy.you_pay" = "지불 금액";
+"deposit.buy.you_receive" = "수령 금액";
+"deposit.buy.fees" = "수수료";
+"deposit.buy.rate" = "환율";
+"deposit.buy.confirm" = "결제 진행";
+"deposit.buy.info_title" = "안전하고 보호됨";
+"deposit.buy.info_1" = "자금이 Base 네트워크의 볼트로 직접 전송됩니다";
+"deposit.buy.info_2" = "일일 1,000CHF까지 KYC 불필요";
+"deposit.buy.info_3" = "스위스 규제 기업 Mt Pelerin 운영";
+
+/* Sell Flow */
+"deposit.sell.title" = "은행으로 출금";
+"deposit.sell.enter_amount" = "얼마를 출금하시겠습니까?";
+"deposit.sell.from" = "보내는 곳";
+"deposit.sell.to_bank" = "은행 계좌로";
+"deposit.sell.you_send" = "보내는 금액";
+"deposit.sell.you_receive_bank" = "수령 금액";
+"deposit.sell.confirm" = "출금 진행";
+"deposit.sell.info_title" = "은행 출금";
+"deposit.sell.info_1" = "SEPA를 통해 은행 계좌로 송금 (1-2영업일)";
+"deposit.sell.info_2" = "최소 출금 금액: 약 50CHF 상당";
+
+/* Settings */
+"settings.title" = "설정";
+"settings.subtitle" = "볼트 관리";
+"settings.account" = "계정";
+"settings.wallet" = "지갑";
+"settings.safe_address" = "Safe 주소";
+"settings.not_deployed" = "아직 배포되지 않음";
+"settings.network" = "네트워크";
+"settings.explorer" = "블록 탐색기";
+"settings.app" = "앱";
+"settings.language" = "언어";
+"settings.notifications" = "알림";
+"settings.notifications_desc" = "잠금 해제 알림 및 입금 알림";
+"settings.security" = "보안";
+"settings.biometric" = "Face ID / 생체 인식";
+"settings.biometric_desc" = "모든 거래에 필요";
+"settings.recovery" = "계정 복구";
+"settings.recovery_desc" = "Apple ID 또는 Google 계정으로";
+"settings.about" = "정보";
+"settings.terms" = "서비스 약관";
+"settings.privacy" = "개인정보 보호정책";
+"settings.help" = "도움말 및 지원";
+"settings.sign_out" = "로그아웃";
+"settings.sign_out_confirm.title" = "로그아웃하시겠습니까?";
+"settings.sign_out_confirm.message" = "Apple 또는 Google 계정으로 언제든지 다시 로그인할 수 있습니다. 자금은 블록체인에서 안전하게 보관됩니다.";
+
+/* Transactions */
+"transactions.title" = "거래 내역";
+"transactions.empty.title" = "거래 내역이 없습니다";
+"transactions.empty.subtitle" = "첫 입금 또는 이체 후 거래 내역이 여기에 표시됩니다.";
+
+/* Account Profile */
+"account.title" = "계정";
+"account.signed_in_via" = "인증 방법";
+"account.non_custodial" = "비수탁형";
+"account.eoa_address" = "소유자 주소";
+"account.safe_address" = "Safe 주소";
+"account.safe_not_deployed" = "Safe가 아직 배포되지 않았습니다";
+"account.network_info" = "네트워크 정보";
+"account.network" = "네트워크";
+"account.chain_id" = "체인 ID";
+"account.rpc" = "RPC 엔드포인트";
+"account.status" = "상태";
+"account.latency" = "지연 시간";
+"account.gas_balance" = "가스 잔액";
+"account.gas_low" = "부족";
+"account.gas_desc" = "Base 네트워크의 트랜잭션 수수료를 지불하려면 ETH가 필요합니다.";
+"account.recovery" = "계정 복구";
+"account.recovery_desc" = "연결된 ID 제공자를 사용하여 Lit Protocol을 통해 계정을 복구할 수 있습니다. 시드 문구가 필요 없습니다.";
+"account.active" = "활성";
+"account.inactive" = "미연결";
+"account.danger_zone" = "고급";
+"account.view_explorer" = "블록 탐색기에서 보기";
+
+/* Network */
+"network.connected" = "연결됨";
+"network.disconnected" = "연결 끊김";
+"network.checking" = "확인 중...";
+"network.error" = "네트워크 오류";
+"network.offline_banner" = "블록체인에 연결할 수 없습니다";
+"network.retry" = "재시도";
+
+/* Error Messages - Transaction */
+"error.tx.not_initialized" = "트랜잭션 서명자가 초기화되지 않았습니다";
+"error.tx.auth_failed" = "트랜잭션 인증 실패";
+"error.tx.signing_failed" = "트랜잭션 서명 실패: %@";
+"error.tx.broadcast_failed" = "트랜잭션 전송 실패: %@";
+"error.tx.no_pkp" = "PKP를 찾을 수 없습니다. 다시 로그인해 주세요.";
+"error.tx.invalid_signature" = "트랜잭션 서명을 처리할 수 없습니다";
+"error.tx.failed" = "트랜잭션 실패";
+"error.tx.insufficient_balance" = "잔액 부족";
+"error.tx.network_unavailable" = "네트워크 사용 불가";
+
+/* Error Messages - Blockchain */
+"error.blockchain.invalid_address" = "잘못된 지갑 주소";
+"error.blockchain.rpc" = "RPC 오류: %@";
+"error.blockchain.contract" = "컨트랙트 오류: %@";
+
+/* Error Messages - Safe */
+"error.safe.deployment_failed" = "Safe 배포 실패: %@";
+"error.safe.module_install_failed" = "모듈 설치 실패";
+"error.safe.invalid_owner" = "잘못된 소유자 주소";
+"error.safe.not_deployed" = "Safe가 아직 배포되지 않았습니다";
+
+/* Safe Deployment Warning Banner */
+"safe.deploy.failed.title" = "지갑 설정 실패";
+"safe.deploy.failed.desc" = "보안 지갑을 생성할 수 없습니다. 문제가 해결될 때까지 입금 및 송금이 차단됩니다.";
+"safe.deploy.failed.blocked" = "모든 거래가 차단되었습니다";
+"safe.deploy.retry" = "다시 시도";
+"safe.deploy.retrying" = "설정 중...";
+"error.safe.module_restriction" = "모듈 제한: %@";
+
+/* Error Messages - Gas */
+"error.gas.insufficient" = "가스용 ETH 부족";
+"error.gas.swap_failed" = "가스 스왑 실패: %@";
+"error.gas.relayer_unavailable" = "릴레이어 서비스 사용 불가";
+"error.gas.relayer_rejected" = "릴레이어 거부: %@";
+"error.gas.quote_failed" = "스왑 견적을 가져올 수 없습니다";
+
+/* Error Messages - Auth */
+"error.auth.google_not_configured" = "Google OAuth 클라이언트 ID가 설정되지 않았습니다";
+"error.auth.google_failed" = "Google 인증 실패";
+"error.auth.token_exchange_failed" = "인증 코드 교환 실패";
+"error.auth.cancelled" = "인증이 취소되었습니다";
+"error.auth.invalid_response" = "Google의 잘못된 응답";
+"error.auth.no_id_token" = "ID 토큰을 받지 못했습니다";
+
+/* Error Messages - Lit Protocol */
+"error.lit.auth_failed" = "Lit Protocol 인증 실패";
+"error.lit.pkp_generation_failed" = "PKP 키 생성 실패";
+"error.lit.pkp_mint_pending" = "PKP 민팅 진행 중, 잠시 기다려 주세요";
+"error.lit.session_expired" = "세션 만료, 다시 로그인해 주세요";
+"error.lit.network_error" = "네트워크 오류: %@";
+"error.lit.signing_failed" = "서명 실패: %@";
+"error.lit.no_auth_method" = "저장된 인증 방법이 없습니다";
+
+/* Error Messages - On-Ramp */
+"error.onramp.invalid_response" = "Mt Pelerin에서 잘못된 응답";
+"error.onramp.api_error" = "Mt Pelerin 오류: %@";
+"error.onramp.limit_exceeded" = "일일 한도 초과 (KYC 없이 1,000 CHF/일)";
+
+/* Error Messages - Secure Enclave */
+"error.secure.key_not_found" = "Secure Enclave 키를 찾을 수 없습니다";
+"error.secure.key_generation_failed" = "키 생성 실패: %@";
+"error.secure.signing_failed" = "서명 실패: %@";
+"error.secure.biometric_failed" = "생체 인증 실패";
+"error.secure.no_secure_enclave" = "기기가 Secure Enclave를 지원하지 않습니다";
+"error.secure.invalid_public_key" = "잘못된 공개 키";
+
+/* Error Messages - Lit Signing Bridge */
+"error.lit.bridge_not_ready" = "Lit 서명 브리지가 초기화되지 않았습니다";
+"error.lit.timeout" = "Lit 서명 시간 초과";
+"error.lit.invalid_response" = "Lit 네트워크에서 잘못된 응답";
+
+/* Signing Steps */
+"signing.authorizing" = "승인 중...";
+"signing.signing" = "거래 서명 중...";
+"signing.broadcasting" = "전송 중...";
+"signing.confirmed" = "확인됨";
+"signing.failed" = "실패";
+
+/* Notifications */
+"notification.tx.deposit.title" = "입금 확인됨";
+"notification.tx.deposit.body" = "%@ %@ 입금 완료";
+"notification.tx.deposit.body_no_amount" = "%@ 입금이 확인되었습니다";
+"notification.tx.withdraw.title" = "출금 확인됨";
+"notification.tx.withdraw.body" = "%@ %@ 출금 완료";
+"notification.tx.withdraw.body_no_amount" = "%@ 출금이 확인되었습니다";
+"notification.tx.lock.title" = "자금 잠김";
+"notification.tx.lock.body" = "%@ 자금이 잠겼습니다";
+"notification.tx.unlock.title" = "자금 잠금 해제";
+"notification.tx.unlock.body" = "%@ 자금을 사용할 수 있습니다";
+"notification.tx.failed.title" = "거래 실패";
+"notification.tx.failed.body" = "%@ %@ 거래가 실패했습니다. 다시 시도해주세요.";
+"notification.safe.deployed.title" = "지갑 준비 완료";
+"notification.safe.deployed.body" = "Safe 스마트 지갑이 Base에 배포되었습니다";
+"notification.piggy.created.title" = "저금통 생성됨";
+"notification.piggy.created.body" = "저금통 \"%@\"이(가) 활성화되었습니다";
+"notification.piggy.created.body_generic" = "새 저금통이 생성되었습니다";
+"notification.piggy.unlocked.title" = "저금통 잠금 해제됨";
+"notification.piggy.unlocked.body" = "저금통 \"%@\"이(가) 잠금 해제되었습니다";
+"notification.piggy.unlock_soon.title" = "곧 잠금 해제";
+"notification.piggy.unlock_soon.body" = "저금통 \"%@\"이(가) 1시간 후 잠금 해제 가능합니다";
+"notification.action.deposit" = "입금";
+"notification.action.withdraw" = "출금";
+"notification.action.lock" = "잠금";
+"notification.action.unlock" = "잠금 해제";
+"notification.action.deploy" = "배포";
+"notification.action.create" = "생성";

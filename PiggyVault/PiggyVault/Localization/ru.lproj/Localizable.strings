@@ -1,0 +1,375 @@
+/* PiggyVault - Русский */
+
+/* General */
+"cancel" = "Отмена";
+"ok" = "ОК";
+"error.title" = "Ошибка";
+"done" = "Готово";
+"save" = "Сохранить";
+"delete" = "Удалить";
+"confirm" = "Подтвердить";
+"loading" = "Загрузка...";
+
+/* Loading States */
+"loading.creating_wallet" = "Создание вашего хранилища...";
+"loading.deploying_safe" = "Развёртывание вашего Safe смарт-аккаунта...";
+"loading.configuring_modules" = "Настройка модулей безопасности...";
+"loading.finalizing" = "Завершение...";
+"loading.securing_keys" = "Защита ваших ключей...";
+"loading.confirming_deploy" = "Подтверждение развёртывания...";
+"loading.please_wait" = "Это может занять некоторое время";
+"loading.tagline" = "Неразрушимые цифровые сбережения";
+
+/* Auth */
+"auth.subtitle" = "Неразрушимые цифровые копилки\nна блокчейне";
+"auth.google_sign_in" = "Войти через Google";
+"auth.terms" = "Продолжая, вы соглашаетесь с нашими Условиями использования и Политикой конфиденциальности";
+"auth.non_custodial" = "100% Некастодиальное · Ваши ключи, ваши монеты";
+"auth.biometric.reason" = "Пройдите аутентификацию для доступа к хранилищу";
+"auth.biometric.transaction" = "Подтвердить транзакцию %@ %@";
+"auth.loading.authenticating" = "Аутентификация...";
+"auth.loading.google" = "Подключение к Google...";
+"auth.loading.lit_protocol" = "Настройка безопасного кошелька...";
+"auth.loading.finalizing" = "Завершение...";
+"auth.error.invalid_credential" = "Неверные учётные данные. Попробуйте снова.";
+"auth.error.google_not_configured" = "Вход через Google ещё не настроен. Используйте вход через Apple.";
+
+/* Biometric Lock */
+"biometric.locked" = "Ваше хранилище заблокировано";
+"biometric.unlock" = "Разблокировать с Face ID";
+
+/* Onboarding */
+"onboarding.skip" = "Пропустить";
+"onboarding.next" = "Далее";
+"onboarding.get_started" = "Начать";
+"onboarding.page1.title" = "Неразрушимые Копилки";
+"onboarding.page1.description" = "Ваши сбережения защищены смарт-контрактами на блокчейне. Даже мы не можем прикоснуться к вашим деньгам.";
+"onboarding.page2.title" = "Копите в Стейблкоинах и Золоте";
+"onboarding.page2.description" = "Защитите сбережения от инфляции с помощью USDC, EURC или токенизированного золота (PAXG).";
+"onboarding.page3.title" = "Правила Блокировки на Ваш Выбор";
+"onboarding.page3.description" = "Установите временную блокировку или цель накопления. После активации правила неизменны и математически гарантированы.";
+"onboarding.page4.title" = "Доступ Отовсюду";
+"onboarding.page4.description" = "Используйте Face ID или биометрию. Получайте доступ к хранилищу с любого устройства через аккаунт Apple или Google.";
+
+/* Tabs */
+"tab.dashboard" = "Главная";
+"tab.piggy_banks" = "Хранилища";
+"tab.deposit" = "Пополнить";
+"tab.settings" = "Настройки";
+
+/* Dashboard */
+"dashboard.greeting" = "С возвращением";
+"dashboard.total_balance" = "Общий Баланс";
+"dashboard.secured" = "Защищено на Base";
+"dashboard.action.deposit" = "Пополнить";
+"dashboard.action.new_piggy" = "Новое Хранилище";
+"dashboard.action.swap" = "Обмен";
+"dashboard.assets" = "Ваши Активы";
+"dashboard.no_assets" = "Пока нет активов";
+"dashboard.no_assets_desc" = "Внесите средства для начала";
+"dashboard.piggy_banks" = "Ваши Хранилища";
+"dashboard.see_all" = "Показать Все";
+"dashboard.no_piggy_banks" = "Пока нет хранилищ";
+"dashboard.no_piggy_banks_desc" = "Создайте первую неразрушимую копилку и начните копить с дисциплиной.";
+"dashboard.create_first_piggy" = "Создать Первое Хранилище";
+
+/* Piggy Banks */
+"piggy.title" = "Ваши Хранилища";
+"piggy.subtitle" = "Неразрушимые сбережения";
+"piggy.lock_type.time" = "Временная Блокировка";
+"piggy.lock_type.target" = "Целевая Блокировка";
+"piggy.lock_type.time_desc" = "Средства заблокированы до определённой даты. Никто не может снять их до срока.";
+"piggy.lock_type.target_desc" = "Средства заблокированы до достижения цели накопления. Будьте дисциплинированы!";
+"piggy.target" = "Цель";
+"piggy.remaining" = "Осталось";
+"piggy.ready_to_unlock" = "Готово к разблокировке!";
+"piggy.time.ready" = "Готово!";
+"piggy.stats.total" = "Всего";
+"piggy.stats.locked" = "Заблокировано";
+"piggy.stats.ready" = "Готово";
+"piggy.empty.title" = "Создайте Первое Хранилище";
+"piggy.empty.description" = "Заблокируйте сбережения математически гарантированными правилами. После установки никто не сможет их нарушить.";
+"piggy.empty.create" = "Создать Хранилище";
+
+/* Piggy Bank Types */
+"piggy.type.time_vault" = "Временное Хранилище";
+"piggy.type.target_vault" = "Целевое Хранилище";
+
+/* Create Piggy Bank */
+"piggy.create.title" = "Новое Хранилище";
+"piggy.create.step1.title" = "Назовите Хранилище";
+"piggy.create.step1.subtitle" = "Дайте ему запоминающееся имя";
+"piggy.create.name" = "НАЗВАНИЕ ХРАНИЛИЩА";
+"piggy.create.name_placeholder" = "напр. Отпуск Мечты";
+"piggy.create.color" = "ЦВЕТ";
+"piggy.create.step2.title" = "Выберите Актив";
+"piggy.create.step2.subtitle" = "Выберите валюту для накопления";
+"piggy.create.step3.title" = "Тип Блокировки";
+"piggy.create.step3.subtitle" = "Выберите, как будут заблокированы ваши сбережения";
+"piggy.create.unlock_date" = "ДАТА РАЗБЛОКИРОВКИ";
+"piggy.create.target_amount" = "ЦЕЛЕВАЯ СУММА";
+"piggy.create.step4.title" = "Подтверждение";
+"piggy.create.step4.subtitle" = "Проверьте настройки хранилища";
+"piggy.create.summary.lock_type" = "Тип Блокировки";
+"piggy.create.summary.unlock_date" = "Дата Разблокировки";
+"piggy.create.summary.target" = "Цель";
+"piggy.create.summary.network" = "Сеть";
+"piggy.create.warning" = "После создания правила блокировки НЕИЗМЕННЫ. Их невозможно изменить или обойти кому-либо, включая вас.";
+"piggy.create.next" = "Продолжить";
+"piggy.create.back" = "Назад";
+"piggy.create.confirm" = "Создать Хранилище";
+"piggy.create.biometric_reason" = "Пройдите аутентификацию для создания нового хранилища";
+"piggy.create.progress.deploying" = "Развёртывание смарт-контракта...";
+"piggy.create.progress.time_lock" = "Установка модуля временной блокировки...";
+"piggy.create.progress.target_lock" = "Установка модуля целевой блокировки...";
+"piggy.create.progress.finalizing" = "Завершение хранилища...";
+"piggy.create.progress.done" = "Хранилище успешно создано!";
+"piggy.create.error.biometric_failed" = "Биометрическая аутентификация не удалась. Пожалуйста, попробуйте снова.";
+
+/* Piggy Bank Detail */
+"piggy.detail.progress" = "Прогресс";
+"piggy.detail.time_remaining" = "Оставшееся время";
+"piggy.detail.target" = "Целевая сумма";
+"piggy.detail.info" = "Подробности";
+"piggy.detail.created" = "Создано";
+"piggy.detail.lock_type" = "Тип блокировки";
+"piggy.detail.contract" = "Контракт";
+"piggy.detail.network" = "Сеть";
+"piggy.detail.deposit" = "Пополнить";
+"piggy.detail.unlock" = "Разблокировать Хранилище";
+"piggy.detail.deposit_amount" = "Сумма пополнения";
+"piggy.detail.confirm_deposit" = "Подтвердить Пополнение";
+"piggy.detail.depositing" = "Обработка пополнения...";
+"piggy.detail.deposit_success" = "Успешно пополнено %@ %@";
+"piggy.detail.invalid_amount" = "Введите корректную сумму";
+"piggy.detail.unlock_confirm.title" = "Разблокировать Хранилище?";
+"piggy.detail.unlock_confirm.message" = "Все средства из этого хранилища будут переведены в ваш Safe-кошелёк.";
+"piggy.detail.unlock_pending" = "Запрос на разблокировку отправлен. Обработка...";
+"piggy.detail.unlock_success" = "Хранилище разблокировано! Средства теперь доступны.";
+
+/* Deposit */
+"deposit.title" = "Пополнение";
+"deposit.subtitle" = "Добавьте средства в хранилище";
+"deposit.bank_transfer" = "Банковский Перевод";
+"deposit.bank_transfer_desc" = "SEPA, перевод через Mt Pelerin";
+"deposit.card" = "Оплата Картой";
+"deposit.card_desc" = "Visa, Mastercard через Mt Pelerin";
+"deposit.crypto" = "Крипто Перевод";
+"deposit.crypto_desc" = "Отправьте криптовалюту напрямую на ваш Safe";
+"deposit.no_kyc" = "Без KYC";
+"deposit.instant" = "Мгновенно";
+"deposit.personal_iban" = "Личный IBAN";
+"deposit.iban_desc" = "Получите выделенный IBAN для прямого пополнения хранилища стейблкоинами.";
+"deposit.iban_coming_soon" = "Скоро...";
+"deposit.powered_by_mt_pelerin" = "При поддержке Mt Pelerin";
+"deposit.info.title" = "Как это работает";
+"deposit.info.bullet1" = "Средства вносятся непосредственно на ваш Safe смарт-аккаунт в сети Base.";
+"deposit.info.bullet2" = "KYC не требуется для переводов до 1 000 CHF/день через Mt Pelerin.";
+"deposit.info.bullet3" = "Комиссии за газ минимальны на Base L2 (~$0,01 за транзакцию).";
+"deposit.receive.title" = "Получить Криптовалюту";
+"deposit.receive.scan" = "Сканируйте для отправки криптовалюты";
+"deposit.receive.address" = "ВАШ АДРЕС SAFE";
+"deposit.receive.copy" = "Скопировать Адрес";
+"deposit.receive.copied" = "Скопировано!";
+"deposit.receive.network_warning" = "Отправляйте активы только в сети Base. Отправка в других сетях может привести к безвозвратной потере.";
+"deposit.withdraw" = "Вывод на банк";
+"deposit.withdraw_desc" = "Конвертация стейблкоинов в фиат через SEPA";
+
+/* Buy Flow */
+"deposit.buy.title" = "Купить Стейблкоины";
+"deposit.buy.enter_amount" = "Сколько вы хотите добавить?";
+"deposit.buy.pay_with" = "Оплатить";
+"deposit.buy.receive" = "Получить";
+"deposit.buy.loading_quote" = "Поиск лучшего курса...";
+"deposit.buy.quote_ready" = "Котировка готова";
+"deposit.buy.you_pay" = "Вы платите";
+"deposit.buy.you_receive" = "Вы получите";
+"deposit.buy.fees" = "Комиссии";
+"deposit.buy.rate" = "Курс";
+"deposit.buy.confirm" = "Перейти к оплате";
+"deposit.buy.info_title" = "Безопасно и Надёжно";
+"deposit.buy.info_1" = "Средства поступают напрямую в ваше хранилище в сети Base";
+"deposit.buy.info_2" = "KYC не требуется до 1 000 CHF/день";
+"deposit.buy.info_3" = "Обеспечено Mt Pelerin, швейцарской регулируемой компанией";
+
+/* Sell Flow */
+"deposit.sell.title" = "Вывод на банк";
+"deposit.sell.enter_amount" = "Сколько вы хотите вывести?";
+"deposit.sell.from" = "Из";
+"deposit.sell.to_bank" = "На банковский счёт";
+"deposit.sell.you_send" = "Вы отправляете";
+"deposit.sell.you_receive_bank" = "Вы получите";
+"deposit.sell.confirm" = "Перейти к выводу";
+"deposit.sell.info_title" = "Банковский вывод";
+"deposit.sell.info_1" = "Средства отправляются через SEPA на ваш счёт (1-2 рабочих дня)";
+"deposit.sell.info_2" = "Минимальный вывод: ~50 CHF эквивалент";
+
+/* Settings */
+"settings.title" = "Настройки";
+"settings.subtitle" = "Управление хранилищем";
+"settings.account" = "Аккаунт";
+"settings.wallet" = "Кошелёк";
+"settings.safe_address" = "Адрес Safe";
+"settings.not_deployed" = "Ещё не развёрнут";
+"settings.network" = "Сеть";
+"settings.explorer" = "Обозреватель Блоков";
+"settings.app" = "Приложение";
+"settings.language" = "Язык";
+"settings.notifications" = "Уведомления";
+"settings.notifications_desc" = "Напоминания о разблокировке и уведомления о пополнении";
+"settings.security" = "Безопасность";
+"settings.biometric" = "Face ID / Биометрия";
+"settings.biometric_desc" = "Требуется для всех транзакций";
+"settings.recovery" = "Восстановление Аккаунта";
+"settings.recovery_desc" = "Через Apple ID или аккаунт Google";
+"settings.about" = "О Приложении";
+"settings.terms" = "Условия Использования";
+"settings.privacy" = "Политика Конфиденциальности";
+"settings.help" = "Помощь и Поддержка";
+"settings.sign_out" = "Выйти";
+"settings.sign_out_confirm.title" = "Выйти?";
+"settings.sign_out_confirm.message" = "Вы можете войти снова в любое время с помощью аккаунта Apple или Google. Ваши средства остаются в безопасности на блокчейне.";
+
+/* Transactions */
+"transactions.title" = "История Транзакций";
+"transactions.empty.title" = "Пока нет транзакций";
+"transactions.empty.subtitle" = "История ваших транзакций появится здесь после первого депозита или перевода.";
+
+/* Account Profile */
+"account.title" = "Аккаунт";
+"account.signed_in_via" = "Метод аутентификации";
+"account.non_custodial" = "Некастодиальный";
+"account.eoa_address" = "Адрес владельца";
+"account.safe_address" = "Адрес Safe";
+"account.safe_not_deployed" = "Safe ещё не развёрнут";
+"account.network_info" = "ИНФО О СЕТИ";
+"account.network" = "Сеть";
+"account.chain_id" = "ID цепочки";
+"account.rpc" = "RPC точка";
+"account.status" = "Статус";
+"account.latency" = "Задержка";
+"account.gas_balance" = "БАЛАНС ГАЗА";
+"account.gas_low" = "Низкий";
+"account.gas_desc" = "ETH необходим для оплаты комиссий за транзакции в сети Base.";
+"account.recovery" = "ВОССТАНОВЛЕНИЕ АККАУНТА";
+"account.recovery_desc" = "Ваш аккаунт можно восстановить через Lit Protocol с помощью привязанного провайдера идентификации. Seed-фразы не нужны.";
+"account.active" = "Активен";
+"account.inactive" = "Не привязан";
+"account.danger_zone" = "РАСШИРЕННЫЕ";
+"account.view_explorer" = "Открыть в Block Explorer";
+
+/* Network */
+"network.connected" = "Подключено";
+"network.disconnected" = "Отключено";
+"network.checking" = "Проверка...";
+"network.error" = "Ошибка сети";
+"network.offline_banner" = "Нет подключения к блокчейну";
+"network.retry" = "Повторить";
+
+/* Error Messages - Transaction */
+"error.tx.not_initialized" = "Подписант транзакций не инициализирован";
+"error.tx.auth_failed" = "Авторизация транзакции не удалась";
+"error.tx.signing_failed" = "Подписание транзакции не удалось: %@";
+"error.tx.broadcast_failed" = "Отправка транзакции не удалась: %@";
+"error.tx.no_pkp" = "PKP не найден. Пожалуйста, войдите снова.";
+"error.tx.invalid_signature" = "Не удалось обработать подпись транзакции";
+"error.tx.failed" = "Транзакция не удалась";
+"error.tx.insufficient_balance" = "Недостаточный баланс";
+"error.tx.network_unavailable" = "Сеть недоступна";
+
+/* Error Messages - Blockchain */
+"error.blockchain.invalid_address" = "Недействительный адрес кошелька";
+"error.blockchain.rpc" = "Ошибка RPC: %@";
+"error.blockchain.contract" = "Ошибка контракта: %@";
+
+/* Error Messages - Safe */
+"error.safe.deployment_failed" = "Развёртывание Safe не удалось: %@";
+"error.safe.module_install_failed" = "Установка модуля не удалась";
+"error.safe.invalid_owner" = "Недействительный адрес владельца";
+"error.safe.not_deployed" = "Safe ещё не развёрнут";
+
+/* Safe Deployment Warning Banner */
+"safe.deploy.failed.title" = "Ошибка настройки кошелька";
+"safe.deploy.failed.desc" = "Не удалось создать защищённый кошелёк. Депозиты и переводы заблокированы до устранения проблемы.";
+"safe.deploy.failed.blocked" = "Все транзакции заблокированы";
+"safe.deploy.retry" = "Повторить попытку";
+"safe.deploy.retrying" = "Настройка...";
+"error.safe.module_restriction" = "Ограничение модуля: %@";
+
+/* Error Messages - Gas */
+"error.gas.insufficient" = "Недостаточно ETH для газа";
+"error.gas.swap_failed" = "Обмен газа не удался: %@";
+"error.gas.relayer_unavailable" = "Сервис релеера недоступен";
+"error.gas.relayer_rejected" = "Релеер отклонил: %@";
+"error.gas.quote_failed" = "Не удалось получить котировку обмена";
+
+/* Error Messages - Auth */
+"error.auth.google_not_configured" = "Google OAuth Client ID не настроен";
+"error.auth.google_failed" = "Аутентификация Google не удалась";
+"error.auth.token_exchange_failed" = "Не удалось обменять код авторизации";
+"error.auth.cancelled" = "Аутентификация отменена";
+"error.auth.invalid_response" = "Недействительный ответ от Google";
+"error.auth.no_id_token" = "ID токен не получен";
+
+/* Error Messages - Lit Protocol */
+"error.lit.auth_failed" = "Аутентификация Lit Protocol не удалась";
+"error.lit.pkp_generation_failed" = "Генерация ключа PKP не удалась";
+"error.lit.pkp_mint_pending" = "Минтинг PKP в процессе, подождите";
+"error.lit.session_expired" = "Сессия истекла, войдите снова";
+"error.lit.network_error" = "Ошибка сети: %@";
+"error.lit.signing_failed" = "Подписание не удалось: %@";
+"error.lit.no_auth_method" = "Метод аутентификации не сохранён";
+
+/* Error Messages - On-Ramp */
+"error.onramp.invalid_response" = "Недействительный ответ от Mt Pelerin";
+"error.onramp.api_error" = "Ошибка Mt Pelerin: %@";
+"error.onramp.limit_exceeded" = "Дневной лимит превышен (1 000 CHF/день без KYC)";
+
+/* Error Messages - Secure Enclave */
+"error.secure.key_not_found" = "Ключ Secure Enclave не найден";
+"error.secure.key_generation_failed" = "Ошибка генерации ключа: %@";
+"error.secure.signing_failed" = "Ошибка подписи: %@";
+"error.secure.biometric_failed" = "Биометрическая аутентификация не удалась";
+"error.secure.no_secure_enclave" = "Устройство не поддерживает Secure Enclave";
+"error.secure.invalid_public_key" = "Недействительный открытый ключ";
+
+/* Error Messages - Lit Signing Bridge */
+"error.lit.bridge_not_ready" = "Мост подписи Lit не инициализирован";
+"error.lit.timeout" = "Время подписи Lit истекло";
+"error.lit.invalid_response" = "Недействительный ответ от сети Lit";
+
+/* Signing Steps */
+"signing.authorizing" = "Авторизация...";
+"signing.signing" = "Подписание транзакции...";
+"signing.broadcasting" = "Трансляция...";
+"signing.confirmed" = "Подтверждено";
+"signing.failed" = "Ошибка";
+
+/* Notifications */
+"notification.tx.deposit.title" = "Депозит Подтверждён";
+"notification.tx.deposit.body" = "%@ %@ успешно внесены";
+"notification.tx.deposit.body_no_amount" = "Депозит %@ подтверждён";
+"notification.tx.withdraw.title" = "Вывод Подтверждён";
+"notification.tx.withdraw.body" = "%@ %@ успешно выведены";
+"notification.tx.withdraw.body_no_amount" = "Вывод %@ подтверждён";
+"notification.tx.lock.title" = "Средства Заблокированы";
+"notification.tx.lock.body" = "Ваши средства %@ теперь заблокированы";
+"notification.tx.unlock.title" = "Средства Разблокированы";
+"notification.tx.unlock.body" = "Ваши средства %@ теперь доступны";
+"notification.tx.failed.title" = "Транзакция Не Удалась";
+"notification.tx.failed.body" = "Транзакция %@ %@ не удалась. Попробуйте снова.";
+"notification.safe.deployed.title" = "Кошелёк Готов";
+"notification.safe.deployed.body" = "Ваш Safe смарт-кошелёк развёрнут в сети Base";
+"notification.piggy.created.title" = "Копилка Создана";
+"notification.piggy.created.body" = "Ваша копилка \"%@\" теперь активна";
+"notification.piggy.created.body_generic" = "Новая копилка создана";
+"notification.piggy.unlocked.title" = "Копилка Разблокирована";
+"notification.piggy.unlocked.body" = "Ваша копилка \"%@\" разблокирована";
+"notification.piggy.unlock_soon.title" = "Скоро Разблокировка";
+"notification.piggy.unlock_soon.body" = "Вашу копилку \"%@\" можно будет разблокировать через 1 час";
+"notification.action.deposit" = "Депозит";
+"notification.action.withdraw" = "Вывод";
+"notification.action.lock" = "Блокировка";
+"notification.action.unlock" = "Разблокировка";
+"notification.action.deploy" = "Развёртывание";
+"notification.action.create" = "Создание";

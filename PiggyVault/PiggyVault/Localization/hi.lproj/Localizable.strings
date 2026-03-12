@@ -1,0 +1,375 @@
+/* PiggyVault - हिन्दी */
+
+/* General */
+"cancel" = "रद्द करें";
+"ok" = "ठीक है";
+"error.title" = "त्रुटि";
+"done" = "हो गया";
+"save" = "सहेजें";
+"delete" = "हटाएं";
+"confirm" = "पुष्टि करें";
+"loading" = "लोड हो रहा है...";
+
+/* Loading States */
+"loading.creating_wallet" = "आपकी तिजोरी बनाई जा रही है...";
+"loading.deploying_safe" = "आपका Safe स्मार्ट खाता तैनात हो रहा है...";
+"loading.configuring_modules" = "सुरक्षा मॉड्यूल कॉन्फ़िगर हो रहे हैं...";
+"loading.finalizing" = "अंतिम चरण...";
+"loading.securing_keys" = "आपकी कुंजियाँ सुरक्षित की जा रही हैं...";
+"loading.confirming_deploy" = "डिप्लॉयमेंट की पुष्टि हो रही है...";
+"loading.please_wait" = "इसमें कुछ समय लग सकता है";
+"loading.tagline" = "अविनाशी डिजिटल बचत";
+
+/* Auth */
+"auth.subtitle" = "ब्लॉकचेन पर\nअविनाशी डिजिटल गुल्लक";
+"auth.google_sign_in" = "Google से साइन इन करें";
+"auth.terms" = "जारी रखकर, आप हमारी सेवा की शर्तों और गोपनीयता नीति से सहमत होते हैं";
+"auth.non_custodial" = "100% नॉन-कस्टोडियल · आपकी चाबियाँ, आपके सिक्के";
+"auth.biometric.reason" = "अपनी तिजोरी तक पहुंचने के लिए प्रमाणित करें";
+"auth.biometric.transaction" = "%@ %@ के लेनदेन की पुष्टि करें";
+"auth.loading.authenticating" = "प्रमाणीकरण हो रहा है...";
+"auth.loading.google" = "Google से कनेक्ट हो रहा है...";
+"auth.loading.lit_protocol" = "सुरक्षित वॉलेट सेट अप हो रहा है...";
+"auth.loading.finalizing" = "अंतिम चरण...";
+"auth.error.invalid_credential" = "अमान्य क्रेडेंशियल। कृपया पुनः प्रयास करें।";
+"auth.error.google_not_configured" = "Google साइन-इन अभी कॉन्फ़िगर नहीं है। कृपया Apple साइन-इन का उपयोग करें।";
+
+/* Biometric Lock */
+"biometric.locked" = "आपकी तिजोरी लॉक है";
+"biometric.unlock" = "Face ID से अनलॉक करें";
+
+/* Onboarding */
+"onboarding.skip" = "छोड़ें";
+"onboarding.next" = "अगला";
+"onboarding.get_started" = "शुरू करें";
+"onboarding.page1.title" = "अविनाशी गुल्लक";
+"onboarding.page1.description" = "आपकी बचत ब्लॉकचेन पर स्मार्ट कॉन्ट्रैक्ट द्वारा सुरक्षित है। हम भी आपके पैसे को छू नहीं सकते।";
+"onboarding.page2.title" = "स्टेबलकॉइन और सोने में बचत करें";
+"onboarding.page2.description" = "USDC, EURC या टोकनाइज़्ड गोल्ड (PAXG) के साथ अपनी बचत को मुद्रास्फीति से बचाएं।";
+"onboarding.page3.title" = "आपकी पसंद के लॉक नियम";
+"onboarding.page3.description" = "समय लॉक या बचत लक्ष्य सेट करें। एक बार सक्रिय होने पर, नियम अपरिवर्तनीय और गणितीय रूप से लागू होते हैं।";
+"onboarding.page4.title" = "कहीं से भी एक्सेस";
+"onboarding.page4.description" = "Face ID या बायोमेट्रिक्स का उपयोग करें। अपने Apple या Google खाते से किसी भी डिवाइस से तिजोरी एक्सेस करें।";
+
+/* Tabs */
+"tab.dashboard" = "होम";
+"tab.piggy_banks" = "तिजोरी";
+"tab.deposit" = "जमा";
+"tab.settings" = "सेटिंग्स";
+
+/* Dashboard */
+"dashboard.greeting" = "वापसी पर स्वागत है";
+"dashboard.total_balance" = "कुल शेष";
+"dashboard.secured" = "Base पर सुरक्षित";
+"dashboard.action.deposit" = "जमा करें";
+"dashboard.action.new_piggy" = "नई तिजोरी";
+"dashboard.action.swap" = "स्वैप";
+"dashboard.assets" = "आपकी संपत्ति";
+"dashboard.no_assets" = "अभी कोई संपत्ति नहीं";
+"dashboard.no_assets_desc" = "शुरू करने के लिए धन जमा करें";
+"dashboard.piggy_banks" = "आपकी तिजोरियाँ";
+"dashboard.see_all" = "सभी देखें";
+"dashboard.no_piggy_banks" = "अभी कोई तिजोरी नहीं";
+"dashboard.no_piggy_banks_desc" = "अपनी पहली अविनाशी गुल्लक बनाएं और अनुशासन के साथ बचत शुरू करें।";
+"dashboard.create_first_piggy" = "पहली तिजोरी बनाएं";
+
+/* Piggy Banks */
+"piggy.title" = "आपकी तिजोरियाँ";
+"piggy.subtitle" = "अविनाशी बचत";
+"piggy.lock_type.time" = "समय लॉक";
+"piggy.lock_type.target" = "लक्ष्य लॉक";
+"piggy.lock_type.time_desc" = "एक विशिष्ट तिथि तक धन लॉक रहता है। समय सीमा से पहले कोई भी निकासी नहीं कर सकता।";
+"piggy.lock_type.target_desc" = "बचत लक्ष्य तक पहुंचने तक धन लॉक रहता है। अनुशासित रहें!";
+"piggy.target" = "लक्ष्य";
+"piggy.remaining" = "शेष";
+"piggy.ready_to_unlock" = "अनलॉक के लिए तैयार!";
+"piggy.time.ready" = "तैयार!";
+"piggy.stats.total" = "कुल";
+"piggy.stats.locked" = "लॉक";
+"piggy.stats.ready" = "तैयार";
+"piggy.empty.title" = "अपनी पहली तिजोरी बनाएं";
+"piggy.empty.description" = "गणितीय रूप से लागू नियमों के साथ अपनी बचत लॉक करें। एक बार सेट करने पर, कोई भी उन्हें तोड़ नहीं सकता।";
+"piggy.empty.create" = "तिजोरी बनाएं";
+
+/* Piggy Bank Types */
+"piggy.type.time_vault" = "समय तिजोरी";
+"piggy.type.target_vault" = "लक्ष्य तिजोरी";
+
+/* Create Piggy Bank */
+"piggy.create.title" = "नई तिजोरी";
+"piggy.create.step1.title" = "तिजोरी का नाम रखें";
+"piggy.create.step1.subtitle" = "एक यादगार नाम दें";
+"piggy.create.name" = "तिजोरी का नाम";
+"piggy.create.name_placeholder" = "जैसे सपनों की छुट्टी";
+"piggy.create.color" = "रंग";
+"piggy.create.step2.title" = "संपत्ति चुनें";
+"piggy.create.step2.subtitle" = "बचत के लिए मुद्रा चुनें";
+"piggy.create.step3.title" = "लॉक प्रकार";
+"piggy.create.step3.subtitle" = "चुनें कि आपकी बचत कैसे लॉक होगी";
+"piggy.create.unlock_date" = "अनलॉक तिथि";
+"piggy.create.target_amount" = "लक्ष्य राशि";
+"piggy.create.step4.title" = "पुष्टि करें";
+"piggy.create.step4.subtitle" = "तिजोरी सेटिंग्स की समीक्षा करें";
+"piggy.create.summary.lock_type" = "लॉक प्रकार";
+"piggy.create.summary.unlock_date" = "अनलॉक तिथि";
+"piggy.create.summary.target" = "लक्ष्य";
+"piggy.create.summary.network" = "नेटवर्क";
+"piggy.create.warning" = "एक बार बनने के बाद, लॉक नियम अपरिवर्तनीय हैं। कोई भी उन्हें बदल या बायपास नहीं कर सकता, आप खुद भी नहीं।";
+"piggy.create.next" = "जारी रखें";
+"piggy.create.back" = "वापस";
+"piggy.create.confirm" = "तिजोरी बनाएं";
+"piggy.create.biometric_reason" = "नई तिजोरी बनाने के लिए प्रमाणित करें";
+"piggy.create.error.biometric_failed" = "बायोमेट्रिक प्रमाणीकरण विफल हुआ। कृपया पुनः प्रयास करें।";
+"piggy.create.progress.deploying" = "स्मार्ट कॉन्ट्रैक्ट तैनात हो रहा है...";
+"piggy.create.progress.time_lock" = "समय लॉक मॉड्यूल इंस्टॉल हो रहा है...";
+"piggy.create.progress.target_lock" = "लक्ष्य लॉक मॉड्यूल इंस्टॉल हो रहा है...";
+"piggy.create.progress.finalizing" = "तिजोरी को अंतिम रूप दिया जा रहा है...";
+"piggy.create.progress.done" = "वॉल्ट सफलतापूर्वक बनाया गया!";
+
+/* Piggy Bank Detail */
+"piggy.detail.progress" = "प्रगति";
+"piggy.detail.time_remaining" = "शेष समय";
+"piggy.detail.target" = "लक्ष्य राशि";
+"piggy.detail.info" = "विवरण";
+"piggy.detail.created" = "बनाया गया";
+"piggy.detail.lock_type" = "लॉक प्रकार";
+"piggy.detail.contract" = "कॉन्ट्रैक्ट";
+"piggy.detail.network" = "नेटवर्क";
+"piggy.detail.deposit" = "जमा करें";
+"piggy.detail.unlock" = "तिजोरी अनलॉक करें";
+"piggy.detail.deposit_amount" = "जमा राशि";
+"piggy.detail.confirm_deposit" = "जमा की पुष्टि करें";
+"piggy.detail.depositing" = "जमा प्रक्रिया जारी...";
+"piggy.detail.deposit_success" = "सफलतापूर्वक %@ %@ जमा किए गए";
+"piggy.detail.invalid_amount" = "कृपया एक मान्य राशि दर्ज करें";
+"piggy.detail.unlock_confirm.title" = "तिजोरी अनलॉक करें?";
+"piggy.detail.unlock_confirm.message" = "इससे इस तिजोरी के सभी धन आपके Safe वॉलेट में वापस आ जाएंगे।";
+"piggy.detail.unlock_pending" = "अनलॉक अनुरोध भेजा गया। प्रक्रिया जारी...";
+"piggy.detail.unlock_success" = "तिजोरी अनलॉक हो गई! धन अब उपलब्ध है।";
+
+/* Deposit */
+"deposit.title" = "जमा";
+"deposit.subtitle" = "अपनी तिजोरी में धन जोड़ें";
+"deposit.bank_transfer" = "बैंक ट्रांसफर";
+"deposit.bank_transfer_desc" = "SEPA, Mt Pelerin के माध्यम से ट्रांसफर";
+"deposit.card" = "कार्ड भुगतान";
+"deposit.card_desc" = "Mt Pelerin के माध्यम से Visa, Mastercard";
+"deposit.crypto" = "क्रिप्टो ट्रांसफर";
+"deposit.crypto_desc" = "अपने Safe में सीधे क्रिप्टो भेजें";
+"deposit.no_kyc" = "KYC नहीं";
+"deposit.instant" = "तुरंत";
+"deposit.personal_iban" = "व्यक्तिगत IBAN";
+"deposit.iban_desc" = "एक समर्पित IBAN प्राप्त करें जो सीधे आपकी तिजोरी में स्टेबलकॉइन के रूप में जमा करता है।";
+"deposit.iban_coming_soon" = "जल्द आ रहा है...";
+"deposit.powered_by_mt_pelerin" = "Mt Pelerin द्वारा संचालित";
+"deposit.info.title" = "यह कैसे काम करता है";
+"deposit.info.bullet1" = "धन सीधे Base नेटवर्क पर आपके Safe स्मार्ट अकाउंट में जमा होता है।";
+"deposit.info.bullet2" = "Mt Pelerin के माध्यम से प्रति दिन 1,000 CHF तक के ट्रांसफर के लिए KYC की आवश्यकता नहीं।";
+"deposit.info.bullet3" = "Base L2 पर गैस शुल्क न्यूनतम है (~$0.01 प्रति लेनदेन)।";
+"deposit.receive.title" = "क्रिप्टो प्राप्त करें";
+"deposit.receive.scan" = "क्रिप्टो भेजने के लिए स्कैन करें";
+"deposit.receive.address" = "आपका SAFE पता";
+"deposit.receive.copy" = "पता कॉपी करें";
+"deposit.receive.copied" = "कॉपी हो गया!";
+"deposit.receive.network_warning" = "केवल Base नेटवर्क पर संपत्ति भेजें। अन्य नेटवर्क पर भेजने से स्थायी हानि हो सकती है।";
+"deposit.withdraw" = "बैंक में निकासी";
+"deposit.withdraw_desc" = "SEPA के माध्यम से स्टेबलकॉइन को फिएट में बदलें";
+
+/* Buy Flow */
+"deposit.buy.title" = "स्टेबलकॉइन खरीदें";
+"deposit.buy.enter_amount" = "आप कितना जोड़ना चाहते हैं?";
+"deposit.buy.pay_with" = "भुगतान माध्यम";
+"deposit.buy.receive" = "प्राप्त करें";
+"deposit.buy.loading_quote" = "सर्वोत्तम दर प्राप्त कर रहे हैं...";
+"deposit.buy.quote_ready" = "कोटेशन तैयार";
+"deposit.buy.you_pay" = "आप भुगतान करें";
+"deposit.buy.you_receive" = "आप प्राप्त करें";
+"deposit.buy.fees" = "शुल्क";
+"deposit.buy.rate" = "दर";
+"deposit.buy.confirm" = "भुगतान जारी रखें";
+"deposit.buy.info_title" = "सुरक्षित और संरक्षित";
+"deposit.buy.info_1" = "धन सीधे Base नेटवर्क पर आपकी तिजोरी में जाता है";
+"deposit.buy.info_2" = "1,000 CHF/दिन तक KYC आवश्यक नहीं";
+"deposit.buy.info_3" = "स्विस विनियमित कंपनी Mt Pelerin द्वारा संचालित";
+
+/* Sell Flow */
+"deposit.sell.title" = "बैंक में निकासी";
+"deposit.sell.enter_amount" = "आप कितना निकालना चाहते हैं?";
+"deposit.sell.from" = "से";
+"deposit.sell.to_bank" = "बैंक खाते में";
+"deposit.sell.you_send" = "आप भेजें";
+"deposit.sell.you_receive_bank" = "आप प्राप्त करें";
+"deposit.sell.confirm" = "निकासी जारी रखें";
+"deposit.sell.info_title" = "बैंक निकासी";
+"deposit.sell.info_1" = "SEPA के माध्यम से आपके बैंक खाते में भेजा जाएगा (1-2 कार्य दिवस)";
+"deposit.sell.info_2" = "न्यूनतम निकासी: ~50 CHF समतुल्य";
+
+/* Settings */
+"settings.title" = "सेटिंग्स";
+"settings.subtitle" = "अपनी तिजोरी प्रबंधित करें";
+"settings.account" = "खाता";
+"settings.wallet" = "वॉलेट";
+"settings.safe_address" = "Safe पता";
+"settings.not_deployed" = "अभी तक तैनात नहीं";
+"settings.network" = "नेटवर्क";
+"settings.explorer" = "ब्लॉक एक्सप्लोरर";
+"settings.app" = "ऐप";
+"settings.language" = "भाषा";
+"settings.notifications" = "सूचनाएं";
+"settings.notifications_desc" = "अनलॉक रिमाइंडर और जमा अलर्ट";
+"settings.security" = "सुरक्षा";
+"settings.biometric" = "Face ID / बायोमेट्रिक्स";
+"settings.biometric_desc" = "सभी लेनदेन के लिए आवश्यक";
+"settings.recovery" = "खाता पुनर्प्राप्ति";
+"settings.recovery_desc" = "Apple ID या Google खाते के माध्यम से";
+"settings.about" = "ऐप के बारे में";
+"settings.terms" = "सेवा की शर्तें";
+"settings.privacy" = "गोपनीयता नीति";
+"settings.help" = "सहायता और समर्थन";
+"settings.sign_out" = "साइन आउट";
+"settings.sign_out_confirm.title" = "साइन आउट करें?";
+"settings.sign_out_confirm.message" = "आप किसी भी समय अपने Apple या Google खाते से फिर से साइन इन कर सकते हैं। आपके धन ब्लॉकचेन पर सुरक्षित रहते हैं।";
+
+/* Transactions */
+"transactions.title" = "लेन-देन इतिहास";
+"transactions.empty.title" = "अभी तक कोई लेन-देन नहीं";
+"transactions.empty.subtitle" = "आपका लेन-देन इतिहास आपकी पहली जमा या हस्तांतरण के बाद यहाँ दिखाई देगा।";
+
+/* Account Profile */
+"account.title" = "खाता";
+"account.signed_in_via" = "प्रमाणीकरण विधि";
+"account.non_custodial" = "नॉन-कस्टोडियल";
+"account.eoa_address" = "स्वामी पता";
+"account.safe_address" = "Safe पता";
+"account.safe_not_deployed" = "Safe अभी तक तैनात नहीं";
+"account.network_info" = "नेटवर्क जानकारी";
+"account.network" = "नेटवर्क";
+"account.chain_id" = "चेन ID";
+"account.rpc" = "RPC एंडपॉइंट";
+"account.status" = "स्थिति";
+"account.latency" = "विलंबता";
+"account.gas_balance" = "गैस शेष";
+"account.gas_low" = "कम";
+"account.gas_desc" = "Base नेटवर्क पर लेन-देन शुल्क का भुगतान करने के लिए ETH आवश्यक है।";
+"account.recovery" = "खाता पुनर्प्राप्ति";
+"account.recovery_desc" = "आपका खाता Lit Protocol के माध्यम से आपके लिंक किए गए पहचान प्रदाता का उपयोग करके पुनर्प्राप्त किया जा सकता है। कोई सीड वाक्यांश की आवश्यकता नहीं।";
+"account.active" = "सक्रिय";
+"account.inactive" = "लिंक नहीं";
+"account.danger_zone" = "उन्नत";
+"account.view_explorer" = "ब्लॉक एक्सप्लोरर पर देखें";
+
+/* Network */
+"network.connected" = "कनेक्टेड";
+"network.disconnected" = "डिस्कनेक्टेड";
+"network.checking" = "जाँच हो रही है...";
+"network.error" = "नेटवर्क त्रुटि";
+"network.offline_banner" = "ब्लॉकचेन से कनेक्शन नहीं";
+"network.retry" = "पुनः प्रयास";
+
+/* Error Messages - Transaction */
+"error.tx.not_initialized" = "लेनदेन हस्ताक्षरकर्ता आरंभ नहीं हुआ";
+"error.tx.auth_failed" = "लेनदेन प्राधिकरण विफल";
+"error.tx.signing_failed" = "लेनदेन हस्ताक्षर विफल: %@";
+"error.tx.broadcast_failed" = "लेनदेन प्रसारण विफल: %@";
+"error.tx.no_pkp" = "कोई PKP नहीं मिला। कृपया दोबारा लॉगिन करें।";
+"error.tx.invalid_signature" = "लेनदेन हस्ताक्षर संसाधित नहीं हो सका";
+"error.tx.failed" = "लेनदेन विफल";
+"error.tx.insufficient_balance" = "अपर्याप्त शेष";
+"error.tx.network_unavailable" = "नेटवर्क अनुपलब्ध";
+
+/* Error Messages - Blockchain */
+"error.blockchain.invalid_address" = "अमान्य वॉलेट पता";
+"error.blockchain.rpc" = "RPC त्रुटि: %@";
+"error.blockchain.contract" = "अनुबंध त्रुटि: %@";
+
+/* Error Messages - Safe */
+"error.safe.deployment_failed" = "Safe परिनियोजन विफल: %@";
+"error.safe.module_install_failed" = "मॉड्यूल स्थापना विफल";
+"error.safe.invalid_owner" = "अमान्य स्वामी पता";
+"error.safe.not_deployed" = "Safe अभी तक परिनियोजित नहीं";
+
+/* Safe Deployment Warning Banner */
+"safe.deploy.failed.title" = "वॉलेट सेटअप विफल";
+"safe.deploy.failed.desc" = "आपका सुरक्षित वॉलेट नहीं बनाया जा सका। समस्या हल होने तक जमा और स्थानांतरण अवरुद्ध हैं।";
+"safe.deploy.failed.blocked" = "सभी लेनदेन अवरुद्ध हैं";
+"safe.deploy.retry" = "पुनः प्रयास करें";
+"safe.deploy.retrying" = "सेटअप हो रहा है...";
+"error.safe.module_restriction" = "मॉड्यूल प्रतिबंध: %@";
+
+/* Error Messages - Gas */
+"error.gas.insufficient" = "गैस के लिए अपर्याप्त ETH";
+"error.gas.swap_failed" = "गैस स्वैप विफल: %@";
+"error.gas.relayer_unavailable" = "रिलेयर सेवा अनुपलब्ध";
+"error.gas.relayer_rejected" = "रिलेयर ने अस्वीकार किया: %@";
+"error.gas.quote_failed" = "स्वैप कोटेशन प्राप्त नहीं हो सका";
+
+/* Error Messages - Auth */
+"error.auth.google_not_configured" = "Google OAuth क्लाइंट ID कॉन्फ़िगर नहीं है";
+"error.auth.google_failed" = "Google प्रमाणीकरण विफल";
+"error.auth.token_exchange_failed" = "प्राधिकरण कोड एक्सचेंज विफल";
+"error.auth.cancelled" = "प्रमाणीकरण रद्द किया गया";
+"error.auth.invalid_response" = "Google से अमान्य प्रतिक्रिया";
+"error.auth.no_id_token" = "कोई ID टोकन प्राप्त नहीं हुआ";
+
+/* Error Messages - Lit Protocol */
+"error.lit.auth_failed" = "Lit Protocol प्रमाणीकरण विफल";
+"error.lit.pkp_generation_failed" = "PKP कुंजी निर्माण विफल";
+"error.lit.pkp_mint_pending" = "PKP मिंट जारी है, कृपया प्रतीक्षा करें";
+"error.lit.session_expired" = "सत्र समाप्त, कृपया दोबारा लॉगिन करें";
+"error.lit.network_error" = "नेटवर्क त्रुटि: %@";
+"error.lit.signing_failed" = "हस्ताक्षर विफल: %@";
+"error.lit.no_auth_method" = "कोई प्रमाणीकरण विधि संग्रहीत नहीं";
+
+/* Error Messages - On-Ramp */
+"error.onramp.invalid_response" = "Mt Pelerin से अमान्य प्रतिक्रिया";
+"error.onramp.api_error" = "Mt Pelerin त्रुटि: %@";
+"error.onramp.limit_exceeded" = "दैनिक सीमा पार (KYC के बिना 1,000 CHF/दिन)";
+
+/* Error Messages - Secure Enclave */
+"error.secure.key_not_found" = "Secure Enclave कुंजी नहीं मिली";
+"error.secure.key_generation_failed" = "कुंजी जनरेशन विफल: %@";
+"error.secure.signing_failed" = "हस्ताक्षर विफल: %@";
+"error.secure.biometric_failed" = "बायोमेट्रिक प्रमाणीकरण विफल";
+"error.secure.no_secure_enclave" = "डिवाइस Secure Enclave का समर्थन नहीं करता";
+"error.secure.invalid_public_key" = "अमान्य सार्वजनिक कुंजी";
+
+/* Error Messages - Lit Signing Bridge */
+"error.lit.bridge_not_ready" = "Lit हस्ताक्षर ब्रिज आरंभ नहीं हुआ";
+"error.lit.timeout" = "Lit हस्ताक्षर समय समाप्त";
+"error.lit.invalid_response" = "Lit नेटवर्क से अमान्य प्रतिक्रिया";
+
+/* Signing Steps */
+"signing.authorizing" = "प्राधिकरण...";
+"signing.signing" = "लेनदेन पर हस्ताक्षर...";
+"signing.broadcasting" = "प्रसारण...";
+"signing.confirmed" = "पुष्टि हुई";
+"signing.failed" = "विफल";
+
+/* Notifications */
+"notification.tx.deposit.title" = "जमा पुष्टि हुई";
+"notification.tx.deposit.body" = "%@ %@ सफलतापूर्वक जमा किया गया";
+"notification.tx.deposit.body_no_amount" = "%@ जमा की पुष्टि हुई";
+"notification.tx.withdraw.title" = "निकासी पुष्टि हुई";
+"notification.tx.withdraw.body" = "%@ %@ सफलतापूर्वक निकाला गया";
+"notification.tx.withdraw.body_no_amount" = "%@ निकासी की पुष्टि हुई";
+"notification.tx.lock.title" = "धन लॉक किया गया";
+"notification.tx.lock.body" = "आपका %@ धन अब लॉक है";
+"notification.tx.unlock.title" = "धन अनलॉक किया गया";
+"notification.tx.unlock.body" = "आपका %@ धन अब उपलब्ध है";
+"notification.tx.failed.title" = "लेनदेन विफल";
+"notification.tx.failed.body" = "%@ %@ लेनदेन विफल। कृपया पुनः प्रयास करें।";
+"notification.safe.deployed.title" = "वॉलेट तैयार";
+"notification.safe.deployed.body" = "आपका Safe स्मार्ट वॉलेट Base पर तैनात हो गया है";
+"notification.piggy.created.title" = "गुल्लक बनाई गई";
+"notification.piggy.created.body" = "आपकी गुल्लक \"%@\" अब सक्रिय है";
+"notification.piggy.created.body_generic" = "एक नई गुल्लक बनाई गई है";
+"notification.piggy.unlocked.title" = "गुल्लक अनलॉक हुई";
+"notification.piggy.unlocked.body" = "आपकी गुल्लक \"%@\" अनलॉक हो गई है";
+"notification.piggy.unlock_soon.title" = "जल्द अनलॉक";
+"notification.piggy.unlock_soon.body" = "आपकी गुल्लक \"%@\" 1 घंटे में अनलॉक हो सकेगी";
+"notification.action.deposit" = "जमा";
+"notification.action.withdraw" = "निकासी";
+"notification.action.lock" = "लॉक";
+"notification.action.unlock" = "अनलॉक";
+"notification.action.deploy" = "तैनाती";
+"notification.action.create" = "निर्माण";
