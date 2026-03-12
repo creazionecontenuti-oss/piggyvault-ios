@@ -144,7 +144,15 @@ actor LitProtocolService {
         authId: String
     ) async throws -> PKPInfo {
         
-        // ── Layer 1: Local keychain recovery (fastest, no network) ──
+        // ── Layer 1a: PKP map lookup (multi-account safe) ──
+        let map = loadPKPMap()
+        if let mapped = map[authId] {
+            print("[Lit] ✅ Reusing PKP from map for authId: \(mapped.ethAddress)")
+            keychainService.store(token, for: .litAuthSig)
+            return mapped
+        }
+        
+        // ── Layer 1b: Active PKP with matching authMethodId ──
         if let stored = getStoredPKP(), stored.authMethodId == authId {
             print("[Lit] ✅ Reusing stored PKP from keychain: \(stored.ethAddress)")
             keychainService.store(token, for: .litAuthSig)
@@ -159,6 +167,14 @@ actor LitProtocolService {
         ) {
             print("[Lit] ✅ Found existing PKP on relay: \(existingPKP.ethAddress)")
             let enriched = PKPInfo(tokenId: existingPKP.tokenId, publicKey: existingPKP.publicKey, ethAddress: existingPKP.ethAddress, authMethodId: authId)
+            keychainService.store(token, for: .litAuthSig)
+            return enriched
+        }
+        
+        // ── Layer 2.5: Legacy PKP fallback (relay down + stored PKP without authMethodId) ──
+        if let stored = getStoredPKP(), stored.authMethodId == nil {
+            print("[Lit] ⚠️ Relay unreachable — enriching legacy PKP optimistically: \(stored.ethAddress)")
+            let enriched = PKPInfo(tokenId: stored.tokenId, publicKey: stored.publicKey, ethAddress: stored.ethAddress, authMethodId: authId)
             keychainService.store(token, for: .litAuthSig)
             return enriched
         }
@@ -391,9 +407,32 @@ actor LitProtocolService {
     }
     
     private func storePKPInfo(_ info: PKPInfo) {
+        // Store as the "active" PKP for signing
         if let data = try? JSONEncoder().encode(info),
            let string = String(data: data, encoding: .utf8) {
             keychainService.store(string, for: .pkpPublicKey)
+        }
+        // Also persist in the PKP map for multi-account recovery
+        if let authId = info.authMethodId {
+            var map = loadPKPMap()
+            map[authId] = info
+            savePKPMap(map)
+        }
+    }
+    
+    private func loadPKPMap() -> [String: PKPInfo] {
+        guard let raw = keychainService.retrieve(for: .pkpMap),
+              let data = raw.data(using: .utf8),
+              let map = try? JSONDecoder().decode([String: PKPInfo].self, from: data) else {
+            return [:]
+        }
+        return map
+    }
+    
+    private func savePKPMap(_ map: [String: PKPInfo]) {
+        if let data = try? JSONEncoder().encode(map),
+           let string = String(data: data, encoding: .utf8) {
+            keychainService.store(string, for: .pkpMap)
         }
     }
     

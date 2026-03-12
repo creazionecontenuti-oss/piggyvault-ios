@@ -10,6 +10,7 @@ final class KeychainService {
         case authMethod = "auth_method"
         case litAuthSig = "lit_auth_sig"
         case pkpPublicKey = "pkp_public_key"
+        case pkpMap = "pkp_map"
     }
     
     func store(_ value: String, for key: Key) {
@@ -104,6 +105,6 @@ final class KeychainService {
 
 extension KeychainService.Key: CaseIterable {
     static var allCases: [KeychainService.Key] {
-        [.walletAddress, .safeAddress, .authMethod, .litAuthSig, .pkpPublicKey]
+        [.walletAddress, .safeAddress, .authMethod, .litAuthSig, .pkpPublicKey, .pkpMap]
     }
 }

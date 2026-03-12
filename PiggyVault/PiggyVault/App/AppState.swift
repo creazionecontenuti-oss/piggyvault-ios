@@ -147,7 +147,12 @@ final class AppState: ObservableObject {
                 // Step 2: Generate Secure Enclave key + initialize Lit signing bridge
                 loadingProgress = 0.2
                 loadingMessage = "loading.securing_keys".localized
-                let _ = try secureEnclaveService.generateSigningKey()
+                do {
+                    let _ = try secureEnclaveService.generateSigningKey()
+                } catch {
+                    // SE key generation is for local biometric auth, not critical for Safe deployment
+                    print("[SignIn] ⚠️ Secure Enclave key generation failed (non-fatal): \(error.localizedDescription)")
+                }
                 await litSigningBridge.initialize()
                 
                 // Step 3: Predict Safe address (deterministic via CREATE2)

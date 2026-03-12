@@ -770,3 +770,36 @@ Questo causava un `initCodeHash` diverso nella formula CREATE2, producendo un in
 - **signIn conflates all errors as deployment failures**: Se Secure Enclave key generation fallisce, viene trattato come deployment failure. Impatto: banner retry sbagliato.
 
 ### Build: ✅ Compilazione riuscita
+
+---
+
+## Sessione 19b — 2026-03-12 08:52
+
+### Fix Aggiuntivi (risoluzione gap e test #17)
+
+1. **Test #17 → PASS**: Aggiunto Layer 2.5 in `mintOrFetchPKP` — se il relay è offline e c'è un PKP legacy (senza authMethodId), viene arricchito ottimisticamente ed usato. Evita la creazione di PKP orfani durante migrazione.
+
+2. **PKP Map multi-account**: `storePKPInfo` ora persiste ogni PKP in un dizionario `[authMethodId: PKPInfo]` nel keychain (chiave `pkpMap`). Switch tra provider (Google↔Apple) non perde più i PKP precedenti — Layer 1a li ritrova dal map.
+
+3. **signIn error conflation fix**: `secureEnclaveService.generateSigningKey()` ora ha il suo try-catch isolato. Se fallisce (es. simulatore senza Secure Enclave), logga warning ma NON blocca il Safe deployment. Prima, qualsiasi errore SE veniva trattato come deployment failure.
+
+### Modifiche File
+
+- **`KeychainService.swift`**: Aggiunta chiave `pkpMap` per storage multi-PKP
+- **`LitProtocolService.swift`**:
+  - `mintOrFetchPKP` ha ora 5 layer: 1a (map) → 1b (active) → 2 (relay) → 2.5 (legacy) → 3 (mint)
+  - `storePKPInfo` aggiorna sia il PKP attivo che il map
+  - Aggiunte `loadPKPMap()` / `savePKPMap()` helper
+- **`AppState.swift`**: SE key generation isolata in try-catch non-fatale
+
+### Repository
+- **Repo resa pubblica**: https://github.com/creazionecontenuti-oss/piggyvault-ios
+
+### Test Cases Aggiornati
+| # | Test | Prima | Dopo |
+|---|------|-------|------|
+| 17 | Legacy PKP senza authMethodId | ⚠️ PARZIALE | ✅ PASS (Layer 2.5) |
+
+**Score finale: 20/20 PASS**
+
+### Build: ✅ Compilazione riuscita, tutti i gap risolti
