@@ -803,3 +803,42 @@ Questo causava un `initCodeHash` diverso nella formula CREATE2, producendo un in
 **Score finale: 20/20 PASS**
 
 ### Build: ✅ Compilazione riuscita, tutti i gap risolti
+
+## Sessione 18 - PKP Persistence Critical Bugfix
+**Timestamp**: In corso
+
+### Root Cause Analysis
+Dopo analisi approfondita del codice sorgente del Lit Protocol JS SDK su GitHub (`relay.ts`, `BaseProvider.ts`, `GoogleProvider.ts`, `AppleProvider.ts`, `constants.ts`), identificati **2 bug critici** che causavano la generazione di PKP/Safe diversi ad ogni re-login:
+
+**BUG #1 (Sessione 17 - KeychainService)**: `store()` includeva `kSecValueData` nella delete query → SecItemDelete falliva silenziosamente → SecItemAdd ritornava `errSecDuplicateItem` → PKP mai salvato nel keychain.
+
+**BUG #2 (Sessione 18 - CRITICO): `fetchExistingPKP` response parsing SBAGLIATO**
+Il relay Lit (`/fetch-pkps-by-auth-method`) ritorna `{"pkps": [{...}, ...]}` (oggetto con chiave `pkps`), ma il codice parsava come array JSON raw `[[String:Any]]`. Il cast falliva SEMPRE → **Layer 2 (relay fetch) non ha MAI funzionato** dall'inizio.
+
+**Catena causale completa:**
+1. Primo login → mint PKP → keychain store fallisce (Bug #1) → PKP solo on-chain
+2. Re-login → keychain vuoto → relay fetch ritorna `{"pkps":[...]}` → parser aspetta `[...]` → cast fallisce → nil → Layer 2 MISS
+3. Tutti i layer falliscono → Layer 3 minta NUOVO PKP → indirizzo diverso
+
+### Verifiche SDK
+| Componente | Lit SDK (corretto) | Mio codice |
+|---|---|---|
+| Relay fetch response | `{"pkps": [...]}` (`fetchRes.pkps`) | ~~`[[String:Any]]`~~ → Fix: parse `{"pkps":[...]}` + fallback array |
+| Fetch endpoint | `/fetch-pkps-by-auth-method` | ✅ |
+| Mint endpoint | `/mint-next-and-add-auth-methods` | ✅ |
+| Poll endpoint | `/auth/status/{requestId}` | ✅ |
+| GoogleJwt type | 6 | ✅ |
+| AppleJwt type | 8 | ✅ |
+| authMethodId | `keccak256(sub:aud)` | ✅ |
+
+### Modifiche File
+- **`LitProtocolService.swift`** (`fetchExistingPKP`):
+  - Parse response come `{"pkps": [...]}` dict (standard Lit relay), fallback a raw array
+  - Switch `print()` → `NSLog()` per visibilità device logs
+  - Logging dettagliato per ogni step del parsing
+
+### Build & Deploy
+- ✅ BUILD SUCCEEDED
+- ✅ Installato su device `00008120-001C45400143601E`
+- ✅ Push su GitHub: commit `a15d969`
+- ⏳ Test logout+re-login in attesa (device bloccato)

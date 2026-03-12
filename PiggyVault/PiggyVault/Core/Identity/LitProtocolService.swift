@@ -203,25 +203,7 @@ actor LitProtocolService {
         }
         NSLog("%@", "[Lit] ❌ L2 MISS — relay returned nothing")
         
-        // ── Layer 2.5: Legacy PKP fallback (relay down + stored PKP without authMethodId) ──
-        if let stored = getStoredPKP(), stored.authMethodId == nil {
-            NSLog("%@", "[Lit] ⚠️ L2.5 HIT — enriching legacy PKP: \(stored.ethAddress)")
-            let enriched = PKPInfo(tokenId: stored.tokenId, publicKey: stored.publicKey, ethAddress: stored.ethAddress, authMethodId: authId)
-            keychainService.store(token, for: .litAuthSig)
-            storePKPInfo(enriched)
-            return enriched
-        }
-        
-        // ── Layer 2.75: Any stored PKP (last resort before minting) ──
-        if let stored = getStoredPKP() {
-            NSLog("%@", "[Lit] ⚠️ L2.75 HIT — reusing existing PKP with different authId: \(stored.ethAddress) (stored: \(stored.authMethodId ?? "nil"), new: \(authId))")
-            let enriched = PKPInfo(tokenId: stored.tokenId, publicKey: stored.publicKey, ethAddress: stored.ethAddress, authMethodId: authId)
-            keychainService.store(token, for: .litAuthSig)
-            storePKPInfo(enriched)
-            return enriched
-        }
-        
-        // ── Layer 3: Mint new PKP (genuinely new user) ──
+        // ── Layer 3: Mint new PKP (genuinely new user / new account) ──
         NSLog("%@", "[Lit] 🆕 L3: No existing PKP found anywhere, minting new one...")
         
         let requestId = try await requestMintPKP(

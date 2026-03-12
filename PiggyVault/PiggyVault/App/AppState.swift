@@ -365,19 +365,23 @@ final class AppState: ObservableObject {
     }
     
     func signOut() {
-        // Clear session state but PRESERVE crypto identity (PKP + Safe) in keychain
-        // so the user gets the same wallet back on re-login with the same account
+        // Clear session state AND active PKP/Safe so a different account doesn't
+        // inherit the previous account's wallet. The pkpMap is KEPT because it's
+        // correctly keyed by authMethodId — Layer 1a will find the right PKP
+        // when the SAME account re-logs in.
         NSLog("%@", "[SignOut] ═══════════════════════════════════════")
-        NSLog("%@", "[SignOut] Preserving: pkpPublicKey=\(keychainService.retrieve(for: .pkpPublicKey)?.prefix(40).description ?? "nil")")
-        NSLog("%@", "[SignOut] Preserving: safeAddress=\(keychainService.getSafeAddress() ?? "nil")")
-        NSLog("%@", "[SignOut] Preserving: pkpMap=\(keychainService.retrieve(for: .pkpMap)?.prefix(60).description ?? "nil")")
-        NSLog("%@", "[SignOut] Deleting: walletAddress=\(keychainService.getWalletAddress() ?? "nil")")
+        NSLog("%@", "[SignOut] Clearing active PKP: \(keychainService.retrieve(for: .pkpPublicKey)?.prefix(40).description ?? "nil")")
+        NSLog("%@", "[SignOut] Clearing safeAddress: \(keychainService.getSafeAddress() ?? "nil")")
+        NSLog("%@", "[SignOut] Clearing litAuthSig")
+        NSLog("%@", "[SignOut] KEEPING pkpMap: \(keychainService.retrieve(for: .pkpMap)?.prefix(60).description ?? "nil")")
         keychainService.deleteWalletAddress()
         keychainService.deleteAuthMethod()
-        // NOTE: Do NOT delete pkpPublicKey, litAuthSig, or safeAddress from keychain
-        // These are the user's persistent crypto identity and must survive logout
-        NSLog("%@", "[SignOut] After delete — pkpPublicKey still: \(keychainService.retrieve(for: .pkpPublicKey) != nil)")
-        NSLog("%@", "[SignOut] After delete — pkpMap still: \(keychainService.retrieve(for: .pkpMap) != nil)")
+        keychainService.delete(for: .pkpPublicKey)
+        keychainService.delete(for: .litAuthSig)
+        keychainService.delete(for: .safeAddress)
+        // NOTE: pkpMap is PRESERVED — it maps authMethodId→PKP per account
+        NSLog("%@", "[SignOut] After clear — pkpPublicKey: \(keychainService.retrieve(for: .pkpPublicKey) != nil)")
+        NSLog("%@", "[SignOut] After clear — pkpMap still: \(keychainService.retrieve(for: .pkpMap) != nil)")
         cacheService.clearAll()
         userWallet = nil
         isAuthenticated = false
