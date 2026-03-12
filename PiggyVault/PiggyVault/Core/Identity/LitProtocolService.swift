@@ -66,34 +66,36 @@ actor LitProtocolService {
             throw LitError.authFailed
         }
         
-        // Apple Sign-In uses OIDC auth method with Lit
-        // authMethodType = 7 (Apple OIDC)
+        let claims = extractJWTClaims(tokenString)
+        let authId = computeAuthMethodId(provider: "apple", token: tokenString)
+        NSLog("%@", "[Lit] 🍎 Apple auth — authId: \(authId.prefix(20))")
+        
         let pkpInfo = try await mintOrFetchPKP(
             authMethodType: .apple,
             token: tokenString,
-            authId: computeAuthMethodId(provider: "apple", token: tokenString)
+            authId: authId,
+            sub: claims["sub"]
         )
         
-        // Store PKP info in keychain
-        storePKPInfo(pkpInfo)
-        
+        NSLog("%@", "[Lit] 🍎 Apple auth complete — address: \(pkpInfo.ethAddress)")
         return pkpInfo.ethAddress
     }
     
     // MARK: - Google Sign-In Integration
     
     func authenticateWithGoogle(idToken: String) async throws -> String {
-        // Google uses OIDC auth method with Lit
-        // authMethodType = 6 (Google OIDC)
+        let claims = extractJWTClaims(idToken)
+        let authId = computeAuthMethodId(provider: "google", token: idToken)
+        NSLog("%@", "[Lit] 🔵 Google auth — authId: \(authId.prefix(20))")
+        
         let pkpInfo = try await mintOrFetchPKP(
             authMethodType: .google,
             token: idToken,
-            authId: computeAuthMethodId(provider: "google", token: idToken)
+            authId: authId,
+            sub: claims["sub"]
         )
         
-        // Store PKP info in keychain
-        storePKPInfo(pkpInfo)
-        
+        NSLog("%@", "[Lit] 🔵 Google auth complete — address: \(pkpInfo.ethAddress)")
         return pkpInfo.ethAddress
     }
     
@@ -141,46 +143,86 @@ actor LitProtocolService {
     private func mintOrFetchPKP(
         authMethodType: LitAuthMethodType,
         token: String,
-        authId: String
+        authId: String,
+        sub: String?
     ) async throws -> PKPInfo {
         
-        // ── Layer 1a: PKP map lookup (multi-account safe) ──
+        NSLog("%@", "[Lit] ═══════════════════════════════════════")
+        NSLog("%@", "[Lit] 🔎 mintOrFetchPKP called")
+        NSLog("%@", "[Lit]    authMethodType: \(authMethodType.rawValue)")
+        NSLog("%@", "[Lit]    authId: \(authId)")
+        NSLog("%@", "[Lit]    sub: \(sub ?? "nil")")
+        
+        // ── Layer 1a: PKP map lookup by authId ──
         let map = loadPKPMap()
+        NSLog("%@", "[Lit] 📦 PKP map has \(map.count) entries: \(map.keys.map { String($0.prefix(20)) }.joined(separator: ", "))")
         if let mapped = map[authId] {
-            print("[Lit] ✅ Reusing PKP from map for authId: \(mapped.ethAddress)")
+            NSLog("%@", "[Lit] ✅ L1a HIT — authId match in map: \(mapped.ethAddress)")
             keychainService.store(token, for: .litAuthSig)
+            storePKPInfo(mapped)
             return mapped
+        }
+        NSLog("%@", "[Lit] ❌ L1a MISS — authId not in map")
+        
+        // ── Layer 1a.5: PKP map lookup by sub (resilient to aud changes) ──
+        if let sub = sub {
+            let subKey = "sub:" + sub
+            if let mappedBySub = map[subKey] {
+                NSLog("%@", "[Lit] ✅ L1a.5 HIT — sub match in map: \(mappedBySub.ethAddress)")
+                // Re-enrich with current authId and persist both keys
+                let enriched = PKPInfo(tokenId: mappedBySub.tokenId, publicKey: mappedBySub.publicKey, ethAddress: mappedBySub.ethAddress, authMethodId: authId)
+                keychainService.store(token, for: .litAuthSig)
+                storePKPInfo(enriched)
+                return enriched
+            }
+            NSLog("%@", "[Lit] ❌ L1a.5 MISS — sub:\(sub) not in map")
         }
         
         // ── Layer 1b: Active PKP with matching authMethodId ──
-        if let stored = getStoredPKP(), stored.authMethodId == authId {
-            print("[Lit] ✅ Reusing stored PKP from keychain: \(stored.ethAddress)")
+        let storedPKP = getStoredPKP()
+        NSLog("%@", "[Lit] 📦 Stored active PKP: \(storedPKP?.ethAddress ?? "nil"), authMethodId: \(storedPKP?.authMethodId ?? "nil")")
+        if let stored = storedPKP, stored.authMethodId == authId {
+            NSLog("%@", "[Lit] ✅ L1b HIT — active PKP authId match: \(stored.ethAddress)")
             keychainService.store(token, for: .litAuthSig)
+            storePKPInfo(stored)
             return stored
         }
+        NSLog("%@", "[Lit] ❌ L1b MISS — stored authMethodId doesn't match")
         
         // ── Layer 2: Fetch from Lit relay (existing PKP on-chain) ──
-        print("[Lit] 🔍 Fetching existing PKPs from relay for authId: \(authId.prefix(20))...")
+        NSLog("%@", "[Lit] 🔍 L2: Fetching existing PKPs from relay...")
         if let existingPKP = try? await fetchExistingPKP(
             authMethodType: authMethodType,
             authId: authId
         ) {
-            print("[Lit] ✅ Found existing PKP on relay: \(existingPKP.ethAddress)")
+            NSLog("%@", "[Lit] ✅ L2 HIT — relay returned PKP: \(existingPKP.ethAddress)")
             let enriched = PKPInfo(tokenId: existingPKP.tokenId, publicKey: existingPKP.publicKey, ethAddress: existingPKP.ethAddress, authMethodId: authId)
             keychainService.store(token, for: .litAuthSig)
+            storePKPInfo(enriched)
             return enriched
         }
+        NSLog("%@", "[Lit] ❌ L2 MISS — relay returned nothing")
         
         // ── Layer 2.5: Legacy PKP fallback (relay down + stored PKP without authMethodId) ──
         if let stored = getStoredPKP(), stored.authMethodId == nil {
-            print("[Lit] ⚠️ Relay unreachable — enriching legacy PKP optimistically: \(stored.ethAddress)")
+            NSLog("%@", "[Lit] ⚠️ L2.5 HIT — enriching legacy PKP: \(stored.ethAddress)")
             let enriched = PKPInfo(tokenId: stored.tokenId, publicKey: stored.publicKey, ethAddress: stored.ethAddress, authMethodId: authId)
             keychainService.store(token, for: .litAuthSig)
+            storePKPInfo(enriched)
+            return enriched
+        }
+        
+        // ── Layer 2.75: Any stored PKP (last resort before minting) ──
+        if let stored = getStoredPKP() {
+            NSLog("%@", "[Lit] ⚠️ L2.75 HIT — reusing existing PKP with different authId: \(stored.ethAddress) (stored: \(stored.authMethodId ?? "nil"), new: \(authId))")
+            let enriched = PKPInfo(tokenId: stored.tokenId, publicKey: stored.publicKey, ethAddress: stored.ethAddress, authMethodId: authId)
+            keychainService.store(token, for: .litAuthSig)
+            storePKPInfo(enriched)
             return enriched
         }
         
         // ── Layer 3: Mint new PKP (genuinely new user) ──
-        print("[Lit] 🆕 No existing PKP found, minting new one...")
+        NSLog("%@", "[Lit] 🆕 L3: No existing PKP found anywhere, minting new one...")
         
         let requestId = try await requestMintPKP(
             authMethodType: authMethodType,
@@ -189,11 +231,10 @@ actor LitProtocolService {
         )
         
         let pkpInfo = try await pollMintStatus(requestId: requestId)
-        
-        // Enrich with authMethodId before returning
         let enriched = PKPInfo(tokenId: pkpInfo.tokenId, publicKey: pkpInfo.publicKey, ethAddress: pkpInfo.ethAddress, authMethodId: authId)
         
         keychainService.store(token, for: .litAuthSig)
+        storePKPInfo(enriched)
         
         return enriched
     }
@@ -374,10 +415,20 @@ actor LitProtocolService {
     /// Compute auth method ID: 0x + keccak256(sub + ":" + aud) — matches Lit JS SDK GoogleProvider/AppleProvider
     private func computeAuthMethodId(provider: String, token: String) -> String {
         let claims = extractJWTClaims(token)
-        let sub = claims["sub"] ?? token
-        let aud = claims["aud"] ?? ""
-        let input = "\(sub):\(aud)"
-        return "0x" + Keccak256.hashHex(Data(input.utf8))
+        let sub = claims["sub"]
+        let aud = claims["aud"]
+        let email = claims["email"]
+        NSLog("%@", "[Lit] 🧮 computeAuthMethodId(\(provider)):")
+        NSLog("%@", "[Lit]    sub=\(sub ?? "NIL") aud=\(aud ?? "NIL") email=\(email ?? "NIL")")
+        if sub == nil {
+            NSLog("%@", "[Lit]    ⚠️ JWT PARSE FAILED — using entire token as sub!")
+        }
+        let resolvedSub = sub ?? token
+        let resolvedAud = aud ?? ""
+        let input = "\(resolvedSub):\(resolvedAud)"
+        let result = "0x" + Keccak256.hashHex(Data(input.utf8))
+        NSLog("%@", "[Lit]    authMethodId=\(result)")
+        return result
     }
     
     private func extractJWTClaims(_ jwt: String) -> [String: String] {
@@ -411,12 +462,31 @@ actor LitProtocolService {
         if let data = try? JSONEncoder().encode(info),
            let string = String(data: data, encoding: .utf8) {
             keychainService.store(string, for: .pkpPublicKey)
+            NSLog("%@", "[Lit] 💾 Stored active PKP: \(info.ethAddress), authMethodId: \(info.authMethodId ?? "nil")")
+        } else {
+            NSLog("%@", "[Lit] ⛔ FAILED to encode PKP for storage!")
         }
-        // Also persist in the PKP map for multi-account recovery
+        // Also persist in the PKP map keyed by BOTH authId and sub
+        var map = loadPKPMap()
         if let authId = info.authMethodId {
-            var map = loadPKPMap()
             map[authId] = info
-            savePKPMap(map)
+        }
+        // Extract sub from stored token for sub-based lookup
+        if let token = keychainService.retrieve(for: .litAuthSig) {
+            let claims = extractJWTClaims(token)
+            if let sub = claims["sub"] {
+                let subKey = "sub:" + sub
+                map[subKey] = info
+                NSLog("%@", "[Lit] 💾 Also stored PKP under sub key: \(subKey.prefix(30))")
+            }
+        }
+        savePKPMap(map)
+        NSLog("%@", "[Lit] 💾 PKP map now has \(map.count) entries")
+        // Verify storage round-trip
+        if let verify = getStoredPKP() {
+            NSLog("%@", "[Lit] ✅ Storage verified — read back: \(verify.ethAddress), authMethodId: \(verify.authMethodId ?? "nil")")
+        } else {
+            NSLog("%@", "[Lit] ⛔ Storage VERIFICATION FAILED — getStoredPKP returned nil!")
         }
     }
     

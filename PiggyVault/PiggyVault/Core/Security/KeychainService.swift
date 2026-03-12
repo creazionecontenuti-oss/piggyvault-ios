@@ -15,16 +15,28 @@ final class KeychainService {
     
     func store(_ value: String, for key: Key) {
         let data = value.data(using: .utf8)!
-        let query: [String: Any] = [
+        
+        // Delete uses ONLY search criteria (no kSecValueData / kSecAttrAccessible)
+        // Including kSecValueData causes silent delete failures when data changes
+        let deleteQuery: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrService as String: service,
+            kSecAttrAccount as String: key.rawValue
+        ]
+        SecItemDelete(deleteQuery as CFDictionary)
+        
+        // Add with full attributes
+        let addQuery: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrService as String: service,
             kSecAttrAccount as String: key.rawValue,
             kSecValueData as String: data,
             kSecAttrAccessible as String: kSecAttrAccessibleWhenUnlockedThisDeviceOnly
         ]
-        
-        SecItemDelete(query as CFDictionary)
-        SecItemAdd(query as CFDictionary, nil)
+        let status = SecItemAdd(addQuery as CFDictionary, nil)
+        if status != errSecSuccess {
+            NSLog("[Keychain] ⛔ SecItemAdd FAILED for %@: OSStatus %d", key.rawValue, status)
+        }
     }
     
     func retrieve(for key: Key) -> String? {
@@ -86,15 +98,23 @@ final class KeychainService {
     }
     
     func storeSecureEnclaveKey(tag: String, privateKey: SecKey) -> Bool {
-        let query: [String: Any] = [
+        // Delete uses only search criteria
+        let deleteQuery: [String: Any] = [
+            kSecClass as String: kSecClassKey,
+            kSecAttrApplicationTag as String: tag.data(using: .utf8)!
+        ]
+        SecItemDelete(deleteQuery as CFDictionary)
+        
+        let addQuery: [String: Any] = [
             kSecClass as String: kSecClassKey,
             kSecAttrApplicationTag as String: tag.data(using: .utf8)!,
             kSecValueRef as String: privateKey,
             kSecAttrAccessible as String: kSecAttrAccessibleWhenUnlockedThisDeviceOnly
         ]
-        
-        SecItemDelete(query as CFDictionary)
-        let status = SecItemAdd(query as CFDictionary, nil)
+        let status = SecItemAdd(addQuery as CFDictionary, nil)
+        if status != errSecSuccess {
+            NSLog("%@", "[Keychain] ⛔ SE key store failed: OSStatus \(status)")
+        }
         return status == errSecSuccess
     }
     
