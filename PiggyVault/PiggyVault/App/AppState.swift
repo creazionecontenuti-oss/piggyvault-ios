@@ -383,6 +383,7 @@ final class AppState: ObservableObject {
         keychainService.delete(for: .pkpPublicKey)
         keychainService.delete(for: .litAuthSig)
         keychainService.delete(for: .safeAddress)
+        secureEnclaveService.deleteSigningKey()
         // NOTE: pkpMap is PRESERVED — it maps authMethodId→PKP per account
         NSLog("%@", "[SignOut] After clear — pkpPublicKey: \(keychainService.retrieve(for: .pkpPublicKey) != nil)")
         NSLog("%@", "[SignOut] After clear — pkpMap still: \(keychainService.retrieve(for: .pkpMap) != nil)")

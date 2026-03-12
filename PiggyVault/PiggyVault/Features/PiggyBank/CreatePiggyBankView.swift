@@ -69,6 +69,7 @@ struct CreatePiggyBankView: View {
                 }
             }
             .toolbarColorScheme(.dark, for: .navigationBar)
+            .interactiveDismissDisabled(viewModel.isCreating)
             .alert("error.title".localized, isPresented: $viewModel.showError) {
                 Button("ok".localized, role: .cancel) {}
             } message: {
@@ -98,6 +99,9 @@ struct CreatePiggyBankView: View {
                 
                 TextField("piggy.create.name_placeholder".localized, text: $viewModel.name)
                     .font(PiggyTheme.Typography.body)
+                    .onChange(of: viewModel.name) { _, newValue in
+                        if newValue.count > 30 { viewModel.name = String(newValue.prefix(30)) }
+                    }
                     .foregroundColor(.white)
                     .padding(16)
                     .background(
@@ -391,6 +395,8 @@ struct CreatePiggyBankView: View {
                         viewModel.currentStep = 4
                     }
                 }
+                .opacity(viewModel.selectedLockType == .targetLock && viewModel.targetAmount <= 0 ? 0.5 : 1.0)
+                .disabled(viewModel.selectedLockType == .targetLock && viewModel.targetAmount <= 0)
             }
         }
         .transition(.asymmetric(

@@ -435,29 +435,43 @@ actor BlockchainService {
         return nil
     }
     
-    private func rpcCall(params: [String: Any]) async throws -> [String: Any] {
-        var request = URLRequest(url: rpcURL)
-        request.httpMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = try JSONSerialization.data(withJSONObject: params)
+    private func rpcCall(params: [String: Any], maxRetries: Int = 3) async throws -> [String: Any] {
+        var lastError: Error = BlockchainError.networkUnavailable
         
-        let (data, response) = try await session.data(for: request)
-        
-        guard let httpResponse = response as? HTTPURLResponse,
-              (200...299).contains(httpResponse.statusCode) else {
-            throw BlockchainError.networkUnavailable
+        for attempt in 0..<maxRetries {
+            do {
+                var request = URLRequest(url: rpcURL)
+                request.httpMethod = "POST"
+                request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+                request.httpBody = try JSONSerialization.data(withJSONObject: params)
+                
+                let (data, response) = try await session.data(for: request)
+                
+                guard let httpResponse = response as? HTTPURLResponse,
+                      (200...299).contains(httpResponse.statusCode) else {
+                    throw BlockchainError.networkUnavailable
+                }
+                
+                guard let json = try JSONSerialization.jsonObject(with: data) as? [String: Any] else {
+                    throw BlockchainError.rpcError("Invalid JSON response")
+                }
+                
+                if let error = json["error"] as? [String: Any],
+                   let message = error["message"] as? String {
+                    throw BlockchainError.rpcError(message)
+                }
+                
+                return json
+            } catch {
+                lastError = error
+                if attempt < maxRetries - 1 {
+                    let delay = UInt64(pow(2.0, Double(attempt))) * 500_000_000
+                    try? await Task.sleep(nanoseconds: delay)
+                }
+            }
         }
         
-        guard let json = try JSONSerialization.jsonObject(with: data) as? [String: Any] else {
-            throw BlockchainError.rpcError("Invalid JSON response")
-        }
-        
-        if let error = json["error"] as? [String: Any],
-           let message = error["message"] as? String {
-            throw BlockchainError.rpcError(message)
-        }
-        
-        return json
+        throw lastError
     }
     
     private func convertToFiat(amount: Double, asset: AssetType) async -> Double {

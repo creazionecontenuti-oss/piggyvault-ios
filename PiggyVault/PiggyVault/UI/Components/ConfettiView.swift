@@ -14,6 +14,7 @@ struct ConfettiPiece: Identifiable {
 struct ConfettiView: View {
     @State private var pieces: [ConfettiPiece] = []
     @State private var timer: Timer?
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     let isActive: Bool
     let particleCount: Int
     
@@ -47,7 +48,11 @@ struct ConfettiView: View {
             }
             .onChange(of: isActive) { _, active in
                 if active {
-                    spawnConfetti(in: geometry.size)
+                    if reduceMotion {
+                        HapticManager.success()
+                    } else {
+                        spawnConfetti(in: geometry.size)
+                    }
                 }
             }
         }

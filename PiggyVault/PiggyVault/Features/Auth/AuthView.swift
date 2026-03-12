@@ -67,6 +67,7 @@ struct AuthView: View {
                     .frame(height: 56)
                     .cornerRadius(PiggyTheme.CornerRadius.medium)
                     .shadow(color: Color.white.opacity(0.1), radius: 8, y: 4)
+                    .allowsHitTesting(!viewModel.isLoading)
                     
                     // Sign in with Google
                     Button {
@@ -90,6 +91,7 @@ struct AuthView: View {
                         )
                         .shadow(color: Color.white.opacity(0.1), radius: 8, y: 4)
                     }
+                    .disabled(viewModel.isLoading)
                     
                     Text("auth.terms".localized)
                         .font(PiggyTheme.Typography.caption)

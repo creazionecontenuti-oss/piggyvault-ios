@@ -7,6 +7,7 @@ struct SettingsView: View {
     @State private var showLanguagePicker = false
     @State private var showSignOutAlert = false
     @State private var showAccountProfile = false
+    @State private var isLoggingOut = false
     @AppStorage("biometricLockEnabled") private var biometricLockEnabled = true
     
     var body: some View {
@@ -65,6 +66,7 @@ struct SettingsView: View {
         }
         .alert("settings.sign_out_confirm.title".localized, isPresented: $showSignOutAlert) {
             Button("settings.sign_out".localized, role: .destructive) {
+                isLoggingOut = true
                 appState.signOut()
             }
             Button("cancel".localized, role: .cancel) { }
@@ -310,6 +312,7 @@ struct SettingsView: View {
     // MARK: - Sign Out
     private var signOutButton: some View {
         Button {
+            guard !isLoggingOut else { return }
             HapticManager.warning()
             showSignOutAlert = true
         } label: {
@@ -330,7 +333,8 @@ struct SettingsView: View {
                     )
             )
         }
-        .opacity(showContent ? 1 : 0)
+        .disabled(isLoggingOut)
+        .opacity(showContent ? (isLoggingOut ? 0.5 : 1) : 0)
     }
     
     // MARK: - Language Picker Sheet

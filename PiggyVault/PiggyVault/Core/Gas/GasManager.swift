@@ -30,7 +30,7 @@ actor GasManager {
     private var transactionSender: TransactionSender?
     
     // Thresholds (USD-based, converted to ETH at runtime)
-    private let minGasBalanceUSD: Double = 0.50  // Trigger auto-swap when owner ETH < $0.50
+    private let minGasBalanceUSD: Double = 0.55  // Trigger auto-swap when owner ETH <= $0.55
     private let autoSwapTargetUSD: Double = 1.50  // Swap enough USDC to give owner ~$1.50 of ETH
     private let avgTxCostETH: Double = 0.00006 // Average Base L2 tx cost
     
@@ -48,6 +48,11 @@ actor GasManager {
     private var cachedETHPrice: Double?
     private var priceTimestamp: Date?
     private let priceCacheDuration: TimeInterval = 300 // 5 min
+    
+    // Auto-swap rate limiting (Test 176)
+    private var lastAutoSwapAttempt: Date?
+    private var consecutiveFailures: Int = 0
+    private let maxConsecutiveFailures: Int = 5
     
     init(blockchainService: BlockchainService = BlockchainService()) {
         self.blockchainService = blockchainService
@@ -71,7 +76,7 @@ actor GasManager {
             
             return GasStatus(
                 ethBalance: balance,
-                needsRefill: balance < (minGasBalanceUSD / ethPrice),
+                needsRefill: balance <= (minGasBalanceUSD / ethPrice),
                 estimatedTxsRemaining: txsRemaining,
                 ethPriceUSD: ethPrice
             )
@@ -90,7 +95,7 @@ actor GasManager {
             let balance = try await checkGasBalance(address: address)
             let ethPrice = try await getETHPrice()
             let minETH = minGasBalanceUSD / ethPrice
-            return balance < minETH
+            return balance <= minETH
         } catch {
             return true
         }
@@ -248,6 +253,21 @@ actor GasManager {
     /// Sends ETH to the OWNER via Uniswap V3 SwapRouter02 multicall.
     /// Returns the tx hash of the swap or nil if no swap was needed.
     func autoSwapForGas(ownerAddress: String, safeAddress: String, asset: AssetType) async throws -> String? {
+        // Rate limiting: exponential backoff after failures (Test 176)
+        if consecutiveFailures >= maxConsecutiveFailures {
+            NSLog("%@", "[AutoSwap] ⏸️ Paused after \(consecutiveFailures) consecutive failures. Reset after 12h.")
+            if let last = lastAutoSwapAttempt, Date().timeIntervalSince(last) < 43200 { return nil }
+            consecutiveFailures = 0
+        }
+        if let last = lastAutoSwapAttempt {
+            let cooldown = min(pow(2.0, Double(consecutiveFailures)) * 60, 1800) // 1m, 2m, 4m... max 30m
+            if Date().timeIntervalSince(last) < cooldown {
+                NSLog("%@", "[AutoSwap] ⏳ Cooldown active (\(Int(cooldown))s). Skipping.")
+                return nil
+            }
+        }
+        lastAutoSwapAttempt = Date()
+        
         // Check OWNER's ETH balance — the owner pays gas, not the Safe
         let ownerETH = try await checkGasBalance(address: ownerAddress)
         let ethPrice = try await getETHPrice()
@@ -255,8 +275,8 @@ actor GasManager {
         
         NSLog("%@", "[AutoSwap] Owner ETH: \(ownerETH) (min: \(minETH), price: $\(ethPrice))")
         
-        // Only swap if owner ETH is below $0.50 threshold
-        guard ownerETH < minETH else {
+        // Only swap if owner ETH is at or below the threshold
+        guard ownerETH <= minETH else {
             NSLog("%@", "[AutoSwap] Owner has sufficient ETH, no swap needed")
             return nil
         }
@@ -317,14 +337,22 @@ actor GasManager {
         )
         
         guard let sender = transactionSender else {
+            consecutiveFailures += 1
             throw GasError.swapFailed("TransactionSender not configured")
         }
-        return try await sender.sendTransaction(
-            from: ownerAddress,
-            to: safeAddress,
-            data: safeTxData,
-            value: 0
-        )
+        do {
+            let txHash = try await sender.sendTransaction(
+                from: ownerAddress,
+                to: safeAddress,
+                data: safeTxData,
+                value: 0
+            )
+            consecutiveFailures = 0
+            return txHash
+        } catch {
+            consecutiveFailures += 1
+            throw error
+        }
     }
     
     /// Swap excess ETH → USDC when owner's ETH exceeds $1.50.

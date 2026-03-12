@@ -895,3 +895,32 @@ Eliminare il relayer-based gas stipend e auto-swap dal flusso quotidiano. L'uten
 - Mt Pelerin: quando gas basso, widget lockato a ETH; altrimenti stablecoin
 
 ### Build: ✅ BUILD SUCCEEDED
+
+## Sessione 16 - 210 Flow Tests Static Analysis & Auto-Fix
+**Timestamp**: 2025-01-20
+
+### Lavoro Completato
+- [x] **210 flow tests analizzati** (testdiflusso.md) — analisi statica completa
+- [x] **12 fix applicati** al codice sorgente
+- [x] **progresso-test.md** scritto con risultati dettagliati per tutti 210 test
+
+### Fix Applicati
+1. **Test 5** `AppState.signOut()` → +`secureEnclaveService.deleteSigningKey()` per pulizia completa chiavi SE
+2. **Test 7/41** `BlockchainService.rpcCall()` → +retry con exponential backoff (3 tentativi, 500ms→1s→2s)
+3. **Test 12** `CreatePiggyBankView` → +`.disabled()` su Next quando targetAmount<=0
+4. **Test 15** `CreatePiggyBankView` → +`.interactiveDismissDisabled(viewModel.isCreating)`
+5. **Test 33** `AuthView` → +`.allowsHitTesting(!isLoading)` e `.disabled(isLoading)` su bottoni auth
+6. **Test 69** `SettingsView` → +`isLoggingOut` flag + `.disabled()` su bottone sign out
+7. **Test 114** `PiggyVaultApp` → +Privacy screen (logo+sfondo) su inactive/background per app switcher
+8. **Test 138** `CreatePiggyBankView` → +char limit 30 su nome piggy bank
+9. **Test 174** `GasManager` → threshold `<` → `<=` e 0.50→0.55 USD
+10. **Test 176** `GasManager.autoSwapForGas()` → +rate limiting con exponential backoff (1m→30m max, pausa 12h dopo 5 failures)
+11. **Test 206** `ConfettiView` → +`@Environment(\.accessibilityReduceMotion)` check, skip animazione se attivo
+12. **Pre-test** `MtPelerinService` → `type=webview` → `type=direct-link` su tutti gli URL builders
+
+### Risultati
+- **~180 ✅ PASS** — Architettura già conforme
+- **12 🛠️ FIXED** — Codice corretto
+- **~18 ⚠️ ARCH** — Implementazioni future non bloccanti (jailbreak detection, SSL pinning, BGAppRefresh, VoiceOver labels, fallback DEX router)
+
+### Build: ✅ BUILD SUCCEEDED + Installato su iPhone di Andy1810

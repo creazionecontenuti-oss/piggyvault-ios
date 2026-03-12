@@ -171,7 +171,7 @@ actor MtPelerinService {
         var items: [URLQueryItem] = [
             // Mandatory activation key for webview
             URLQueryItem(name: "_ctkn", value: activationKey),
-            URLQueryItem(name: "type", value: "webview"),
+            URLQueryItem(name: "type", value: "direct-link"),
             URLQueryItem(name: "lang", value: language),
             // Lock to buy tab only
             URLQueryItem(name: "tab", value: "buy"),
@@ -215,7 +215,7 @@ actor MtPelerinService {
         var components = URLComponents(string: widgetBaseURL)!
         var items: [URLQueryItem] = [
             URLQueryItem(name: "_ctkn", value: activationKey),
-            URLQueryItem(name: "type", value: "webview"),
+            URLQueryItem(name: "type", value: "direct-link"),
             URLQueryItem(name: "lang", value: language),
             URLQueryItem(name: "tab", value: "buy"),
             URLQueryItem(name: "tabs", value: "buy"),
@@ -250,7 +250,7 @@ actor MtPelerinService {
         var components = URLComponents(string: widgetBaseURL)!
         var items: [URLQueryItem] = [
             URLQueryItem(name: "_ctkn", value: activationKey),
-            URLQueryItem(name: "type", value: "webview"),
+            URLQueryItem(name: "type", value: "direct-link"),
             URLQueryItem(name: "lang", value: language),
             // Lock to sell tab only
             URLQueryItem(name: "tab", value: "sell"),
