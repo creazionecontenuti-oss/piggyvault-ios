@@ -303,6 +303,14 @@
 "error.gas.relayer_rejected" = "रिलेयर ने अस्वीकार किया: %@";
 "error.gas.quote_failed" = "स्वैप कोटेशन प्राप्त नहीं हो सका";
 
+/* Gas Alert Banner */
+"gas.alert.title" = "गैस बैलेंस कम है";
+"gas.alert.description" = "आपके खाते को लेनदेन शुल्क के लिए ETH की आवश्यकता है। अपना वॉलेट उपयोग जारी रखने के लिए स्टेबलकॉइन स्वैप करें।";
+"gas.alert.swap_button" = "गैस के लिए स्वैप करें";
+"gas.alert.swapping" = "स्वैप हो रहा है...";
+"gas.swap.not_enough_stablecoin" = "स्वैप के लिए पर्याप्त स्टेबलकॉइन नहीं (कम से कम $1.60 आवश्यक)";
+"gas.swap.stipend_pending" = "गैस फंडिंग प्रगति पर है, कृपया कुछ देर बाद पुनः प्रयास करें";
+
 /* Error Messages - Auth */
 "error.auth.google_not_configured" = "Google OAuth क्लाइंट ID कॉन्फ़िगर नहीं है";
 "error.auth.google_failed" = "Google प्रमाणीकरण विफल";

@@ -303,6 +303,14 @@
 "error.gas.relayer_rejected" = "릴레이어 거부: %@";
 "error.gas.quote_failed" = "스왑 견적을 가져올 수 없습니다";
 
+/* Gas Alert Banner */
+"gas.alert.title" = "가스 잔액 부족";
+"gas.alert.description" = "거래 수수료를 위해 ETH가 필요합니다. 지갑을 계속 사용하려면 스테이블코인을 스왑하세요.";
+"gas.alert.swap_button" = "가스용 스왑";
+"gas.alert.swapping" = "스왑 중...";
+"gas.swap.not_enough_stablecoin" = "스왑할 스테이블코인이 부족합니다 (최소 $1.60 필요)";
+"gas.swap.stipend_pending" = "가스 자금 조달 진행 중, 잠시 후 다시 시도하세요";
+
 /* Error Messages - Auth */
 "error.auth.google_not_configured" = "Google OAuth 클라이언트 ID가 설정되지 않았습니다";
 "error.auth.google_failed" = "Google 인증 실패";

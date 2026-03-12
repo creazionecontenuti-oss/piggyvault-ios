@@ -303,6 +303,14 @@
 "error.gas.relayer_rejected" = "Relayer rejeitou: %@";
 "error.gas.quote_failed" = "Não foi possível obter cotação de troca";
 
+/* Gas Alert Banner */
+"gas.alert.title" = "Saldo de Gas Baixo";
+"gas.alert.description" = "Sua conta precisa de ETH para taxas de transação. Troque stablecoin para continuar usando sua carteira.";
+"gas.alert.swap_button" = "Trocar por Gas";
+"gas.alert.swapping" = "Trocando...";
+"gas.swap.not_enough_stablecoin" = "Stablecoin insuficiente para troca (mínimo $1,60 necessário)";
+"gas.swap.stipend_pending" = "Financiamento de gas em andamento, tente novamente em instantes";
+
 /* Error Messages - Auth */
 "error.auth.google_not_configured" = "ID de cliente OAuth do Google não configurado";
 "error.auth.google_failed" = "Autenticação do Google falhou";

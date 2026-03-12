@@ -27,6 +27,10 @@ final class AppState: ObservableObject {
     @Published var safeDeploymentFailed: Bool = false
     @Published var safeDeploymentError: String = ""
     @Published var isDeployingRetry: Bool = false
+    @Published var gasNeedsRefill: Bool = false
+    @Published var gasSwapInProgress: Bool = false
+    @Published var gasSwapError: String? = nil
+    @Published var ownerETHBalance: Double = 0
     
     /// True ONLY if the Safe is confirmed deployed on-chain (safeAddress set after verification)
     var isSafeDeployed: Bool {
@@ -439,6 +443,9 @@ final class AppState: ObservableObject {
             if let safe = wallet.safeAddress {
                 cacheService.cacheSafeAddress(safe)
                 
+                // Update gas status for the banner UI
+                await updateGasStatus()
+                
                 // Auto-swap: if Safe has stablecoin but low ETH, swap some for gas
                 await checkAndAutoSwapForGas(
                     ownerAddress: wallet.address,
@@ -524,5 +531,80 @@ final class AppState: ObservableObject {
     
     func refreshData() async {
         await loadDashboardData()
+    }
+    
+    /// Update gas status for the banner UI (called after balance load)
+    func updateGasStatus() async {
+        guard let wallet = userWallet else { return }
+        let eth = (try? await gasManager.checkGasBalance(address: wallet.address)) ?? 0
+        let needsRefill = await gasManager.needsGasRefill(address: wallet.address)
+        ownerETHBalance = eth
+        gasNeedsRefill = needsRefill
+        NSLog("%@", "[GasStatus] Owner ETH: \(eth), needsRefill: \(needsRefill)")
+    }
+    
+    /// Manual swap trigger from the low-gas banner
+    func manualSwapForGas() {
+        guard let wallet = userWallet, let safe = wallet.safeAddress else { return }
+        
+        let usdcBalance = totalBalance.first(where: { $0.asset == .usdc })?.balance ?? 0
+        let eurcBalance = totalBalance.first(where: { $0.asset == .eurc })?.balance ?? 0
+        let preferredAsset: AssetType = usdcBalance >= 1.60 ? .usdc : .eurc
+        let hasStablecoin = usdcBalance >= 1.60 || eurcBalance >= 1.60
+        
+        guard hasStablecoin else {
+            gasSwapError = "gas.swap.not_enough_stablecoin".localized
+            return
+        }
+        
+        gasSwapInProgress = true
+        gasSwapError = nil
+        
+        Task {
+            do {
+                // Step 1: If owner has ~0 ETH, get a stipend first
+                let ownerETH = (try? await gasManager.checkGasBalance(address: wallet.address)) ?? 0
+                if ownerETH < 0.00005 {
+                    NSLog("%@", "[ManualSwap] Requesting gas stipend first...")
+                    let _ = try await gasManager.requestGasStipend(
+                        ownerAddress: wallet.address,
+                        safeAddress: safe
+                    )
+                    try? await Task.sleep(nanoseconds: 5_000_000_000)
+                    
+                    let newETH = (try? await gasManager.checkGasBalance(address: wallet.address)) ?? 0
+                    if newETH < 0.00002 {
+                        gasSwapError = "gas.swap.stipend_pending".localized
+                        gasSwapInProgress = false
+                        return
+                    }
+                }
+                
+                // Step 2: Execute swap
+                NSLog("%@", "[ManualSwap] Swapping \(preferredAsset.symbol) → ETH...")
+                let txHash = try await gasManager.autoSwapForGas(
+                    ownerAddress: wallet.address,
+                    safeAddress: safe,
+                    asset: preferredAsset
+                )
+                
+                if let hash = txHash {
+                    NSLog("%@", "[ManualSwap] ✅ Swap tx: \(hash)")
+                    // Wait for confirmation
+                    try? await Task.sleep(nanoseconds: 4_000_000_000)
+                }
+                
+                // Refresh gas status
+                await updateGasStatus()
+                gasSwapInProgress = false
+                HapticManager.success()
+                
+            } catch {
+                NSLog("%@", "[ManualSwap] ❌ Failed: \(error.localizedDescription)")
+                gasSwapError = error.localizedDescription
+                gasSwapInProgress = false
+                HapticManager.error()
+            }
+        }
     }
 }

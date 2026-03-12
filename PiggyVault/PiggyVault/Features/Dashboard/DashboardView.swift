@@ -27,6 +27,15 @@ struct DashboardView: View {
                     )
                 }
                 
+                // Low gas alert banner
+                if appState.gasNeedsRefill && appState.isSafeDeployed && !appState.safeDeploymentFailed {
+                    GasAlertBanner()
+                        .transition(.asymmetric(
+                            insertion: .move(edge: .top).combined(with: .opacity),
+                            removal: .opacity
+                        ))
+                }
+                
                 if isLoadingData && appState.totalBalance.isEmpty {
                     DashboardShimmer()
                 } else {

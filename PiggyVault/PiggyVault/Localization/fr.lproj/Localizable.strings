@@ -303,6 +303,14 @@
 "error.gas.relayer_rejected" = "Relayer a rejeté : %@";
 "error.gas.quote_failed" = "Impossible d'obtenir le devis d'échange";
 
+/* Gas Alert Banner */
+"gas.alert.title" = "Solde Gas Faible";
+"gas.alert.description" = "Votre compte a besoin d'ETH pour les frais de transaction. Échangez des stablecoins pour continuer à utiliser votre portefeuille.";
+"gas.alert.swap_button" = "Échanger pour le Gas";
+"gas.alert.swapping" = "Échange en cours...";
+"gas.swap.not_enough_stablecoin" = "Pas assez de stablecoin pour l'échange (minimum $1,60 requis)";
+"gas.swap.stipend_pending" = "Financement du gas en cours, réessayez dans un instant";
+
 /* Error Messages - Auth */
 "error.auth.google_not_configured" = "ID client OAuth Google non configuré";
 "error.auth.google_failed" = "Authentification Google échouée";

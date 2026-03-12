@@ -303,6 +303,14 @@
 "error.gas.relayer_rejected" = "Relayer rejected: %@";
 "error.gas.quote_failed" = "Could not get swap quote";
 
+/* Gas Alert Banner */
+"gas.alert.title" = "Low Gas Balance";
+"gas.alert.description" = "Your account needs ETH for transaction fees. Swap some stablecoin to continue using your wallet.";
+"gas.alert.swap_button" = "Swap for Gas";
+"gas.alert.swapping" = "Swapping...";
+"gas.swap.not_enough_stablecoin" = "Not enough stablecoin to swap (need at least $1.60)";
+"gas.swap.stipend_pending" = "Gas funding in progress, please try again in a moment";
+
 /* Error Messages - Auth */
 "error.auth.google_not_configured" = "Google OAuth Client ID not configured";
 "error.auth.google_failed" = "Google authentication failed";

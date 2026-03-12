@@ -303,6 +303,14 @@
 "error.gas.relayer_rejected" = "Relayer abgelehnt: %@";
 "error.gas.quote_failed" = "Swap-Angebot konnte nicht abgerufen werden";
 
+/* Gas Alert Banner */
+"gas.alert.title" = "Niedriges Gas-Guthaben";
+"gas.alert.description" = "Dein Konto benötigt ETH für Transaktionsgebühren. Tausche Stablecoin, um dein Wallet weiter nutzen zu können.";
+"gas.alert.swap_button" = "Für Gas tauschen";
+"gas.alert.swapping" = "Tausche...";
+"gas.swap.not_enough_stablecoin" = "Nicht genug Stablecoin zum Tauschen (mindestens $1,60 nötig)";
+"gas.swap.stipend_pending" = "Gas-Finanzierung läuft, bitte versuche es gleich nochmal";
+
 /* Error Messages - Auth */
 "error.auth.google_not_configured" = "Google OAuth Client-ID nicht konfiguriert";
 "error.auth.google_failed" = "Google-Authentifizierung fehlgeschlagen";

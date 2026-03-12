@@ -303,6 +303,14 @@
 "error.gas.relayer_rejected" = "中继拒绝：%@";
 "error.gas.quote_failed" = "无法获取兑换报价";
 
+/* Gas Alert Banner */
+"gas.alert.title" = "Gas余额不足";
+"gas.alert.description" = "您的账户需要ETH支付交易手续费。兑换稳定币以继续使用钱包。";
+"gas.alert.swap_button" = "兑换Gas";
+"gas.alert.swapping" = "兑换中...";
+"gas.swap.not_enough_stablecoin" = "稳定币不足，无法兑换（至少需要$1.60）";
+"gas.swap.stipend_pending" = "Gas资金正在到账中，请稍后重试";
+
 /* Error Messages - Auth */
 "error.auth.google_not_configured" = "Google OAuth客户端ID未配置";
 "error.auth.google_failed" = "Google身份验证失败";

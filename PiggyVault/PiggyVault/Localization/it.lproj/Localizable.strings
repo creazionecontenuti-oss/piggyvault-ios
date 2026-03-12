@@ -303,6 +303,14 @@
 "error.gas.relayer_rejected" = "Relayer ha rifiutato: %@";
 "error.gas.quote_failed" = "Impossibile ottenere il preventivo di scambio";
 
+/* Gas Alert Banner */
+"gas.alert.title" = "Saldo Gas Basso";
+"gas.alert.description" = "Il tuo account ha bisogno di ETH per le commissioni. Scambia stablecoin per continuare a usare il wallet.";
+"gas.alert.swap_button" = "Scambia per Gas";
+"gas.alert.swapping" = "Scambio in corso...";
+"gas.swap.not_enough_stablecoin" = "Stablecoin insufficienti per lo scambio (servono almeno $1.60)";
+"gas.swap.stipend_pending" = "Finanziamento gas in corso, riprova tra un momento";
+
 /* Error Messages - Auth */
 "error.auth.google_not_configured" = "ID client OAuth Google non configurato";
 "error.auth.google_failed" = "Autenticazione Google fallita";

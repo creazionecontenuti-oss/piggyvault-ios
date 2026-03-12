@@ -303,6 +303,14 @@
 "error.gas.relayer_rejected" = "リレーが拒否しました: %@";
 "error.gas.quote_failed" = "スワップ見積もりを取得できませんでした";
 
+/* Gas Alert Banner */
+"gas.alert.title" = "ガス残高不足";
+"gas.alert.description" = "取引手数料にETHが必要です。ウォレットを引き続き使用するには、ステーブルコインをスワップしてください。";
+"gas.alert.swap_button" = "ガス用にスワップ";
+"gas.alert.swapping" = "スワップ中...";
+"gas.swap.not_enough_stablecoin" = "スワップに十分なステーブルコインがありません（最低$1.60必要）";
+"gas.swap.stipend_pending" = "ガス資金調達中です。しばらくしてから再試行してください";
+
 /* Error Messages - Auth */
 "error.auth.google_not_configured" = "Google OAuthクライアントIDが設定されていません";
 "error.auth.google_failed" = "Google認証に失敗しました";

@@ -303,6 +303,14 @@
 "error.gas.relayer_rejected" = "Релеер отклонил: %@";
 "error.gas.quote_failed" = "Не удалось получить котировку обмена";
 
+/* Gas Alert Banner */
+"gas.alert.title" = "Низкий баланс газа";
+"gas.alert.description" = "Вашему аккаунту нужен ETH для комиссий. Обменяйте стейблкоин, чтобы продолжить использовать кошелёк.";
+"gas.alert.swap_button" = "Обменять на газ";
+"gas.alert.swapping" = "Обмен...";
+"gas.swap.not_enough_stablecoin" = "Недостаточно стейблкоинов для обмена (минимум $1,60)";
+"gas.swap.stipend_pending" = "Финансирование газа в процессе, повторите попытку через момент";
+
 /* Error Messages - Auth */
 "error.auth.google_not_configured" = "Google OAuth Client ID не настроен";
 "error.auth.google_failed" = "Аутентификация Google не удалась";
