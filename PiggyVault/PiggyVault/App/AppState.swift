@@ -454,41 +454,57 @@ final class AppState: ObservableObject {
         }
     }
     
-    /// Silently checks if the Safe needs ETH for gas.
-    /// Step 1: Request a gas stipend from the relayer (sends ETH to owner).
-    /// Step 2: Once owner has ETH, auto-swap stablecoin → ETH within the Safe.
+    /// Silently checks if the owner needs ETH for gas.
+    /// Step 1: If owner has 0 ETH, request a gas stipend from the relayer.
+    /// Step 2: Auto-swap stablecoin → ETH if owner ETH < $0.50 (target $1.50).
     private func checkAndAutoSwapForGas(
         ownerAddress: String,
         safeAddress: String,
         balances: [AssetBalance]
     ) async {
-        // Check if any stablecoin balance exists (minimum $2)
-        let hasStablecoin = balances.contains(where: { ($0.asset == .usdc || $0.asset == .eurc) && $0.balance >= 2.0 })
-        guard hasStablecoin else { return }
+        // Need at least $1.60 stablecoin to swap (target $1.50 + slippage)
+        let usdcBalance = balances.first(where: { $0.asset == .usdc })?.balance ?? 0
+        let eurcBalance = balances.first(where: { $0.asset == .eurc })?.balance ?? 0
+        let hasStablecoin = usdcBalance >= 1.60 || eurcBalance >= 1.60
         
-        // Step 1: Check owner's ETH balance — if 0, request gas stipend from relayer
+        NSLog("%@", "[GasBootstrap] USDC: \(usdcBalance), EURC: \(eurcBalance), hasStablecoin: \(hasStablecoin)")
+        guard hasStablecoin else {
+            NSLog("%@", "[GasBootstrap] Not enough stablecoin for auto-swap (need >= $1.60)")
+            return
+        }
+        
+        // Step 1: Check owner's ETH balance — if near 0, request gas stipend from relayer
+        // The stipend gives owner enough ETH to send at least 1 transaction (the swap)
         let ownerETH = (try? await gasManager.checkGasBalance(address: ownerAddress)) ?? 0
-        print("[GasBootstrap] Owner ETH: \(ownerETH), Safe: \(safeAddress)")
+        NSLog("%@", "[GasBootstrap] Owner ETH: \(ownerETH), owner: \(ownerAddress)")
         
         if ownerETH < 0.00005 {
-            print("[GasBootstrap] Owner has no ETH — requesting gas stipend from relayer...")
+            NSLog("%@", "[GasBootstrap] Owner has ~0 ETH — requesting gas stipend from relayer...")
             do {
                 let _ = try await gasManager.requestGasStipend(
                     ownerAddress: ownerAddress,
                     safeAddress: safeAddress
                 )
-                print("[GasBootstrap] ✅ Gas stipend requested successfully")
-                // Wait a moment for the stipend to arrive
-                try? await Task.sleep(nanoseconds: 3_000_000_000)
+                NSLog("%@", "[GasBootstrap] ✅ Gas stipend requested, waiting for arrival...")
+                // Wait for the stipend tx to confirm on Base (~2s block time)
+                try? await Task.sleep(nanoseconds: 5_000_000_000)
+                
+                // Verify stipend arrived
+                let newETH = (try? await gasManager.checkGasBalance(address: ownerAddress)) ?? 0
+                NSLog("%@", "[GasBootstrap] Owner ETH after stipend: \(newETH)")
+                if newETH < 0.00002 {
+                    NSLog("%@", "[GasBootstrap] ⚠️ Stipend not yet arrived, skipping auto-swap")
+                    return
+                }
             } catch {
-                print("[GasBootstrap] ⚠️ Gas stipend failed: \(error.localizedDescription)")
-                // Don't block — the stipend failing shouldn't prevent dashboard loading
+                NSLog("%@", "[GasBootstrap] ⚠️ Gas stipend failed: \(error.localizedDescription)")
                 return
             }
         }
         
-        // Step 2: Auto-swap stablecoin → ETH within the Safe
-        let preferredAsset: AssetType = balances.first(where: { $0.asset == .usdc && $0.balance >= 2.0 }) != nil ? .usdc : .eurc
+        // Step 2: Auto-swap stablecoin → ETH (sends ETH to owner, not Safe)
+        let preferredAsset: AssetType = usdcBalance >= 1.60 ? .usdc : .eurc
+        NSLog("%@", "[GasBootstrap] Starting auto-swap: \(preferredAsset.symbol) → ETH for owner")
         
         do {
             let txHash = try await gasManager.autoSwapForGas(
@@ -497,10 +513,12 @@ final class AppState: ObservableObject {
                 asset: preferredAsset
             )
             if let hash = txHash {
-                print("[GasBootstrap] ✅ Auto-swapped \(preferredAsset) → ETH: \(hash)")
+                NSLog("%@", "[GasBootstrap] ✅ Auto-swap tx sent: \(hash)")
+            } else {
+                NSLog("%@", "[GasBootstrap] ℹ️ No swap needed — owner ETH sufficient")
             }
         } catch {
-            print("[GasBootstrap] Auto-swap skipped: \(error.localizedDescription)")
+            NSLog("%@", "[GasBootstrap] ❌ Auto-swap failed: \(error.localizedDescription)")
         }
     }
     

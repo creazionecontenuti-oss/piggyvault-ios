@@ -29,9 +29,9 @@ actor GasManager {
     private let blockchainService: BlockchainService
     private var transactionSender: TransactionSender?
     
-    // Thresholds
-    private let minGasBalance: Double = 0.0005 // ~$1.25 — trigger auto-swap below this
-    private let autoSwapTargetETH: Double = 0.002 // ~$5 — target balance after swap
+    // Thresholds (USD-based, converted to ETH at runtime)
+    private let minGasBalanceUSD: Double = 0.50  // Trigger auto-swap when owner ETH < $0.50
+    private let autoSwapTargetUSD: Double = 1.50  // Swap enough USDC to give owner ~$1.50 of ETH
     private let avgTxCostETH: Double = 0.00006 // Average Base L2 tx cost
     
     // Relayer endpoint for sponsored transactions (Safe deployment)
@@ -71,7 +71,7 @@ actor GasManager {
             
             return GasStatus(
                 ethBalance: balance,
-                needsRefill: balance < minGasBalance,
+                needsRefill: balance < (minGasBalanceUSD / ethPrice),
                 estimatedTxsRemaining: txsRemaining,
                 ethPriceUSD: ethPrice
             )
@@ -88,7 +88,9 @@ actor GasManager {
     func needsGasRefill(address: String) async -> Bool {
         do {
             let balance = try await checkGasBalance(address: address)
-            return balance < minGasBalance
+            let ethPrice = try await getETHPrice()
+            let minETH = minGasBalanceUSD / ethPrice
+            return balance < minETH
         } catch {
             return true
         }
@@ -241,52 +243,63 @@ actor GasManager {
     
     // MARK: - Auto-Swap for Gas
     
-    /// After the first deposit, automatically swap stablecoin → ETH
-    /// to make the Safe self-sufficient for gas payments.
+    /// Automatically swap stablecoin → ETH when the owner's ETH balance is low.
+    /// Checks OWNER's ETH (not Safe's) since the owner pays gas for Safe transactions.
+    /// Sends ETH to the OWNER via Uniswap V3 SwapRouter02 multicall.
     /// Returns the tx hash of the swap or nil if no swap was needed.
     func autoSwapForGas(ownerAddress: String, safeAddress: String, asset: AssetType) async throws -> String? {
-        let balance = try await checkGasBalance(address: safeAddress)
-        
-        // Only swap if below threshold
-        guard balance < minGasBalance else { return nil }
-        
-        let ethNeeded = autoSwapTargetETH - balance
+        // Check OWNER's ETH balance — the owner pays gas, not the Safe
+        let ownerETH = try await checkGasBalance(address: ownerAddress)
         let ethPrice = try await getETHPrice()
+        let minETH = minGasBalanceUSD / ethPrice
         
-        // Calculate stablecoin amount needed (add 2% slippage buffer)
-        let stablecoinAmount = ethNeeded * ethPrice * 1.02
+        NSLog("%@", "[AutoSwap] Owner ETH: \(ownerETH) (min: \(minETH), price: $\(ethPrice))")
+        
+        // Only swap if owner ETH is below $0.50 threshold
+        guard ownerETH < minETH else {
+            NSLog("%@", "[AutoSwap] Owner has sufficient ETH, no swap needed")
+            return nil
+        }
+        
+        let targetETH = autoSwapTargetUSD / ethPrice
+        let ethNeeded = targetETH - ownerETH
+        
+        // Calculate stablecoin amount needed (add 3% slippage buffer)
+        let stablecoinAmount = ethNeeded * ethPrice * 1.03
         let amountIn = UInt64(stablecoinAmount * pow(10.0, Double(asset.decimals)))
         
-        // Minimum ETH out (5% slippage tolerance for small amounts)
+        // Minimum ETH out (5% slippage tolerance for small amounts on Base)
         let minETHOut = UInt64(ethNeeded * 0.95 * 1e18)
         
-        // Step 1: Approve Uniswap Router to spend stablecoin
+        NSLog("%@", "[AutoSwap] Swapping ~$\(String(format: "%.2f", stablecoinAmount)) \(asset.symbol) → ~\(String(format: "%.6f", ethNeeded)) ETH for owner")
+        
+        // Step 1: Approve Uniswap Router to spend stablecoin (Safe approves)
         let approveData = ABIEncoder.encodeERC20Approve(
             spender: uniswapRouter,
             amount: amountIn
         )
         
-        // Step 2: Build Uniswap V3 exactInputSingle swap call
-        let swapData = encodeExactInputSingle(
+        // Step 2: Build Uniswap V3 router.multicall that does:
+        //   a) exactInputSingle(USDC → WETH, recipient = router itself)
+        //   b) unwrapWETH9(minAmount, ownerAddress) — sends ETH to OWNER
+        // Using multicall ensures WETH stays in router between swap and unwrap.
+        let swapCalldata = encodeExactInputSingle(
             tokenIn: asset.contractAddress,
             tokenOut: wethAddress,
             fee: poolFee,
-            recipient: safeAddress,
+            recipient: uniswapRouter, // Send WETH to router for unwrap step
             amountIn: amountIn,
             amountOutMinimum: minETHOut,
             sqrtPriceLimitX96: 0
         )
-        
-        // Step 3: Unwrap WETH to ETH
-        // Uniswap SwapRouter02 has a built-in unwrapWETH9 function
-        let unwrapData = encodeUnwrapWETH9(minAmount: minETHOut, recipient: safeAddress)
+        let unwrapCalldata = encodeUnwrapWETH9(minAmount: minETHOut, recipient: ownerAddress)
+        let multicallData = encodeMulticall(calls: [swapCalldata, unwrapCalldata])
         
         // Execute as a MultiSend batch through the Safe:
-        // [approve, swap, unwrap]
+        // [approve USDC, router.multicall(swap+unwrap)]
         let multiSendData = encodeMultiSend(transactions: [
             (to: asset.contractAddress, value: 0, data: approveData),
-            (to: uniswapRouter, value: 0, data: swapData),
-            (to: uniswapRouter, value: 0, data: unwrapData)
+            (to: uniswapRouter, value: 0, data: multicallData)
         ])
         
         // Build Safe execTransaction for the MultiSend
@@ -415,6 +428,46 @@ actor GasManager {
         data.append(ABIEncoder.encodeUint256(minAmount))
         data.append(ABIEncoder.encodeAddress(recipient))
         return data
+    }
+    
+    /// Encode Uniswap V3 SwapRouter02.multicall(bytes[] data)
+    /// Bundles multiple router calls (e.g. swap + unwrap) into a single atomic transaction.
+    private func encodeMulticall(calls: [Data]) -> Data {
+        // multicall(bytes[]) selector = 0xac9650d8
+        let selector = ABIEncoder.functionSelector("multicall(bytes[])")
+        
+        // ABI encode bytes[] dynamic array
+        // Layout: offset(32) | array_length(32) | offsets[n] | element_length+data[n]
+        var body = Data()
+        
+        // Array length
+        body.append(ABIEncoder.encodeUint256(UInt64(calls.count)))
+        
+        // Calculate offsets: each offset points from start of array data to the element
+        // First element starts after all offset words (calls.count * 32 bytes)
+        var currentOffset = calls.count * 32
+        for call in calls {
+            body.append(ABIEncoder.encodeUint256(UInt64(currentOffset)))
+            // Each element is: length(32) + data + padding to 32-byte boundary
+            let paddedLen = call.count + (call.count % 32 == 0 ? 0 : 32 - (call.count % 32))
+            currentOffset += 32 + paddedLen
+        }
+        
+        // Encode each bytes element: length(32) + data + padding
+        for call in calls {
+            body.append(ABIEncoder.encodeUint256(UInt64(call.count)))
+            body.append(call)
+            let remainder = call.count % 32
+            if remainder != 0 {
+                body.append(Data(repeating: 0, count: 32 - remainder))
+            }
+        }
+        
+        // Final: selector + offset_to_array + body
+        var encoded = selector
+        encoded.append(ABIEncoder.encodeUint256(32)) // offset to bytes[]
+        encoded.append(body)
+        return encoded
     }
     
     /// Encode a MultiSend batch of transactions
